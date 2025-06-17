@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-<form name="form" th:action="@{/manager/member/chugaProc}" method="post">
+<form name="form" th:action="@{/manager/counselor/chugaProc}" method="post">
     <table border="1">
         <tr>
             <td>아이디</td>
@@ -36,16 +36,16 @@
             <td><input type="text" name="email"></td>
         </tr>
         <tr>
-            <td>구분</td>
-            <td>
-                <select th:name="type">
-                    <option selected>===선택===</option>
-                    <option th:value="학생" th:text="학생"></option>
-                    <option th:value="학부모" th:text="학부모"></option>
-                    <option th:value="교사" th:text="교사"></option>
-                    <option th:value="일반" th:text="일반"></option>
-                </select>
-            </td>
+            <td>프로필사진</td>
+            <td><input type="text" name="photo"></td>
+        </tr>
+        <tr>
+            <td>소개</td>
+            <td><input type="text" name="intro"></td>
+        </tr>
+        <tr>
+            <td>학력및자격</td>
+            <td><input type="text" name="license"></td>
         </tr>
         <tr align="center">
             <td colspan="2"><button>등록</button></td>

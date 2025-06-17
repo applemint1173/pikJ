@@ -33,4 +33,6 @@ public class MemberDTO {
 
     private List<Management> managementList;
 
+    private String pwdChk;
+
 }

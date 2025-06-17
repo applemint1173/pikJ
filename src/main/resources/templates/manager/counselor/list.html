@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table border="1">
+    <tr>
+        <th>회원번호</th>
+        <th>아이디</th>
+        <th>이름</th>
+        <th>전화번호</th>
+        <th>가입일</th>
+        <th>프로필사진</th>
+        <th>소개</th>
+        <th>학력및자격</th>
+    </tr>
+        <div th:each="counselorDTO : ${list}">
+            <tr>
+                <td>[[${counselorDTO.id}]]</td>
+                <td><a th:href="@{|/manager/counselor/view/${counselorDTO.no}|}" th:text="${counselorDTO.id}"></a></td>
+                <td>[[${counselorDTO.name}]]</td>
+                <td>[[${counselorDTO.phone}]]</td>
+                <td th:text="${#temporals.format(counselorDTO.regiDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                <td>[[${counselorDTO.photo}]]</td>
+                <td>[[${counselorDTO.intro}]]</td>
+                <td>[[${counselorDTO.license}]]</td>
+            </tr>
+        </div>
+</table>
+</body>
+</html>
