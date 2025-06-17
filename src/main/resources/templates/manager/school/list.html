@@ -1,0 +1,32 @@
+<!--박지영-->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<a href="/manager/school/chuga">추가</a>
+<a href="/manager/home">홈</a>
+<br>
+
+<table>
+    <tr>
+        <th>학교번호</th>
+        <th>학교명</th>
+        <th>구분</th>
+        <th>전화번호</th>
+    </tr>
+    <tr th:each="schoolDTO, loop:${list}">
+        <td>[[${schoolDTO.no}]]</td>
+        <td><a th:href="@{|/manager/school/view/${schoolDTO.no}|}" th:text="${schoolDTO.name}"></a></td>
+        <td>[[${schoolDTO.sort}]]</td>
+        <td>[[${schoolDTO.phone}]]</td>
+    </tr>
+</table>
+
+[처음] [끝]
+
+</body>
+</html>

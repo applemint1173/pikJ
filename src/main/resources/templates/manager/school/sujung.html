@@ -1,0 +1,53 @@
+<!--박지영-->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form name="form" action="/manager/school/sujungProc" method="post">
+    <input type="text" name="no" th:value="${returnDTO.no}">
+    <table>
+        <tr>
+            <th>학교번호</th>
+            <td>[[${returnDTO.no}]]</td>
+        </tr>
+        <tr>
+            <th>학교명</th>
+            <td><input type="text" name="name" th:value="${returnDTO.name}"></td>
+        </tr>
+        <tr>
+            <th>구분</th>
+            <td>
+                <select th:name="sort">
+                    <option selected>===선택===</option>
+                    <option th:value="중학교" th:text="중학교"></option>
+                    <option th:value="고등학교" th:text="고등학교"></option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th>위치</th>
+            <td><input type="text" name="location" th:value="${returnDTO.location}"></td>
+        </tr>
+        <tr>
+            <th>시도</th>
+            <td><input type="text" name="sido" th:value="${returnDTO.sido}"></td>
+        </tr>
+        <tr>
+            <th>시군구</th>
+            <td><input type="text" name="sgg" th:value="${returnDTO.sgg}"></td>
+        </tr>
+        <tr>
+            <th>전화번호</th>
+            <td><input type="text" name="phone" th:value="${returnDTO.phone}"></td>
+        </tr>
+    </table>
+    <button type="submit">확인</button>
+    <button type="button">취소</button>
+</form>
+
+</body>
+</html>

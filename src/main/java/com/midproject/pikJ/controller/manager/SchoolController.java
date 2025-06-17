@@ -1,8 +1,8 @@
 // 박지영
 package com.midproject.pikJ.controller.manager;
 
-import com.midproject.pikJ.dto.ManagementDTO;
-import com.midproject.pikJ.service.ManagementService;
+import com.midproject.pikJ.dto.SchoolDTO;
+import com.midproject.pikJ.service.SchoolService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,19 +13,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 @Controller
-@RequestMapping("/manager/management")
+@RequestMapping("/manager/school")
 @RequiredArgsConstructor
-public class ManagementController {
+public class SchoolController {
 
-    private final ManagementService service;
+    private final SchoolService service;
 
-    String folderName = "manager/management";
+    String folderName = "manager/school";
 
     @GetMapping("/list")
     public String list(
             Model model
     ) {
-        List<ManagementDTO> list = service.getSelectAll();
+        List<SchoolDTO> list = service.getSelectAll();
         model.addAttribute("list", list);
 
         return folderName + "/list";
@@ -34,9 +34,9 @@ public class ManagementController {
     @GetMapping("/view/{no}")
     public String view(
             Model model,
-            ManagementDTO submitDTO
+            SchoolDTO submitDTO
     ) {
-        ManagementDTO returnDTO = service.getSelectOne(submitDTO);
+        SchoolDTO returnDTO = service.getSelectOne(submitDTO);
         model.addAttribute("returnDTO", returnDTO);
 
         return folderName + "/view";
@@ -50,7 +50,7 @@ public class ManagementController {
 
     @PostMapping("/chugaProc")
     public String chugaProc(
-            ManagementDTO submitDTO
+            SchoolDTO submitDTO
     ) {
         service.setInsert(submitDTO);
 
@@ -63,9 +63,9 @@ public class ManagementController {
     @GetMapping("/sujung/{no}")
     public String sujung(
             Model model,
-            ManagementDTO submitDTO
+            SchoolDTO submitDTO
     ) {
-        ManagementDTO returnDTO = service.getSelectOne(submitDTO);
+        SchoolDTO returnDTO = service.getSelectOne(submitDTO);
 
         model.addAttribute("returnDTO", returnDTO);
 
@@ -74,7 +74,7 @@ public class ManagementController {
 
     @PostMapping("/sujungProc")
     public String sujungProc(
-            ManagementDTO submitDTO
+            SchoolDTO submitDTO
     ) {
         service.setUpdate(submitDTO);
 
@@ -84,9 +84,9 @@ public class ManagementController {
     @GetMapping("/sakje/{no}")
     public String sakje(
             Model model,
-            ManagementDTO submitDTO
+            SchoolDTO submitDTO
     ) {
-        ManagementDTO returnDTO = service.getSelectOne(submitDTO);
+        SchoolDTO returnDTO = service.getSelectOne(submitDTO);
         model.addAttribute("returnDTO", returnDTO);
 
         return folderName + "/sakje";
@@ -94,7 +94,7 @@ public class ManagementController {
 
     @PostMapping("/sakjeProc")
     public String sakjeProc(
-            ManagementDTO submitDTO
+            SchoolDTO submitDTO
     ) {
         service.setDelete(submitDTO);
 
