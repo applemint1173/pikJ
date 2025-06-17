@@ -1,0 +1,42 @@
+<!--김태준-->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form name="form" th:action="@{/manager/member/sakjeProc}" method="post">
+    <input type="hidden" name="no" th:value="${returnDTO.no}">
+    <table border="1">
+        <tr>
+            <td>아이디</td>
+            <td th:text="${returnDTO.id}"></td>
+        </tr>
+        <tr>
+            <td>이름</td>
+            <td th:text="${returnDTO.name}"></td></td>
+        </tr>
+        <tr>
+            <td>생년월일</td>
+            <td th:text="${returnDTO.birthDate}"></td></td>
+        </tr>
+        <tr>
+            <td>전화번호</td>
+            <td th:text="${returnDTO.phone}"></td></td>
+        </tr>
+        <tr>
+            <td>이메일</td>
+            <td th:text="${returnDTO.email}"></td></td>
+        </tr>
+        <tr>
+            <td>구분</td>
+            <td th:text="${returnDTO.type}"></td></td>
+        </tr>
+        <tr align="center">
+            <td colspan="2"><button>삭제</button></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

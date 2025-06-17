@@ -1,0 +1,38 @@
+<!--박지영-->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<a href="/manager/management/chuga">추가</a>
+<a href="/manager/home">홈</a>
+<br>
+
+<table>
+    <tr>
+        <th>내담자이름</th>
+        <th>내담자전화번호</th>
+        <th>내담자구분</th>
+        <th>상담사이름</th>
+        <th>상담일</th>
+        <th>상담구분</th>
+        <th>작성일</th>
+    </tr>
+    <tr th:each="managementDTO, loop:${list}">
+        <td><a th:href="@{|/manager/management/view/${managementDTO.no}|}" th:text="${managementDTO.member.name}"></a></td>
+        <td>[[${managementDTO.member.phone}]]</td>
+        <td>[[${managementDTO.member.type}]]</td>
+        <td>[[${managementDTO.counselor.name}]]</td>
+        <td>[[${managementDTO.meetingDate}]]</td>
+        <td>[[${managementDTO.checks}]]</td>
+        <td>[[${managementDTO.regiDate}]]</td>
+    </tr>
+</table>
+
+[처음] [끝]
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!--김태준-->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table border="1">
+    <tr>
+        <th>아이디</th>
+        <th>이름</th>
+        <th>전화번호</th>
+        <th>구분</th>
+        <th>가입일</th>
+    </tr>
+        <div th:each="memberDTO : ${list}">
+            <tr>
+                <td><a th:href="@{|/manager/member/view/${memberDTO.no}|}" th:text="${memberDTO.id}"></a></td>
+                <td>[[${memberDTO.name}]]</td>
+                <td>[[${memberDTO.phone}]]</td>
+                <td>[[${memberDTO.type}]]</td>
+                <td th:text="${#temporals.format(memberDTO.regiDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+            </tr>
+        </div>
+</table>
+</body>
+</html>
