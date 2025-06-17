@@ -1,8 +1,8 @@
 // 박지영
 package com.midproject.pikJ.controller.manager;
 
-import com.midproject.pikJ.dto.SchoolDTO;
-import com.midproject.pikJ.service.SchoolService;
+import com.midproject.pikJ.dto.ProgramDTO;
+import com.midproject.pikJ.service.ProgramService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,19 +13,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 @Controller
-@RequestMapping("/manager/school")
+@RequestMapping("/manager/program")
 @RequiredArgsConstructor
-public class SchoolController {
+public class ProgramController {
 
-    private final SchoolService service;
+    private final ProgramService service;
 
-    String folderName = "manager/school";
+    String folderName = "manager/program";
 
     @GetMapping("/list")
     public String list(
             Model model
     ) {
-        List<SchoolDTO> list = service.getSelectAll();
+        List<ProgramDTO> list = service.getSelectAll();
         model.addAttribute("list", list);
 
         return folderName + "/list";
@@ -34,9 +34,9 @@ public class SchoolController {
     @GetMapping("/view/{no}")
     public String view(
             Model model,
-            SchoolDTO submitDTO
+            ProgramDTO submitDTO
     ) {
-        SchoolDTO returnDTO = service.getSelectOne(submitDTO);
+        ProgramDTO returnDTO = service.getSelectOne(submitDTO);
         model.addAttribute("returnDTO", returnDTO);
 
         return folderName + "/view";
@@ -50,7 +50,7 @@ public class SchoolController {
 
     @PostMapping("/chugaProc")
     public String chugaProc(
-            SchoolDTO submitDTO
+            ProgramDTO submitDTO
     ) {
         service.setInsert(submitDTO);
 
@@ -60,9 +60,9 @@ public class SchoolController {
     @GetMapping("/sujung/{no}")
     public String sujung(
             Model model,
-            SchoolDTO submitDTO
+            ProgramDTO submitDTO
     ) {
-        SchoolDTO returnDTO = service.getSelectOne(submitDTO);
+        ProgramDTO returnDTO = service.getSelectOne(submitDTO);
 
         model.addAttribute("returnDTO", returnDTO);
 
@@ -71,7 +71,7 @@ public class SchoolController {
 
     @PostMapping("/sujungProc")
     public String sujungProc(
-            SchoolDTO submitDTO
+            ProgramDTO submitDTO
     ) {
         service.setUpdate(submitDTO);
 
@@ -81,9 +81,9 @@ public class SchoolController {
     @GetMapping("/sakje/{no}")
     public String sakje(
             Model model,
-            SchoolDTO submitDTO
+            ProgramDTO submitDTO
     ) {
-        SchoolDTO returnDTO = service.getSelectOne(submitDTO);
+        ProgramDTO returnDTO = service.getSelectOne(submitDTO);
         model.addAttribute("returnDTO", returnDTO);
 
         return folderName + "/sakje";
@@ -91,7 +91,7 @@ public class SchoolController {
 
     @PostMapping("/sakjeProc")
     public String sakjeProc(
-            SchoolDTO submitDTO
+            ProgramDTO submitDTO
     ) {
         service.setDelete(submitDTO);
 

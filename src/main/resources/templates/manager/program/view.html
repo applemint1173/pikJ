@@ -1,0 +1,56 @@
+<!--박지영-->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<a href="/manager/program/chuga">추가</a>
+<a th:href="@{|/manager/program/sujung/${returnDTO.no}|}">수정</a>
+<a th:href="@{|/manager/program/sakje/${returnDTO.no}|}">삭제</a>
+<a href="/manager/home">홈</a>
+<br>
+
+<table>
+    <tr>
+        <th>프로그램번호</th>
+        <td>[[${returnDTO.no}]]</td>
+    </tr>
+    <tr>
+        <th>시작일</th>
+        <td>[[${returnDTO.startDate}]]</td>
+    </tr>
+    <tr>
+        <th>종료일</th>
+        <td>[[${returnDTO.endDate}]]</td>
+    </tr>
+    <tr>
+        <th>제목</th>
+        <td>[[${returnDTO.subject}]]</td>
+    </tr>
+    <tr>
+        <th>내용</th>
+        <td>[[${returnDTO.content}]]</td>
+    </tr>
+    <tr>
+        <th>첨부파일</th>
+        <td>[[${returnDTO.attachment}]]</td>
+    </tr>
+    <tr>
+        <th>진행단계</th>
+        <td>[[${returnDTO.stage}]]</td>
+    </tr>
+    <tr>
+        <th>프로그램구분</th>
+        <td>[[${returnDTO.type}]]</td>
+    </tr>
+    <tr>
+        <th>작성일</th>
+        <td>[[${returnDTO.regiDate}]]</td>
+    </tr>
+</table>
+
+</body>
+</html>

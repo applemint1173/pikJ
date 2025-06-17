@@ -8,7 +8,7 @@
 <body>
 
 <form name="form" action="/manager/school/sujungProc" method="post">
-    <input type="text" name="no" th:value="${returnDTO.no}">
+    <input type="hidden" name="no" th:value="${returnDTO.no}">
     <table>
         <tr>
             <th>학교번호</th>

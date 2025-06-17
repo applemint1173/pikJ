@@ -31,13 +31,13 @@ public class SchoolService {
     }
 
     public SchoolDTO getSelectOne(SchoolDTO schoolDTO) {
-        Optional<School> or = repository.findById(schoolDTO.getNo());
+        Optional<School> os = repository.findById(schoolDTO.getNo());
 
-        if (!or.isPresent()) {
+        if (!os.isPresent()) {
             return null;
         }
 
-        School school = or.get();
+        School school = os.get();
         return modelMapper.map(school, SchoolDTO.class);
     }
 
