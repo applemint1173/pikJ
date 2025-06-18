@@ -3,18 +3,26 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>PikJManagerHome</title>
+    <link rel="stylesheet" th:href="@{/css/test.css}">
 </head>
+
 <body>
 
-로그인/로그아웃<br>
-
-<a href="/manager/member/list">내담자 관리</a><br>
-<a href="/manager/counselor/list">상담사 관리</a><br>
-<a href="/manager/school/list">학교 관리</a><br>
-<a href="/manager/management/list">전체 상담 리스트 관리</a><br>
-<a href="/manager/program/list">프로그램 관리</a><br>
-공지사항 관리
+<div class="box">
+    <div class="header">
+        <div>PikJ[로고]</div>
+        <div>관리자 로그인</div>
+    </div>
+    <div class="main">
+    <div><a href="/manager/member/list">1. 내담자 관리</a></div>
+    <div><a href="/manager/counselor/list">2. 상담사 관리</a></div>
+    <div><a href="/manager/school/list">3. 학교 관리</a></div>
+    <div><a href="/manager/management/list">4. 전체 상담 리스트 관리</a></div>
+    <div><a href="/manager/program/list">5. 프로그램 관리</a></div>
+    <div><a href="/manager/notice/list">6. 공지사항 관리</a></div>
+    </div>
+</div>
 
 </body>
 </html>
