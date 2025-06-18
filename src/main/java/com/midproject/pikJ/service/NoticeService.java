@@ -1,3 +1,4 @@
+//정재백
 package com.midproject.pikJ.service;
 
 import com.midproject.pikJ.dto.NoticeDTO;
@@ -14,7 +15,6 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class NoticeService {
-
     private final NoticeRepository repository;
     private final ModelMapper modelMapper;
 
@@ -30,13 +30,13 @@ public class NoticeService {
     }
 
     public NoticeDTO getSelectOne(NoticeDTO noticeDTO) {
-        Optional<Notice> on = repository.findById(noticeDTO.getNo());
+        Optional<Notice> op = repository.findById(noticeDTO.getNo());
 
-        if (!on.isPresent()) {
+        if (!op.isPresent()) {
             return null;
         }
 
-        Notice notice = on.get();
+        Notice notice = op.get();
         return modelMapper.map(notice, NoticeDTO.class);
     }
 

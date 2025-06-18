@@ -1,0 +1,76 @@
+<!--김태준-->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="main">
+    <div id="header">
+        <ul>
+            <li>유형선택</li>
+            <li>약관동의</li>
+            <li>본인인증</li>
+            <li>정보입력</li>
+            <li>가입완료</li>
+        </ul>
+    </div>
+    <div id="container">
+        <div class="regist">
+            <h1>회원가입</h1>
+            <form name="form" th:action="@{/user/regist/counselor/chugaProc}" method="post">
+                <table border="1">
+                    <tr>
+                        <td>아이디</td>
+                        <td><input type="text" name="id"></td>
+                    </tr>
+                    <tr>
+                        <td>비밀번호</td>
+                        <td><input type="password" name="pwd"></td>
+                    </tr>
+                    <tr>
+                        <td>비밀번호 확인</td>
+                        <td><input type="password" name="pwdChk"></td>
+                    </tr>
+                    <tr>
+                        <td>이름</td>
+                        <td><input type="text" name="name"></td>
+                    </tr>
+                    <tr>
+                        <td>생년월일</td>
+                        <td><input type="date" name="birthDate"></td>
+                    </tr>
+                    <tr>
+                        <td>전화번호</td>
+                        <td><input type="text" name="phone"></td>
+                    </tr>
+                    <tr>
+                        <td>이메일</td>
+                        <td><input type="text" name="email"></td>
+                    </tr>
+                    <tr>
+                        <td>프로필사진</td>
+                        <td><input type="text" name="photo"></td>
+                    </tr>
+                    <tr>
+                        <td>소개</td>
+                        <td><input type="text" name="intro"></td>
+                    </tr>
+                    <tr>
+                        <td>학력및자격</td>
+                        <td><input type="text" name="license"></td>
+                    </tr>
+                    <tr align="center">
+                        <td colspan="2"><button>등록</button></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+</div>
+<div id="footer">
+
+</div>
+</body>
+</html>

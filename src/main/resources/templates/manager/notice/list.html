@@ -1,0 +1,26 @@
+<!-- 정재백 -->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<a href="/manager/notice/chuga">추가</a>
+<a href="/manager/home">홈</a>
+<br>
+<table>
+    <tr>
+        <th>제목</th>
+        <th>작성자</th>
+        <th>작성일</th>
+    </tr>
+    <tr th:each="noticeDTO, loop:${list}">
+        <td><a th:href="@{|/manager/notice/view/${noticeDTO.no}|}" th:text="${noticeDTO.subject}"></a></td>
+        <td>[[${noticeDTO.writer}]]</td>
+        <td th:text="${#temporals.format(noticeDTO.regiDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+    </tr>
+</table>
+</body>
+</html>

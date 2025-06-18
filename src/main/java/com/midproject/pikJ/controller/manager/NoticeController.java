@@ -1,3 +1,4 @@
+//정재백
 package com.midproject.pikJ.controller.manager;
 
 import com.midproject.pikJ.dto.NoticeDTO;
@@ -15,7 +16,6 @@ import java.util.List;
 @RequestMapping("/manager/notice")
 @RequiredArgsConstructor
 public class NoticeController {
-
     private final NoticeService service;
 
     String folderName = "manager/notice";
@@ -96,5 +96,4 @@ public class NoticeController {
 
         return "redirect:/" + folderName + "/list";
     }
-
 }

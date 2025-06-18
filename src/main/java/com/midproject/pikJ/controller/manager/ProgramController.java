@@ -10,6 +10,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -51,7 +57,29 @@ public class ProgramController {
     @PostMapping("/chugaProc")
     public String chugaProc(
             ProgramDTO submitDTO
-    ) {
+    ) throws ParseException {
+        LocalDate date = LocalDate.now();
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String todayString = date.format(dateTimeFormatter);
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+        Date today = dateFormat.parse(todayString);
+        Boolean nextStart  = today.after(submitDTO.getStartDate());
+        Boolean nextEnd  = today.after(submitDTO.getEndDate());
+
+        if (nextStart == false && nextEnd == false) {
+            submitDTO.setStage("진행예정");
+        }
+
+        if (nextStart == true && nextEnd == false) {
+            submitDTO.setStage("진행중");
+        }
+
+        if (nextStart == true && nextEnd == true) {
+            submitDTO.setStage("종료");
+        }
+
+
         service.setInsert(submitDTO);
 
         return "redirect:/" + folderName + "/list";
