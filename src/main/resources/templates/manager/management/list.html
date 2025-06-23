@@ -4,35 +4,63 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/managerList.css}">
 </head>
 <body>
 
-<a href="/manager/management/chuga">추가</a>
-<a href="/manager/home">홈</a>
-<br>
+<div id="container">
 
-<table>
-    <tr>
-        <th>내담자이름</th>
-        <th>내담자전화번호</th>
-        <th>내담자구분</th>
-        <th>상담사이름</th>
-        <th>상담일</th>
-        <th>상담구분</th>
-        <th>작성일</th>
-    </tr>
-    <tr th:each="managementDTO, loop:${list}">
-        <td><a th:href="@{|/manager/management/view/${managementDTO.no}|}" th:text="${managementDTO.member.name}"></a></td>
-        <td>[[${managementDTO.member.phone}]]</td>
-        <td>[[${managementDTO.member.type}]]</td>
-        <td>[[${managementDTO.counselor.name}]]</td>
-        <td>[[${managementDTO.meetingDate}]]</td>
-        <td>[[${managementDTO.checks}]]</td>
-        <td>[[${managementDTO.regiDate}]]</td>
-    </tr>
-</table>
+    <h1>상담 리스트 관리</h1>
+    <div class="log">로그아웃</div>
+    <div id="main">
+        <div id="nav">
+            <div><a href="/manager/home"><img src="https://img.icons8.com/material-outlined/24/home--v2.png" alt="home--v2"/></a></div>
+            <select class="search">
+                <option selected>===선택===</option>
+                <option th:value="name" th:text="이름"></option>
+                <option th:value="phone" th:text="전화번호"></option>
+                <option th:value="type" th:text="구분"></option>
+            </select>
+            <input type="text" id="search">
+            <button>search</button>
+        </div>
 
-[처음] [끝]
+        <div class="chuga"><a href="/manager/management/chuga">추가</a></div>
+
+        <table>
+            <thead>
+            <tr>
+                <th>내담자이름</th>
+                <th>내담자전화번호</th>
+                <th>내담자구분</th>
+                <th>상담사이름</th>
+                <th>상담일</th>
+                <th>상담구분</th>
+                <th>작성일</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <div th:if="${list.size() == 0}">
+                <td colspan="5">등록된 상담 리스트가 없습니다.</td>
+            </div>
+
+            <div th:unless="${list.size() == 0}">
+                <tr th:each="managementDTO, loop:${list}">
+                    <td><a th:href="@{|/manager/management/view/${managementDTO.no}|}" th:text="${managementDTO.member.name}"></a></td>
+                    <td>[[${managementDTO.member.phone}]]</td>
+                    <td>[[${managementDTO.member.type}]]</td>
+                    <td>[[${managementDTO.counselor.name}]]</td>
+                    <td>[[${managementDTO.meetingDate}]]</td>
+                    <td>[[${managementDTO.checks}]]</td>
+                    <td th:text="${#temporals.format(managementDTO.regiDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                </tr>
+            </div>
+            </tbody>
+        </table>
+
+    </div>
+</div>
 
 </body>
 </html>

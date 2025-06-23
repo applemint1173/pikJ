@@ -4,8 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/managerView.css}">
 </head>
 <body>
+
+<div id="header">
+    <h1>학교 수정</h1>
+    <div class="log">로그아웃</div>
+    <div class="home">
+        <a href="/manager/home">
+            <img src="https://img.icons8.com/material-outlined/24/home--v2.png" alt="home--v2" />
+        </a>
+    </div>
+</div>
 
 <form name="form" action="/manager/school/sujungProc" method="post">
     <input type="hidden" name="no" th:value="${returnDTO.no}">
@@ -29,8 +40,8 @@
             </td>
         </tr>
         <tr>
-            <th>위치</th>
-            <td><input type="text" name="location" th:value="${returnDTO.location}"></td>
+            <th>전화번호</th>
+            <td><input type="text" name="phone" th:value="${returnDTO.phone}"></td>
         </tr>
         <tr>
             <th>시도</th>
@@ -41,13 +52,22 @@
             <td><input type="text" name="sgg" th:value="${returnDTO.sgg}"></td>
         </tr>
         <tr>
-            <th>전화번호</th>
-            <td><input type="text" name="phone" th:value="${returnDTO.phone}"></td>
+            <th>위치</th>
+            <td><input type="text" name="location" th:value="${returnDTO.location}"></td>
         </tr>
     </table>
-    <button type="submit">확인</button>
-    <button type="button">취소</button>
 </form>
+
+<div id="nav">
+    <div onclick="sujung();" style="cursor:pointer;"><a>확인</a></div>
+    <div><a th:href="@{|/manager/school/view/${returnDTO.no}|}">취소</a></div>
+</div>
+
+<script>
+    function sujung() {
+        document.form.submit();
+    }
+</script>
 
 </body>
 </html>

@@ -1,3 +1,4 @@
+/*김태준: CSS*/
 * {
             margin: 0;
             padding: 0;
@@ -20,7 +21,7 @@
         .log {
             display: inline-block;
             position: absolute;
-            right: 12%;
+            right: 15%; /* JY 요청사항 : 기존 12 */
             top: 5%;
             font-size: 1.3em;
         }
@@ -28,7 +29,7 @@
         .home {
             position: absolute;
             right: 12%;
-            top: 15%;
+            top: 5%; /* JY 요청사항 : 기존 15 */
             font-size: 1.5em;
         }
 

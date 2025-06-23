@@ -39,6 +39,12 @@ public class ManagementService {
         return dtoList;
     }
 
+    // 김태준
+    public void getSelectByMemberId(String id) {
+        List<Management> entityList = repository.findByMemberMemberId(id);
+
+    }
+
     public ManagementDTO getSelectOne(ManagementDTO managementDTO) {
         Optional<Management> om = repository.findById(managementDTO.getNo());
 

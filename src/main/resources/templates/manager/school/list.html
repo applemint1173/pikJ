@@ -4,29 +4,58 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/managerList.css}">
 </head>
 <body>
 
-<a href="/manager/school/chuga">추가</a>
-<a href="/manager/home">홈</a>
-<br>
+<div id="container">
 
-<table>
-    <tr>
-        <th>학교번호</th>
-        <th>학교명</th>
-        <th>구분</th>
-        <th>전화번호</th>
-    </tr>
-    <tr th:each="schoolDTO, loop:${list}">
-        <td>[[${schoolDTO.no}]]</td>
-        <td><a th:href="@{|/manager/school/view/${schoolDTO.no}|}" th:text="${schoolDTO.name}"></a></td>
-        <td>[[${schoolDTO.sort}]]</td>
-        <td>[[${schoolDTO.phone}]]</td>
-    </tr>
-</table>
+    <h1>학교 관리</h1>
+    <div class="log">로그아웃</div>
+    <div id="main">
+        <div id="nav">
+            <div><a href="/manager/home"><img src="https://img.icons8.com/material-outlined/24/home--v2.png" alt="home--v2"/></a></div>
+            <select class="search">
+                <option selected>===선택===</option>
+                <option th:value="name" th:text="학교명"></option>
+                <option th:value="sido" th:text="시도"></option>
+                <option th:value="sgg" th:text="시군구"></option>
+            </select>
+            <input type="text" id="search">
+            <button>search</button>
+        </div>
 
-[처음] [끝]
+        <div class="chuga"><a href="/manager/school/chuga">추가</a></div>
+
+        <table>
+            <thead>
+            <tr>
+                <th>학교명</th>
+                <th>전화번호</th>
+                <th>시도</th>
+                <th>시군구</th>
+            </tr>
+            </thead>
+
+            <tbody>
+                <div th:if="${list.size() == 0}">
+                    <td colspan="5">등록된 학교가 없습니다.</td>
+                </div>
+
+                <div th:unless="${list.size() == 0}">
+                    <tr th:each="schoolDTO, loop:${list}">
+                        <td><a th:href="@{|/manager/school/view/${schoolDTO.no}|}" th:text="${schoolDTO.name}"></a></td>
+                        <td>[[${schoolDTO.phone}]]</td>
+                        <td>[[${schoolDTO.sido}]]</td>
+                        <td>[[${schoolDTO.sgg}]]</td>
+                    </tr>
+                </div>
+            </tbody>
+
+        </table>
+
+    </div>
+</div>
 
 </body>
 </html>

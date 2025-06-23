@@ -29,6 +29,14 @@ public class ProgramService {
         return dtoList;
     }
 
+    //임소희//
+    public List<ProgramDTO> getSelectAll(String type) {
+        List<Program> programs = repository.findByType(type);
+        List<ProgramDTO> dtoList = new ArrayList<>();
+
+        return dtoList;
+    }
+
     public ProgramDTO getSelectOne(ProgramDTO programDTO) {
         Optional<Program> op = repository.findById(programDTO.getNo());
 

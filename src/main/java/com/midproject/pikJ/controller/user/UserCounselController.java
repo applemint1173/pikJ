@@ -22,7 +22,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/management")
 @RequiredArgsConstructor
-public class CounselController {
+public class UserCounselController {
 
     private final MemberService memberService;
     private final SchoolService schoolService;
@@ -75,11 +75,14 @@ public class CounselController {
             counselorDTO.setName("-");
             counselorDTO.setBirthDate(Date.valueOf("1900-01-01"));
             counselorDTO.setEmail("-");
+            counselorDTO.setPhone("-"); // 추가
             counselorDTO.setPhoto("-");
             counselorDTO.setLicense("-");
             counselorDTO.setIntro("-");
 
             counselorService.setInsert(counselorDTO);
+            counselorDTO = counselorService.getSelectLoginOne(counselorDTO); // 추가
+
             model.addAttribute("defaultCounselorDTO", counselorDTO);
         }
 
@@ -92,6 +95,16 @@ public class CounselController {
     ) {
         managementService.setInsert(managementDTO);
         return "redirect:/homeImsi";
+    }
+
+    @GetMapping("/list")
+    public String list() {
+        return userFolderName + "/list";
+    }
+
+    @GetMapping("/view")
+    public String view() {
+        return userFolderName + "/view";
     }
 
 }

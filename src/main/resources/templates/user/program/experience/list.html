@@ -1,10 +1,48 @@
+<!-- 소희 -->
+
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/userProgramList.css}">
 </head>
 <body>
 
+
+<div>
+
+    <h1>체험 프로그램
+        <div>
+            <input type="checkbox" name="checkbox1" onclick="onlyOne(this)" checked>진행 중
+            <input type="checkbox" name="checkbox2" onclick="onlyOne(this)">진행예정
+            <input type="checkbox" name="checkbox3" onclick="onlyOne(this)">완   료
+        </div>
+
+        <tr th:each="program : ${experience}">
+            <a th:href="@{|/program/experience/view/${program.no}|}">
+                <div class="div1">
+                    <td th:text="${program.startDate}"></td><br><hr>
+                    <td th:text="${program.attachment}"></td><br>
+                    <div class="div2">
+                        <td th:text="${program.stage}"></td><br>
+                    </div>
+                </div>
+            </a>
+        </tr>
+</div>
+
+<script>
+    function onlyOne(checkbox){
+        const checkboxes = document.getElementsByName('checkbox');
+        checkboxes.forEach(cb => {
+            if (cb !== checkbox) cb.checked = false;
+        });
+    }
+</script>
+
+<!--// 진행 중 누르면 진행 중인 값만 나오기 //-->
+<!--// 체험과 강연끼리 따로 나오기 하기! //-->
 </body>
 </html>

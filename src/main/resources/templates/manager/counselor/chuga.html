@@ -1,56 +1,78 @@
+<!--김태준: html, 박지영: css 추가-->
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/managerView.css}">
 </head>
 <body>
+
+<div id="header">
+    <h1>상담자 추가</h1>
+    <div class="log">로그아웃</div>
+    <div class="home">
+        <a href="/manager/home">
+            <img src="https://img.icons8.com/material-outlined/24/home--v2.png" alt="home--v2" />
+        </a>
+    </div>
+</div>
+
 <form name="form" th:action="@{/manager/counselor/chugaProc}" method="post">
-    <table border="1">
+    <table>
         <tr>
-            <td>아이디</td>
+            <th>아이디</th>
             <td><input type="text" name="id"></td>
         </tr>
         <tr>
-            <td>비밀번호</td>
+            <th>비밀번호</th>
             <td><input type="password" name="pwd"></td>
         </tr>
         <tr>
-            <td>비밀번호 확인</td>
+            <th>비밀번호 확인</th>
             <td><input type="password" name="pwdChk"></td>
         </tr>
         <tr>
-            <td>이름</td>
+            <th>이름</th>
             <td><input type="text" name="name"></td>
         </tr>
         <tr>
-            <td>생년월일</td>
+            <th>생년월일</th>
             <td><input type="date" name="birthDate"></td>
         </tr>
         <tr>
-            <td>전화번호</td>
+            <th>전화번호</th>
             <td><input type="text" name="phone"></td>
         </tr>
         <tr>
-            <td>이메일</td>
+            <th>이메일</th>
             <td><input type="text" name="email"></td>
         </tr>
         <tr>
-            <td>프로필사진</td>
+            <th>프로필사진</th>
             <td><input type="text" name="photo"></td>
         </tr>
         <tr>
-            <td>소개</td>
+            <th>소개</th>
             <td><input type="text" name="intro"></td>
         </tr>
         <tr>
-            <td>학력및자격</td>
+            <th>학력및자격</th>
             <td><input type="text" name="license"></td>
-        </tr>
-        <tr align="center">
-            <td colspan="2"><button>등록</button></td>
         </tr>
     </table>
 </form>
+
+<div id="nav">
+    <div onclick="chuga();" style="cursor:pointer;"><a>확인</a></div>
+    <div><a href="/manager/counselor/list">취소</a></div>
+</div>
+
+<script>
+    function chuga() {
+        document.form.submit();
+    }
+</script>
+
 </body>
 </html>
