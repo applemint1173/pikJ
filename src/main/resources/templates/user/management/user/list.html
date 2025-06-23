@@ -13,6 +13,15 @@
         <th>날짜</th>
         <th>처리상태</th>
     </tr>
+
+    <tr th:each="counselorDTO : ${list}">
+        <td><a th:href="@{|/manager/counselor/view/${counselorDTO.no}|}" th:text="${counselorDTO.id}"></a></td>
+        <td>[[${counselorDTO.name}]]</td>
+        <td>[[${counselorDTO.birthDate}]]</td>
+        <td>[[${counselorDTO.phone}]]</td>
+        <td th:text="${#temporals.format(counselorDTO.regiDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+    </tr>
+
 </table>
 </body>
 </html>

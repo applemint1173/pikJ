@@ -10,10 +10,10 @@ public interface ManagementRepository extends JpaRepository<Management, Integer>
 
     //김태준
     //counselor id가 ? 인 Management 찾기
-    List<Management> findByCounselorCounselorId(String id);
+    List<Management> findByCounselorId(String id);
 
     //김태준
     //member id가 ?인 Management 찾기
-    List<Management> findByMemberMemberId(String id);
+    List<Management> findByMemberId(String id);
 
 }

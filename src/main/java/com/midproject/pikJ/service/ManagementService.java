@@ -41,7 +41,7 @@ public class ManagementService {
 
     // 김태준
     public void getSelectByMemberId(String id) {
-        List<Management> entityList = repository.findByMemberMemberId(id);
+        //List<Management> entityList = repository.findByMemberMemberId(id);
 
     }
 

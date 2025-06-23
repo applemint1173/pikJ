@@ -1,4 +1,4 @@
-<!--임소희-->
+<!--박지영-->
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -7,51 +7,21 @@
 </head>
 <body>
 
+<a href="/">홈</a>
 
-<div style="width:500px; height:auto; margin:auto; border:1px solid black; padding: 20px;">
-    <h1 style="text-alignt:center;padding:30px; margin:auto;">공지사항</h1>
-    <table style="border:1px solid black; width:100%;">
-        <tr style="border:1px solid black;">
-            <th>순번</th>
-            <th>제목</th>
-            <th>작성자</th>
-            <th>날짜</th>
-        </tr>
-        <tr th:each="notice, loop: ${paging}">
-            <td th:text="${paging.getTotalElements - (paging.number * paging.size - loop.index)}"></td>
-            <td>
-                <a th:href="@{|/user/notice/view/${noticeDTO.no}|}" th:text="${notice.subject}"></a>
-
-                <span class="text-danger small ms-2"
-                      th:if="${#lists.size(board.answerList) > 0}"
-                      th:text="${#lists.size(board.answerList)}">
-                         </span>
-
-            </td>
-            <td th:text="${notice.writer}"></td>
-            <td th:text="${#temporals.format(noticeDTO.regiDate, 'yyyy-MM-dd')}"></td>
-        </tr>
-    </table>
-    <div th:if="${!paging.isEmpty}">
-        <ul class="pagination justify-content-content">
-            <li class="page-item" th:classappend="${!paging.hasPrevious} ? 'disabled'">
-                <a class="page-link"
-                   th:href="@{|?page=${paging.number-1}|}">이전</a>
-            </li>
-            <li th:each="page: ${#numbers.sequence(0, paging.totalPages-1)}"
-                th:if="${page >= paging.number-5 and page <= paging.number+5}"
-                th:classappend="${page == paging.number} ? 'active'"
-                class="page-item">
-                <a th:text="${page}" class="page-link" th:href="@{|?page=${page}|}"></a>
-            </li>
-            <li class="page-item" th:classappend="${!paging.hasNext} ? 'disabled'">
-                <a class="page-link" th:href="@{|?page=${paging.number+1}|}">
-                    <span>다음</span>
-                </a>
-            </li>
-        </ul>
-    </div>
-</div>
+<br>
+<table>
+    <tr>
+        <th>제목</th>
+        <th>작성자</th>
+        <th>작성일</th>
+    </tr>
+    <tr th:each="noticeDTO, loop:${list}">
+        <td><a th:href="@{|/notice/view/${noticeDTO.no}|}" th:text="${noticeDTO.subject}"></a></td>
+        <td>[[${noticeDTO.writer}]]</td>
+        <td th:text="${#temporals.format(noticeDTO.regiDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+    </tr>
+</table>
 
 </body>
 </html>
