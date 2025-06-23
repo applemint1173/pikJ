@@ -1,10 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
+
+<table>
+    <tr>
+        <th>순번</th>
+        <th>내담자</th>
+        <th>상담일</th>
+        <th>처리 상태</th>
+        <th>상담 내역 보기</th>
+    </tr>
+
+    <tr th:each="managementDTO, loop : ${list}">
+        <td>[[${loop.count}]]</td>
+        <td>[[${managementDTO.member.name}]]</td>
+        <td>[[${managementDTO.meetingDate}]]</td>
+        <td>[[${managementDTO.checks}]]</td>
+        <td><div onclick="">버튼</div></td>
+    </tr>
+
+</table>
 
 </body>
 </html>

@@ -24,13 +24,23 @@
   </tr>
   <tr>
     <td></td>
-    <td>내담자</td>
+    <td>
+      <form name="form" action="/management/list" method="post">
+        <input type="hidden" name="id" th:value="${id}">
+        <button>내담자</button>
+      </form>
+    </td>
     <td>체험</td>
     <td>소개</td>
   </tr>
   <tr>
     <td></td>
-    <td>상담사</td>
+    <td>
+      <form name="form" action="/management/counselor/list" method="post">
+        <input type="hidden" name="id" th:value="${id}">
+        <button>상담사</button>
+      </form>
+    </td>
     <td>강연</td>
     <td>공지사항</td>
   </tr>

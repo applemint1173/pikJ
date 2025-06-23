@@ -40,9 +40,26 @@ public class ManagementService {
     }
 
     // 김태준
-    public void getSelectByMemberId(String id) {
-        //List<Management> entityList = repository.findByMemberMemberId(id);
+    public List<ManagementDTO> getSelectByMemberId(String id) {
+        List<Management> entityList = repository.findByMemberId(id);
+        List<ManagementDTO> dtoList = new ArrayList<>();
 
+        for (int i = 0; i < entityList.size(); i ++) {
+            dtoList.add(modelMapper.map(entityList.get(i), ManagementDTO.class));
+        }
+
+        return dtoList;
+    }
+
+    public List<ManagementDTO> getSelectByCounselorId(String id) {
+        List<Management> entityList = repository.findByCounselorId(id);
+        List<ManagementDTO> dtoList = new ArrayList<>();
+
+        for (int i = 0; i < entityList.size(); i ++) {
+            dtoList.add(modelMapper.map(entityList.get(i), ManagementDTO.class));
+        }
+
+        return dtoList;
     }
 
     public ManagementDTO getSelectOne(ManagementDTO managementDTO) {

@@ -1,10 +1,7 @@
 // 박지영
 package com.midproject.pikJ.controller.user;
 
-import com.midproject.pikJ.dto.CounselorDTO;
-import com.midproject.pikJ.dto.ManagementDTO;
-import com.midproject.pikJ.dto.MemberDTO;
-import com.midproject.pikJ.dto.SchoolDTO;
+import com.midproject.pikJ.dto.*;
 import com.midproject.pikJ.service.CounselorService;
 import com.midproject.pikJ.service.ManagementService;
 import com.midproject.pikJ.service.MemberService;
@@ -20,9 +17,9 @@ import java.sql.Date;
 import java.util.List;
 
 @Controller
-@RequestMapping("/management")
+@RequestMapping("/management/client")
 @RequiredArgsConstructor
-public class UserCounselController {
+public class ClientController {
 
     private final MemberService memberService;
     private final SchoolService schoolService;
@@ -97,8 +94,14 @@ public class UserCounselController {
         return "redirect:/homeImsi";
     }
 
-    @GetMapping("/list")
-    public String list() {
+    @PostMapping("/list")
+    public String list(
+            Model model,
+            MemberDTO memberDTO
+    ) {
+        List<ManagementDTO> list = managementService.getSelectByMemberId(memberDTO.getId());
+        model.addAttribute("list",list);
+
         return userFolderName + "/list";
     }
 

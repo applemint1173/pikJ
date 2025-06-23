@@ -9,17 +9,18 @@
 <table>
     <tr>
         <th>순번</th>
-        <th>상담교사</th>
-        <th>날짜</th>
-        <th>처리상태</th>
+        <th>상담사</th>
+        <th>상담일</th>
+        <th>처리 상태</th>
+        <th>상담 내역 보기</th>
     </tr>
 
-    <tr th:each="counselorDTO : ${list}">
-        <td><a th:href="@{|/manager/counselor/view/${counselorDTO.no}|}" th:text="${counselorDTO.id}"></a></td>
-        <td>[[${counselorDTO.name}]]</td>
-        <td>[[${counselorDTO.birthDate}]]</td>
-        <td>[[${counselorDTO.phone}]]</td>
-        <td th:text="${#temporals.format(counselorDTO.regiDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+    <tr th:each="managementDTO, loop : ${list}">
+        <td>[[${loop.count}]]</td>
+        <td>[[${managementDTO.counselor.name}]]</td>
+        <td>[[${managementDTO.meetingDate}]]</td>
+        <td>[[${managementDTO.checks}]]</td>
+        <td><div onclick="">버튼</div></td>
     </tr>
 
 </table>
