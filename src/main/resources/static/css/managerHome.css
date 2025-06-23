@@ -1,0 +1,82 @@
+/*김태준: CSS*/
+* {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-decoration: none;
+        }
+
+        body {
+            background-color: #f0f0f0;
+            font-size: 1.3em;
+        }
+
+        #container {
+            border: 0px solid red;
+            margin: auto;
+            width: 90%;
+            height: 100%;
+        }
+
+        #header {
+            display: flex;
+            justify-content: space-between;
+            height: 15%;
+            margin-top: 3%;
+            text-align: center;
+        }
+
+
+        .logo {
+            display: flexbox;
+            width: 200px;
+        }
+
+        .manager {
+            display: flexbox;
+            font-size: 2.1em;
+            font-weight: bold;
+            border: 4px groove black;
+            padding: 2% 4%;
+        }
+
+        .login {
+            display: flexbox;
+            width: 200px;
+            height: 100%;
+            font-size: 1.3em;
+            border: 4px ridge black;
+            padding: 1%;
+        }
+
+        #main {
+            margin: auto;
+            margin-top:5%;
+            margin-bottom: 3%;
+            width: 80%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .box {
+            display: flexbox;
+            width: 27%;
+            height: 300px;
+            margin: 2%;
+            text-align: center;
+            border: 7px ridge black;
+            border-radius: 2.5rem;
+            display: flex;
+            flex-wrap: nowrap;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .box a {
+            display: inline-block;
+            margin: 10% 0%;
+            font-size: 2em;
+            color:black;
+
+        }

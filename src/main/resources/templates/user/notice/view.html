@@ -1,0 +1,17 @@
+<!--임소희-->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>공지사항 상세보기</h1>
+<form action="">
+    제목 : <input type="text" name="subject" th:value="${noticeDTO.subject}"><br>
+    작성자 : <input type="text" name="writer" th:value="${noticeDTO.writer}">
+    날짜 : <input type="text" name="regiDate" th:value="${noticeDTO.regiDate}"><br>
+    날짜 : <textarea name="content" th:value="${noticeDTO.regiDate}"></textarea>
+    </form>
+</body>
+</html>

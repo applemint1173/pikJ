@@ -1,0 +1,42 @@
+<!--김태준-->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="main">
+  <div id="header">
+    <ul>
+      <li>유형선택</li>
+      <li>약관동의</li>
+      <li>본인인증</li>
+      <li>정보입력</li>
+      <li>가입완료</li>
+    </ul>
+  </div>
+  <div id="container">
+<!--    박지영 : 멤버 타입 폼 입력 -->
+    <div>
+      <form id="studentForm" method="get" action="/regist/student/toS">
+        <button>학생</button>
+      </form>
+    </div>
+    <div>
+      <form id="adultForm" method="get" action="/regist/adult/toS">
+        <button>성인(학부모, 교사, 일반회원)</button>
+      </form>
+    </div>
+    <div>
+        <form id="counselorForm" method="get" action="/regist/counselor/toS">
+            <button>상담사</button>
+        </form>
+    </div>
+  </div>
+</div>
+<div id="footer">
+
+</div>
+</body>
+</html>

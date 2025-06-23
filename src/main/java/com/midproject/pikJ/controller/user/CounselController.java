@@ -1,0 +1,97 @@
+// 박지영
+package com.midproject.pikJ.controller.user;
+
+import com.midproject.pikJ.dto.CounselorDTO;
+import com.midproject.pikJ.dto.ManagementDTO;
+import com.midproject.pikJ.dto.MemberDTO;
+import com.midproject.pikJ.dto.SchoolDTO;
+import com.midproject.pikJ.service.CounselorService;
+import com.midproject.pikJ.service.ManagementService;
+import com.midproject.pikJ.service.MemberService;
+import com.midproject.pikJ.service.SchoolService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.sql.Date;
+import java.util.List;
+
+@Controller
+@RequestMapping("/management")
+@RequiredArgsConstructor
+public class CounselController {
+
+    private final MemberService memberService;
+    private final SchoolService schoolService;
+    private final CounselorService counselorService;
+    private final ManagementService managementService;
+
+    String folderName = "user/management";
+    String userFolderName = "user/management/user";
+    String counselorFolderName = "user/management/counselor";
+
+    // 로그인 시큐리티나 쎄션쓰면 get으로 변경할 것
+    @PostMapping("/chugaNotice")
+    public String userChugaNotice(
+            Model model,
+            MemberDTO submitDTO
+    ) {
+        MemberDTO returnDTO = memberService.getSelectLoginOne(submitDTO);
+        model.addAttribute("returnDTO", returnDTO);
+
+        return userFolderName + "/chugaNotice";
+    }
+
+    // 로그인 시큐리티나 쎄션쓰면 get으로 변경할 것
+    @PostMapping("/chuga")
+    public String userChuga(
+            Model model,
+            MemberDTO submitDTO
+    ) {
+        MemberDTO returnDTO = memberService.getSelectLoginOne(submitDTO);
+        List<SchoolDTO> schoolList = schoolService.getSelectAll();
+        model.addAttribute("returnDTO", returnDTO);
+        model.addAttribute("schoolList", schoolList);
+
+        // 임시상담사 계정생성하는 코드(각 컴터마다 DB가 다르기때문에 임시로 설정)
+        // 추후에 서버 통합하게 되면, 코드 지우고 관리자모드에서 먼저 생성하는 것을 권장
+        List<CounselorDTO> findDefaultCounselorList = counselorService.getSelectAll();
+        Boolean isExist = false;
+
+        for (int i = 0; i < findDefaultCounselorList.size(); i++) {
+            if (findDefaultCounselorList.get(i).getId().equals("imsiSangdamsa")) {
+                isExist = true;
+                model.addAttribute("defaultCounselorDTO", findDefaultCounselorList.get(i));
+            }
+        }
+
+        if (isExist == false) {
+            CounselorDTO counselorDTO = new CounselorDTO();
+            counselorDTO.setId("imsiSangdamsa");
+            counselorDTO.setPwd("imsiSangdamsa");
+            counselorDTO.setName("-");
+            counselorDTO.setBirthDate(Date.valueOf("1900-01-01"));
+            counselorDTO.setEmail("-");
+            counselorDTO.setPhoto("-");
+            counselorDTO.setLicense("-");
+            counselorDTO.setIntro("-");
+
+            counselorService.setInsert(counselorDTO);
+            model.addAttribute("defaultCounselorDTO", counselorDTO);
+        }
+
+        return userFolderName + "/chuga";
+    }
+
+    @PostMapping("/chugaProc")
+    public String userChugaProc(
+            ManagementDTO managementDTO
+    ) {
+        managementService.setInsert(managementDTO);
+        return "redirect:/homeImsi";
+    }
+
+}

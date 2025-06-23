@@ -1,0 +1,36 @@
+<!--박지영-->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<a href="/manager/program/chuga">추가</a>
+<a href="/manager/home">홈</a>
+<br>
+
+<table>
+    <tr>
+        <th>제목</th>
+        <th>프로그램구분</th>
+        <th>시작일</th>
+        <th>종료일</th>
+        <th>진행단계</th>
+        <th>작성일</th>
+    </tr>
+    <tr th:each="programDTO, loop:${list}">
+        <td><a th:href="@{|/manager/program/view/${programDTO.no}|}" th:text="${programDTO.subject}"></a></td>
+        <td>[[${programDTO.type}]]</td>
+        <td>[[${programDTO.startDate}]]</td>
+        <td>[[${programDTO.endDate}]]</td>
+        <td>[[${programDTO.stage}]]</td>
+        <td>[[${programDTO.regiDate}]]</td>
+    </tr>
+</table>
+
+[처음] [끝]
+
+</body>
+</html>

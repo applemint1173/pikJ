@@ -1,0 +1,40 @@
+<!--박지영-->
+<!--시큐리티 이전 작성 : 임시 로그인 이후 페이지-->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<a href="/">로고</a> <a href="/logout">로그아웃</a><br>
+
+<table>
+  <tr>
+    <th>
+      <form name="form" action="/management/chugaNotice" method="post">
+        <input type="hidden" name="id" th:value="${id}">
+        <button>상담신청</button>
+      </form>
+    </th>
+    <th>상담관리</th>
+    <th>프로그램</th>
+    <th>안내사항</th>
+  </tr>
+  <tr>
+    <td></td>
+    <td>내담자</td>
+    <td>체험</td>
+    <td>소개</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>상담사</td>
+    <td>강연</td>
+    <td>공지사항</td>
+  </tr>
+</table>
+
+</body>
+</html>

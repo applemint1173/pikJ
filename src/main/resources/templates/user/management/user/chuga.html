@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form name="form" action="/management/chugaProc" method="post">
+    <input type="text" name="member_no" th:value="${returnDTO.no}">
+    <input type="text" name="counselor_no" th:value="${defaultCounselorDTO.no}">
+    <input type="date" name="meetingDate" value="1900-01-01">
+    <input type="text" name="address" value="-">
+    <input type="text" name="addressDetail" value="-">
+    <input type="text" name="comments" value="-">
+    <input type="text" name="attachment" value="-">
+    <input type="text" name="checks" value="검토중">
+<table>
+    <tr>
+        <td>이름</td>
+        <td>[[${returnDTO.name}]]</td>
+    </tr>
+    <tr>
+        <td>생년월일</td>
+        <td>[[${returnDTO.birthDate}]]</td>
+    </tr>
+    <tr>
+        <td>전화번호</td>
+        <td>[[${returnDTO.phone}]]</td>
+    </tr>
+    <tr>
+        <td>자녀 및 담당 학생 이름</td>
+        <td><input type="text" name="studentName"></td>
+    </tr>
+    <tr>
+        <td>학교</td>
+        <td>
+            <select th:name="school_no" >
+                <option selected>===선택===</option>
+                <th:block th:each="schoolDTO, loop:${schoolList}">
+                    <option th:text="${schoolDTO.name}" th:value="${schoolDTO.no}"></option>
+                </th:block>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td>학년</td>
+        <td><input type="text" name="grade"></td>
+    </tr>
+    <tr>
+        <td>고민내용</td>
+        <td><input type="text" name="concern"></td>
+    </tr>
+    <tr>
+        <td><button>제출</button></td>
+    </tr>
+</table>
+</form>
+
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a href="/manager/counselor/chuga">추가</a>
+<a th:href="@{|/manager/counselor/sujung/${returnDTO.no}|}">수정</a>
+<a th:href="@{|/manager/counselor/sakje/${returnDTO.no}|}">삭제</a>
+<a href="/manager/home">홈</a>
+<br>
+
+<table border="1">
+    <tr>
+        <td>회원번호</td>
+        <td>[[${returnDTO.no}]]</td>
+    </tr>
+    <tr>
+        <td>아이디</td>
+        <td>[[${returnDTO.id}]]</td>
+    </tr>
+    <tr>
+        <td>이름</td>
+        <td>[[${returnDTO.name}]]</td>
+    </tr>
+    <tr>
+        <td>생년월일</td>
+        <td>[[${returnDTO.birthDate}]]</td>
+    </tr>
+    <tr>
+        <td>전화번호</td>
+        <td>[[${returnDTO.phone}]]</td>
+    </tr>
+    <tr>
+        <td>이메일</td>
+        <td>[[${returnDTO.email}]]</td>
+    </tr>
+    <tr>
+        <td>프로필사진</td>
+        <td>[[${returnDTO.photo}]]</td>
+    </tr>
+    <tr>
+        <td>소개</td>
+        <td>[[${returnDTO.intro}]]</td>
+    </tr>
+    <tr>
+        <td>학력및자격</td>
+        <td>[[${returnDTO.license}]]</td>
+    </tr>
+    <tr>
+        <td>가입일</td>
+        <td th:text="${#temporals.format(returnDTO.regiDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+    </tr>
+</table>
+</body>
+</html>

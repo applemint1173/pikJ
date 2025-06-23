@@ -1,0 +1,59 @@
+<!--김태준-->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!--박지영 : 폼 추가-->
+<form name="form" method="get" action="/regist/student/verification">
+<div id="main">
+    <div id="header">
+        <ul>
+            <li>유형선택</li>
+            <li>약관동의</li>
+            <li>본인인증</li>
+            <li>정보입력</li>
+            <li>가입완료</li>
+        </ul>
+    </div>
+    <div id="container">
+        <div class="agree1">
+            <h1>(필수)서비스 이용약관</h1>
+            <div>약관내용</div>
+            <label>약관에 동의합니다.</label>
+            <input type="radio" name="agree1" value="yes">
+            <label>동의함</label>
+            <input type="radio" name="agree1" value="no">
+            <label>동의하지않음</label>
+        </div>
+        <div class="agree2">
+            <h1>(필수)개인정보 수집·이용에 대한 안내</h1>
+            <div>약관내용</div>
+            <label>약관에 동의합니다.</label>
+            <input type="radio" name="agree2" value="yes">
+            <label>동의함</label>
+            <input type="radio" name="agree2" value="no">
+            <label>동의하지않음</label>
+        </div>
+        <div class="agree3">
+            <h1>(필수)개인정보 처리 위탁 동의</h1>
+            <div>약관내용</div>
+            <label>약관에 동의합니다.</label>
+            <input type="radio" name="agree3" value="yes">
+            <label>동의함</label>
+            <input type="radio" name="agree3" value="no">
+            <label>동의하지않음</label>
+        </div>
+        <button>다음</button>
+        <button>취소</button>
+    </div>
+</div>
+<div id="footer">
+</div>
+</form>
+
+</body>
+</html>

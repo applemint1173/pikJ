@@ -1,0 +1,39 @@
+<!--정재백-->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form name="form" action="/manager/notice/sujungProc" method="post">
+    <input type="hidden" name="no" th:value="${returnDTO.no}">
+    <table>
+        <tr>
+            <th>공지사항번호</th>
+            <td>[[${returnDTO.no}]]</td>
+        </tr>
+        <tr>
+            <th>작성자</th>
+            <td><input type="text" name="writer" th:value="${returnDTO.writer}"></td>
+        </tr>
+        <tr>
+            <th>제목</th>
+            <td><input type="text" name="subject" th:value="${returnDTO.subject}"></td>
+        </tr>
+        <tr>
+            <th>내용</th>
+            <td><textarea name="content" style="width: 200px; height: 100px;">[[${returnDTO.content}]]</textarea></td>
+        </tr>
+        <tr>
+            <th>작성일</th>
+            <td th:text="${#temporals.format(returnDTO.regiDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+        </tr>
+    </table>
+    <button type="submit">확인</button>
+    <button type="button">취소</button>
+</form>
+
+</body>
+</html>
