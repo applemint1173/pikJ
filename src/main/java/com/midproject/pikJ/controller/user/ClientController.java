@@ -84,15 +84,15 @@ public class ClientController {
 
         if (isExist == false) {
             CounselorDTO imsiCounselorDTO = new CounselorDTO();
-            counselorDTO.setId("imsiSangdamsa");
-            counselorDTO.setPwd("imsiSangdamsa");
-            counselorDTO.setName("-");
-            counselorDTO.setBirthDate(Date.valueOf("1900-01-01"));
-            counselorDTO.setEmail("-");
-            counselorDTO.setPhone("-");
-            counselorDTO.setPhoto("-");
-            counselorDTO.setLicense("-");
-            counselorDTO.setIntro("-");
+            imsiCounselorDTO.setId("imsiSangdamsa");
+            imsiCounselorDTO.setPwd("imsiSangdamsa");
+            imsiCounselorDTO.setName("-");
+            imsiCounselorDTO.setBirthDate(Date.valueOf("1900-01-01"));
+            imsiCounselorDTO.setEmail("-");
+            imsiCounselorDTO.setPhone("-");
+            imsiCounselorDTO.setPhoto("-");
+            imsiCounselorDTO.setLicense("-");
+            imsiCounselorDTO.setIntro("-");
 
             counselorService.setInsert(imsiCounselorDTO);
             imsiCounselorDTO = counselorService.getSelectLoginOne(imsiCounselorDTO);

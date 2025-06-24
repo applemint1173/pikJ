@@ -1,24 +1,18 @@
-<!-- 소희 -->
-
-
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" th:href="@{/css/userProgramView.css}">
 </head>
 <body>
 
+<a href="/">홈</a><br>
 
+작성일 : [[${returnDTO.regiDate}]]<br>
+[[${returnDTO.startDate}]] ~ [[${returnDTO.endDate}]] / [[${returnDTO.stage}]]<br>
+제목 : [[${returnDTO.regiDate}]]<br>
+첨부 : [[${returnDTO.attachment}]]<br>
+내용 : [[${returnDTO.content}]]<br>
 
-<div class="div1">
-    <h1>체험 프로그램 상세보기</h1>
-    제목 : <input th:value="${returnDTO.subject}" class="input1"><br>
-    기간 : <input th:value="${returnDTO.startDate}">~
-    <input th:value="${returnDTO.endDate}"><br>
-    내용 : <input th:value="${returnDTO.content}" class="input2"><br>
-    <a href="/program/experience/list"><button>목록</button></a>
-</div>
 </body>
 </html>
