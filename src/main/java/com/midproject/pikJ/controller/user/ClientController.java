@@ -6,6 +6,7 @@ import com.midproject.pikJ.service.CounselorService;
 import com.midproject.pikJ.service.ManagementService;
 import com.midproject.pikJ.service.MemberService;
 import com.midproject.pikJ.service.SchoolService;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,20 +31,25 @@ public class ClientController {
     String userFolderName = "user/management/user";
     String counselorFolderName = "user/management/counselor";
 
-    // 로그인 시큐리티나 쎄션쓰면 get으로 변경할 것
-    @PostMapping("/chugaNotice")
+    @GetMapping("/chugaNotice")
     public String userChugaNotice(
             Model model,
-            MemberDTO submitDTO
+            HttpSession session
     ) {
-        MemberDTO returnDTO = memberService.getSelectLoginOne(submitDTO);
-        model.addAttribute("returnDTO", returnDTO);
+        MemberDTO memberUser = (MemberDTO) session.getAttribute("member");
 
-        return userFolderName + "/chugaNotice";
+        String url = userFolderName + "/chugaNotice";
+
+        if (memberUser == null) {
+            url = "redirect:/login";
+        } else {
+            model.addAttribute("returnDTO", memberUser);
+        }
+
+        return url;
     }
 
-    // 로그인 시큐리티나 쎄션쓰면 get으로 변경할 것
-    @PostMapping("/chuga")
+    @GetMapping("/chuga")
     public String userChuga(
             Model model,
             MemberDTO submitDTO

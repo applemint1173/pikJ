@@ -34,42 +34,54 @@ public class LoginController {
             HttpSession httpSession,
             LoginDTO loginDTO
     ) {
-
         String id = loginDTO.getId();
         String pwd = loginDTO.getPwd();
 
-        String url = "redirect:/homeImsi";
+        String url = "redirect:/";
 
-        if (loginDTO.getCheckDTO().equals("일반")) {
+        if (loginDTO.getCheck().equals("일반")) {
             MemberDTO sendDTO = new MemberDTO();
             sendDTO.setId(id);
             sendDTO.setPwd(pwd);
 
             MemberDTO memberDTO = memberService.getSelectLoginOne(sendDTO);
 
+            if (memberDTO == null) {
+                url = "redirect:/login";
+            }
+
             if (!pwd.equals(memberDTO.getPwd())) {
                 url = "redirect:/login";
             }
+
+            httpSession.setAttribute("member", memberDTO);
         }
 
-        if (loginDTO.getCheckDTO().equals("상담사")) {
+        if (loginDTO.getCheck().equals("상담사")) {
             CounselorDTO sendDTO = new CounselorDTO();
             sendDTO.setId(id);
             sendDTO.setPwd(pwd);
 
             CounselorDTO counselorDTO = counselorService.getSelectLoginOne(sendDTO);
+
+            if (counselorDTO == null) {
+                url = "redirect:/login";
+            }
+
             if (!pwd.equals(counselorDTO.getPwd())) {
                 url = "redirect:/login";
             }
-        }
 
-        httpSession.setAttribute("id", id);
+            httpSession.setAttribute("counselor", counselorDTO);
+        }
 
         return url;
     }
 
-    @GetMapping("/loout")
-    public String logout() {
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate();
+
         return "user/login/logout";
     }
 

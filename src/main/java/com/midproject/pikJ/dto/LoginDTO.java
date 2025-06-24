@@ -8,7 +8,7 @@ import lombok.Setter;
 @Setter
 public class LoginDTO {
 
-    private String checkDTO;
+    private String check;
 
     private String id;
 

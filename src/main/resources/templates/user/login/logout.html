@@ -7,22 +7,16 @@
 </head>
 <body>
 
-<form id="logoutForm" method="post" action="/user/home/home">
-</form>
-<form id="noLogoutForm" method="post" action="/user/home/homeImsi">
-
-</form>
-
 <script>
     function logout() {
-      if (confirm("로그아웃 하시겠습니까?")) {
-        alert("로그아웃 되었습니다.");
-        document.getElementById("deleteForm").submit();
-      } else {
-        document.getElementById("backForm").submit();
-      }
-    }
-    deleteManager();
+       setTimeout(function () {
+         if (confirm("로그아웃 하시겠습니까?")) {
+           alert("로그아웃 되었습니다.");
+           location.href = "/";
+         }
+       }, 500);
+     };
+    logout();
 </script>
 
 </body>

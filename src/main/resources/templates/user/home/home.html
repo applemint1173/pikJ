@@ -1,34 +1,80 @@
-<!--박지영-->
+<!--박지영, 정재백 CSS-->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>상담 사이트</title>
+    <link rel="stylesheet" th:href="@{/css/userHome.css}">
 </head>
 <body>
 
-<a href="/">로고</a> <a href="/login">로그인</a> <a href="/regist">회원가입</a><br>
+<header>
+<div class="logo" ><a href="/">로고</a></div>
 
-<table>
-    <tr>
-        <th><a href="/management/chugaNotice">상담신청</a></th>
-        <th>상담관리</th>
-        <th>프로그램</th>
-        <th>안내사항</th>
-    </tr>
-    <tr>
-        <td></td>
-        <td>내담자</td>
-        <td>체험</td>
-        <td>소개</td>
-    </tr>
-    <tr>
-        <td></td>
-        <td>상담사</td>
-        <td>강연</td>
-        <td>공지사항</td>
-    </tr>
-</table>
+<nav>
+    <a href="/management/client/chugaNotice">상담신청</a>
+
+    <div class="menu">
+        <a href="#">상담관리 ▼</a>
+        <div class="dropdown">
+            <a href="#">내담자</a>
+            <a href="#">상담사</a>
+        </div>
+    </div>
+
+    <div class="menu">
+        <a href="#">프로그램 ▼</a>
+        <div class="dropdown">
+            <a href="/program/experience/list">체험</a>
+            <a href="/program/lecture/list">강연</a>
+        </div>
+    </div>
+
+    <div class="menu">
+        <a href="#">안내사항 ▼</a>
+        <div class="dropdown">
+            <a href="/introduce/view">소개</a>
+            <a href="/notice/list">공지사항</a>
+        </div>
+    </div>
+</nav>
+
+<div class="auth">
+    <a href="/login">로그인</a> / <a href="/regist">회원가입</a>
+</div>
+</header>
+
+
+
+<!-- 슬라이더 배너 -->
+<div class="slider">
+    <img class="slide active" src="https://via.placeholder.com/1200x300?text=슬라이드+1" alt="1번">
+    <img class="slide" src="https://via.placeholder.com/1200x300?text=슬라이드+2" alt="2번">
+    <img class="slide" src="https://via.placeholder.com/1200x300?text=슬라이드+3" alt="3번">
+</div>
+
+<script>
+    const slides = document.querySelectorAll('.slide');
+    let current = 0;
+
+    setInterval(() => {
+      slides[current].classList.remove('active');
+      current = (current + 1) % slides.length;
+      slides[current].classList.add('active');
+    }, 3000); // 3초 간격
+</script>
+
+<!-- 사진 섹션 -->
+<div class="section">
+    <h2>체험 / 강의 사진</h2>
+    <img src="https://via.placeholder.com/600x300?text=체험+및+강의+사진" alt="체험 및 강의">
+</div>
+
+<!-- 협력업체 섹션 -->
+<footer class="footer">
+    <h2>협력업체</h2>
+    <img src="https://via.placeholder.com/600x150?text=협력업체+로고" alt="협력업체 로고">
+</footer>
 
 </body>
 </html>
