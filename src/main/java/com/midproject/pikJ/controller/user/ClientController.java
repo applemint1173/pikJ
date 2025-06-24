@@ -36,14 +36,17 @@ public class ClientController {
             Model model,
             HttpSession session
     ) {
-        MemberDTO memberUser = (MemberDTO) session.getAttribute("member");
+        MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+        CounselorDTO counselorDTO = (CounselorDTO) session.getAttribute("counselor");
 
         String url = userFolderName + "/chugaNotice";
 
-        if (memberUser == null) {
+        if (memberDTO == null && counselorDTO == null) {
             url = "redirect:/login";
+        } else if (counselorDTO != null && memberDTO == null) {
+            url = "redirect:/onlyMemberError";
         } else {
-            model.addAttribute("returnDTO", memberUser);
+            model.addAttribute("returnDTO", memberDTO);
         }
 
         return url;
@@ -52,11 +55,19 @@ public class ClientController {
     @GetMapping("/chuga")
     public String userChuga(
             Model model,
-            MemberDTO submitDTO
+            HttpSession session
     ) {
-        MemberDTO returnDTO = memberService.getSelectLoginOne(submitDTO);
+        MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+        CounselorDTO counselorDTO = (CounselorDTO) session.getAttribute("counselor");
+
+        if (memberDTO == null && counselorDTO == null) {
+            return "redirect:/login";
+        } else if (counselorDTO != null && memberDTO == null) {
+            return "redirect:/onlyMemberError";
+        }
+
         List<SchoolDTO> schoolList = schoolService.getSelectAll();
-        model.addAttribute("returnDTO", returnDTO);
+        model.addAttribute("returnDTO", memberDTO);
         model.addAttribute("schoolList", schoolList);
 
         // 임시상담사 계정생성하는 코드(각 컴터마다 DB가 다르기때문에 임시로 설정)
@@ -72,21 +83,21 @@ public class ClientController {
         }
 
         if (isExist == false) {
-            CounselorDTO counselorDTO = new CounselorDTO();
+            CounselorDTO imsiCounselorDTO = new CounselorDTO();
             counselorDTO.setId("imsiSangdamsa");
             counselorDTO.setPwd("imsiSangdamsa");
             counselorDTO.setName("-");
             counselorDTO.setBirthDate(Date.valueOf("1900-01-01"));
             counselorDTO.setEmail("-");
-            counselorDTO.setPhone("-"); // 추가
+            counselorDTO.setPhone("-");
             counselorDTO.setPhoto("-");
             counselorDTO.setLicense("-");
             counselorDTO.setIntro("-");
 
-            counselorService.setInsert(counselorDTO);
-            counselorDTO = counselorService.getSelectLoginOne(counselorDTO); // 추가
+            counselorService.setInsert(imsiCounselorDTO);
+            imsiCounselorDTO = counselorService.getSelectLoginOne(imsiCounselorDTO);
 
-            model.addAttribute("defaultCounselorDTO", counselorDTO);
+            model.addAttribute("defaultCounselorDTO", imsiCounselorDTO);
         }
 
         return userFolderName + "/chuga";
@@ -97,14 +108,24 @@ public class ClientController {
             ManagementDTO managementDTO
     ) {
         managementService.setInsert(managementDTO);
-        return "redirect:/homeImsi";
+
+        return "redirect:/";
     }
 
-    @PostMapping("/list")
+    @GetMapping("/list")
     public String list(
             Model model,
-            MemberDTO memberDTO
+            HttpSession session
     ) {
+        MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+        CounselorDTO counselorDTO = (CounselorDTO) session.getAttribute("counselor");
+
+        if (memberDTO == null && counselorDTO == null) {
+            return "redirect:/login";
+        } else if (counselorDTO != null && memberDTO == null) {
+            return "redirect:/onlyMemberError";
+        }
+
         List<ManagementDTO> list = managementService.getSelectByMemberId(memberDTO.getId());
         model.addAttribute("list",list);
 
@@ -112,9 +133,22 @@ public class ClientController {
     }
 
     @GetMapping("/view/{no}")
-    public String view(ManagementDTO managementDTO, Model model) {
+    public String view(
+            ManagementDTO managementDTO,
+            Model model,
+            HttpSession session) {
+        MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+        CounselorDTO counselorDTO = (CounselorDTO) session.getAttribute("counselor");
+
+        if (memberDTO == null && counselorDTO == null) {
+            return "redirect:/login";
+        } else if (counselorDTO != null && memberDTO == null) {
+            return "redirect:/onlyMemberError";
+        }
+
         ManagementDTO returnDTO = managementService.getSelectOne(managementDTO);
         model.addAttribute("returnDTO",returnDTO);
+
         return userFolderName + "/view";
     }
 

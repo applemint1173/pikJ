@@ -85,4 +85,16 @@ public class LoginController {
         return "user/login/logout";
     }
 
+    @GetMapping("/onlyMemberError")
+    public String onlyMemberError(HttpSession session) {
+
+        return "user/login/onlyMemberError";
+    }
+
+    @GetMapping("/onlyCounselorError")
+    public String onlyCounselorError(HttpSession session) {
+
+        return "user/login/onlyCounselorError";
+    }
+
 }
