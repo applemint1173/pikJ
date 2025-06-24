@@ -1,3 +1,4 @@
+<!--김태준-->
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -20,7 +21,7 @@
         <td>[[${managementDTO.member.name}]]</td>
         <td>[[${managementDTO.meetingDate}]]</td>
         <td>[[${managementDTO.checks}]]</td>
-        <td><div onclick="">버튼</div></td>
+        <td><div><a th:href="@{|/management/counselor/view/${managementDTO.no}|}">버튼</a></div></td>
     </tr>
 
 </table>

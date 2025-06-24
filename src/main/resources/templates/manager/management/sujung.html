@@ -1,4 +1,5 @@
 <!--박지영-->
+<!--김태준 : 회원, 상담사, 학교 번호 대신 이름으로 나타나게 수정-->
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -20,22 +21,25 @@
 
 <form name="form" action="/manager/management/sujungProc" method="post">
     <input type="hidden" name="no" th:value="${returnDTO.no}">
+    <input type="hidden" name="member_no" th:value="${returnDTO.member.no}">
+    <input type="hidden" name="counselor_no" th:value="${returnDTO.counselor.no}">
+    <input type="hidden" name="school_no" th:value="${returnDTO.school.no}">
     <table>
         <tr>
             <th>상담번호</th>
             <td>[[${returnDTO.no}]]</td>
         </tr>
         <tr>
-            <th>내담자 번호</th>
-            <td><input type="number" name="member_no" th:value="${returnDTO.member.no}"></td>
+            <th>내담자</th>
+            <td><input type="text" name="member_name" th:value="${returnDTO.member.name}"></td>
         </tr>
         <tr>
-            <th>상담사 번호</th>
-            <td><input type="number" name="counselor_no" th:value="${returnDTO.counselor.no}"></td>
+            <th>상담사</th>
+            <td><input type="text" name="counselor_name" th:value="${returnDTO.counselor.name}"></td>
         </tr>
         <tr>
-            <th>학교 번호</th>
-            <td><input type="number" name="school_no" th:value="${returnDTO.school.no}"></td>
+            <th>학교</th>
+            <td><input type="text" name="school_name" th:value="${returnDTO.school.name}"></td>
         </tr>
         <tr>
             <th>학년</th>
@@ -72,7 +76,7 @@
         <tr>
             <th>상담 첨부파일</th>
             <td>
-                <input type="file" name="attachment" multiple>
+                <textarea name="attachment" style="width: 200px; height: 100px;">[[${returnDTO.attachment}]]</textarea>
             </td>
         </tr>
         <tr>
