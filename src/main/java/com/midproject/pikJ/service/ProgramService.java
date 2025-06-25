@@ -29,10 +29,13 @@ public class ProgramService {
         return dtoList;
     }
 
-    //임소희//
     public List<ProgramDTO> getSelectAll(String type) {
-        List<Program> programs = repository.findByType(type);
+        List<Program> entityList = repository.findByType(type);
         List<ProgramDTO> dtoList = new ArrayList<>();
+
+        for (int i = 0; i < entityList.size(); i ++) {
+            dtoList.add(modelMapper.map(entityList.get(i), ProgramDTO.class));
+        }
 
         return dtoList;
     }
@@ -40,11 +43,12 @@ public class ProgramService {
     public ProgramDTO getSelectOne(ProgramDTO programDTO) {
         Optional<Program> op = repository.findById(programDTO.getNo());
 
-        if (!op.isPresent()) {
+        if (op.isEmpty()) {
             return null;
         }
 
         Program program = op.get();
+
         return modelMapper.map(program, ProgramDTO.class);
     }
 

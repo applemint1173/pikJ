@@ -1,4 +1,4 @@
-// 김태준
+//0623 김태준 생성
 package com.midproject.pikJ.controller.user;
 
 import com.midproject.pikJ.dto.CounselorDTO;
@@ -21,7 +21,6 @@ public class CounselController {
     private final ManagementService managementService;
 
     String url = "user/management/counselor";
-    String redirectUrl = "management/counselor";
 
     @PostMapping("/list")
     public String list(
@@ -30,27 +29,23 @@ public class CounselController {
     ) {
         List<ManagementDTO> list = managementService.getSelectByCounselorId(counselorDTO.getId());
         model.addAttribute("list",list);
+
         return url + "/list";
     }
 
-    @GetMapping("/view/{no}")
-    public String view(ManagementDTO managementDTO, Model model) {
-        ManagementDTO returnDTO = managementService.getSelectOne(managementDTO);
-        model.addAttribute("returnDTO",returnDTO);
+    @GetMapping("/view")
+    public String view() {
         return url + "/view";
     }
 
-    @GetMapping("/sujung/{no}")
-    public String sujung(ManagementDTO managementDTO, Model model) {
-        ManagementDTO returnDTO = managementService.getSelectOne(managementDTO);
-        model.addAttribute("returnDTO",returnDTO);
+    @GetMapping("/sujung")
+    public String sujung() {
         return url + "/sujung";
     }
 
     @PostMapping("/sujungProc")
-    public String sujungProc(ManagementDTO managementDTO) {
-        managementService.setUpdate(managementDTO);
-        return "redirect:/" + redirectUrl + "/view/" + managementDTO.getNo();
+    public String sujungProc() {
+        return "redirect:/" + url + "/view";
     }
 
 }

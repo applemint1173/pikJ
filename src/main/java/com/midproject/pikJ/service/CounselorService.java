@@ -41,14 +41,17 @@ public class CounselorService {
 
     // 박지영 : 아이디통해 DTO 반환
     public CounselorDTO getSelectLoginOne(CounselorDTO counselorDTO) {
-        Optional<Counselor> om = repository.findById(counselorDTO.getId());
+        CounselorDTO returnDTO = new CounselorDTO();
+        Optional<Counselor> oc = repository.findById(counselorDTO.getId());
 
-        if (!om.isPresent()) {
-            return null;
+        if (oc.isEmpty()) {
+            returnDTO = null;
         }
 
-        Counselor counselor = om.get();
-        return modelMapper.map(counselor, CounselorDTO.class);
+        Counselor counselor = oc.get();
+        returnDTO =  modelMapper.map(counselor, CounselorDTO.class);
+
+        return returnDTO;
     }
 
     public void setInsert(CounselorDTO counselorDTO) {

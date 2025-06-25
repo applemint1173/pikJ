@@ -68,7 +68,7 @@ public class LoginController {
         return url;
     }
 
-    @GetMapping("/logout")
+    @GetMapping("/loout")
     public String logout() {
         return "user/login/logout";
     }

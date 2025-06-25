@@ -9,4 +9,7 @@ import java.util.Optional;
 public interface MemberRepository extends JpaRepository<Member, Integer> {
     // 박지영 : 아이디 값으로 찾기
     Optional<Member> findById(String id);
+
+    // 박지영 : 타입 값으로 찾기
+    Optional<Member> findByType(String type);
 }

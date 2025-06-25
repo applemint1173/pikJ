@@ -29,14 +29,17 @@ public class MemberService {
     }
 
     public MemberDTO getSelectOne(MemberDTO memberDTO) {
+        MemberDTO returnDTO = new MemberDTO();
         Optional<Member> om = repository.findById(memberDTO.getNo());
 
-        if (!om.isPresent()) {
-            return null;
+        if (om.isEmpty()) {
+            returnDTO = null;
         }
 
         Member member = om.get();
-        return modelMapper.map(member, MemberDTO.class);
+        returnDTO = modelMapper.map(member, MemberDTO.class);
+
+        return returnDTO;
     }
 
     // 박지영 : 아이디통해 DTO 반환

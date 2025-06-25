@@ -10,8 +10,9 @@ import java.util.List;
 
 public interface ProgramRepository extends JpaRepository<Program, Integer> {
 
-    //임소희//
-    @Query("SELECT p FROM Program p WHERE p.type = :type")
+    @Query(value = "select * from program where type = :type " +
+            "order by field (stage, '진행중', '진행예정', '진행완료') desc, start_date desc",
+            nativeQuery = true)
     List<Program> findByType(@Param("type") String type);
 
 }

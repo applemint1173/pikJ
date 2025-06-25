@@ -1,0 +1,138 @@
+/* 정재백 CSS */
+ * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    /* 헤더 */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #f5f5f5;
+      padding: 10px 20px;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    nav {
+      display: flex;
+      gap: 30px;
+      align-items: center;
+    }
+
+    .menu {
+      position: relative;
+    }
+
+    .menu > a {
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+      padding: 10px;
+      display: block;
+    }
+
+    .dropdown {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: white;
+      border: 1px solid #ccc;
+      display: none;
+      min-width: 150px;
+      z-index: 1000;
+    }
+
+    .dropdown a {
+      display: block;
+      padding: 8px 12px;
+      text-decoration: none;
+      color: #333;
+      white-space: nowrap;
+    }
+
+    .dropdown a:hover {
+      background-color: #eee;
+    }
+
+    .menu:hover .dropdown {
+      display: block;
+    }
+
+    .auth {
+      font-size: 14px;
+    }
+
+    /* 슬라이더 */
+  .banner-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 400px; /* 여유 공간 포함 */
+}
+
+.slider {
+  width: 100%;
+  max-width: 1200px;
+  height: 300px;
+  position: relative;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.slide.active {
+  opacity: 1;
+  z-index: 1;
+}
+
+
+    /* 섹션 */
+    .section {
+      padding: 30px;
+      border-bottom: 1px solid #ccc;
+      text-align: center;
+    }
+
+    .section h2 {
+      margin-bottom: 20px;
+    }
+
+    .section img {
+      max-width: 80%;
+      height: auto;
+    }
+
+    .footer {
+  background-color: #f5f5f5;
+  text-align: center;
+  padding: 40px 20px;
+  border-top: 1px solid #ccc;
+}
+
+.footer h2 {
+  margin-bottom: 20px;
+}
+
+.footer img {
+  max-width: 80%;
+  height: auto;
+}
