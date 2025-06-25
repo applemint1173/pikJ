@@ -1,12 +1,19 @@
 <!--박지영-->
+<!--김태준 : html 수정-->
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/managerView.css}">
 </head>
 <body>
-
+<div id="header">
+    <h1>프로그램 추가</h1>
+    <div class="log">로그아웃</div>
+    <div class="home"><a href="/manager/home"><img src="https://img.icons8.com/material-outlined/24/home--v2.png"
+                                                   alt="home--v2"/></a></div>
+</div>
 <form name="form" action="/manager/program/chugaProc" method="post">
     <table>
         <tr>
@@ -41,9 +48,16 @@
             </td>
         </tr>
     </table>
-    <button type="submit">확인</button>
-    <button type="button">취소</button>
 </form>
-
+<div id="nav">
+    <div onclick="chuga();" style="cursor:pointer;"><a>확인</a></div>
+    <div><a href="/manager/program/list">취소</a></div>
+</div>
+</body>
+<script>
+    function chuga() {
+        document.form.submit();
+    }
+</script>
 </body>
 </html>

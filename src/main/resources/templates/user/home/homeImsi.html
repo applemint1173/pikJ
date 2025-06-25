@@ -1,5 +1,6 @@
 <!--박지영-->
 <!--시큐리티 이전 작성 : 임시 로그인 이후 페이지-->
+<!--김태준 : action 주소 변경-->
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -13,7 +14,7 @@
 <table>
   <tr>
     <th>
-      <form name="form" action="/management/chugaNotice" method="post">
+      <form name="form" action="/management/client/chugaNotice" method="post">
         <input type="hidden" name="id" th:value="${id}">
         <button>상담신청</button>
       </form>
@@ -25,7 +26,7 @@
   <tr>
     <td></td>
     <td>
-      <form name="form" action="/management/list" method="post">
+      <form name="form" action="/management/client/list" method="post">
         <input type="hidden" name="id" th:value="${id}">
         <button>내담자</button>
       </form>

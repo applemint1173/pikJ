@@ -6,5 +6,5 @@
 *.iml
 out
 gen
-.gradle
+.gladle
 build

@@ -1,18 +1,19 @@
 <!-- 정재백 -->
+<!--김태준 : html 수정-->
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/managerView.css}">
 </head>
 <body>
-
-<a href="/manager/notice/chuga">추가</a>
-<a th:href="@{|/manager/notice/sujung/${returnDTO.no}|}">수정</a>
-<a th:href="@{|/manager/notice/sakje/${returnDTO.no}|}">삭제</a>
-<a href="/manager/home">홈</a>
-<br>
-
+<div id="header">
+    <h1>공지사항 상세보기</h1>
+    <div class="log">로그아웃</div>
+    <div class="home"><a href="/manager/home"><img src="https://img.icons8.com/material-outlined/24/home--v2.png" alt="home--v2" /></a></div>
+</div>
+<div id="container">
 <table>
     <tr>
         <th>공지사항번호</th>
@@ -35,5 +36,12 @@
         <td th:text="${#temporals.format(returnDTO.regiDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
     </tr>
 </table>
+</div>
+<div id="nav">
+    <div><a href="/manager/notice/list">목록</a></div>
+    <div><a href="/manager/notice/chuga">추가</a></div>
+    <div><a th:href="@{|/manager/notice/sujung/${returnDTO.no}|}">수정</a></div>
+    <div><a th:href="@{|/manager/notice/sakje/${returnDTO.no}|}">삭제</a></div>
+</div>
 </body>
 </html>

@@ -1,10 +1,125 @@
+<!--김태준-->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-
+<form name="form" action="/management/counselor/sujungProc" method="post">
+    <input type="hidden" name="no" th:value="${returnDTO.no}">
+    <input type="hidden" name="member_no" th:value="${returnDTO.member.no}">
+    <input type="hidden" name="counselor_no" th:value="${returnDTO.counselor.no}">
+    <input type="hidden" name="school_no" th:value="${returnDTO.school.no}">
+    <table>
+        <tr>
+            <th>상담번호</th>
+            <td>[[${returnDTO.no}]]</td>
+        </tr>
+        <tr>
+            <th>내담자</th>
+            <td><input type="text" name="member_name" th:value="${returnDTO.member.name}"></td>
+        </tr>
+        <tr>
+            <th>상담사</th>
+            <td><input type="text" name="counselor_name" th:value="${returnDTO.counselor.name}"></td>
+        </tr>
+        <tr>
+            <th>학교</th>
+            <td><input type="text" name="school_noname" th:value="${returnDTO.school.name}"></td>
+        </tr>
+        <tr>
+            <th>학년</th>
+            <td><input type="text" name="grade" th:value="${returnDTO.grade}"></td>
+        </tr>
+        <tr>
+            <th>학생 이름</th>
+            <td><input type="text" name="studentName" th:value="${returnDTO.studentName}"></td>
+        </tr>
+        <tr>
+            <th>고민 내용</th>
+            <td>
+                <textarea name="concern" style="width: 200px; height: 100px;">[[${returnDTO.concern}]]</textarea>
+            </td>
+        </tr>
+        <tr>
+            <th>상담일</th>
+            <td><input type="date" name="meetingDate" th:value="${returnDTO.meetingDate}"></td>
+        </tr>
+        <tr>
+            <th>상담 지역</th>
+            <td>
+                <input type="button" onclick="execDaumPostcode()" value="우편번호 찾기"><br>
+                <input type="text" id="location_address" name="address" placeholder="주소" th:value="${returnDTO.address}"><br>
+                <input type="text" id="location_detailAddress" name="addressDetail" placeholder="상세주소" th:value="${returnDTO.addressDetail}">
+            </td>
+        </tr>
+        <tr>
+            <th>상담 기록</th>
+            <td>
+                <textarea name="comments" style="width: 200px; height: 100px;">[[${returnDTO.comments}]]</textarea>
+            </td>
+        </tr>
+        <tr>
+            <th>상담 첨부파일</th>
+            <td>
+                <textarea name="attachment" style="width: 200px; height: 100px;">[[${returnDTO.attachment}]]</textarea>
+            </td>
+        </tr>
+        <tr>
+            <th>구분</th>
+            <td>
+                <input type="radio" name="checks" value="진행중" checked>진행중
+                <input type="radio" name="checks" value="진행완료">진행완료
+            </td>
+        </tr>
+        <tr>
+            <th>작성일</th>
+            <td>[[${returnDTO.regiDate}]]</td>
+        </tr>
+    </table>
+    <div onclick="sujung();" style="cursor:pointer;"><a>수정</a></div>
+    <div><a th:href="@{|/management/counselor/view/${returnDTO.no}|}">취소</a></div>
+</form>
 </body>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+    function sujung() {
+        document.form.submit();
+    }
+
+    function execDaumPostcode() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+                var fullAddr = '';
+                var addr = '';
+                var extraAddr = '';
+
+                if (data.userSelectedType === 'R') {
+                    addr = data.roadAddress;
+                } else {
+                    addr = data.jibunAddress;
+                }
+
+                if(data.userSelectedType === 'R'){
+                    if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                        extraAddr += data.bname;
+                    }
+
+                    if(data.buildingName !== '' && data.apartment === 'Y'){
+                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                    }
+
+                    if(extraAddr !== ''){
+                        extraAddr = ' (' + extraAddr + ')';
+                    }
+                }
+
+                fullAddr = addr + ' (' +data.zonecode + ')' + extraAddr;
+                document.getElementById("location_address").value = fullAddr;
+                document.getElementById("location_detailAddress").focus();
+            }
+        }).open();
+    }
+</script>
 </html>

@@ -94,6 +94,7 @@ public class ClientController {
         return "redirect:/homeImsi";
     }
 
+    //김태준
     @PostMapping("/list")
     public String list(
             Model model,
@@ -105,8 +106,11 @@ public class ClientController {
         return userFolderName + "/list";
     }
 
-    @GetMapping("/view")
-    public String view() {
+    //김태준
+    @GetMapping("/view/{no}")
+    public String view(ManagementDTO managementDTO, Model model) {
+        ManagementDTO returnDTO = managementService.getSelectOne(managementDTO);
+        model.addAttribute("returnDTO",returnDTO);
         return userFolderName + "/view";
     }
 
