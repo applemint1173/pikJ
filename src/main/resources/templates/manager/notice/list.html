@@ -1,21 +1,36 @@
 <!-- 정재백 -->
+<!--김태준 : html 수정-->
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/managerList.css}">
 </head>
 <body>
-
-<a href="/manager/notice/chuga">추가</a>
-<a href="/manager/home">홈</a>
-<br>
+<h1>공지사항 목록</h1>
+<div class="log">로그아웃</div>
+<div id="main">
+    <div id="nav">
+        <div><a href="/manager/home"><img src="https://img.icons8.com/material-outlined/24/home--v2.png" alt="home--v2"/></a></div>
+        <select class="search">
+            <option selected>===선택===</option>
+            <option th:value="name" th:text="이름"></option>
+            <option th:value="phone" th:text="전화번호"></option>
+            <option th:value="type" th:text="구분"></option>
+        </select>
+        <input type="text" id="search">
+        <button>search</button>
+    </div>
+    <div class="chuga"><a href="/manager/notice/chuga">추가</a></div>
 <table>
-    <tr>
-        <th>제목</th>
-        <th>작성자</th>
-        <th>작성일</th>
-    </tr>
+    <thead>
+        <tr>
+            <th>제목</th>
+            <th>작성자</th>
+            <th>작성일</th>
+        </tr>
+    </thead>
     <tr th:each="noticeDTO, loop:${list}">
         <td><a th:href="@{|/manager/notice/view/${noticeDTO.no}|}" th:text="${noticeDTO.subject}"></a></td>
         <td>[[${noticeDTO.writer}]]</td>

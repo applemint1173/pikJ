@@ -1,18 +1,19 @@
 <!--박지영-->
+<!--김태준 : html 수정-->
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/managerView.css}">
 </head>
 <body>
-
-<a href="/manager/program/chuga">추가</a>
-<a th:href="@{|/manager/program/sujung/${returnDTO.no}|}">수정</a>
-<a th:href="@{|/manager/program/sakje/${returnDTO.no}|}">삭제</a>
-<a href="/manager/home">홈</a>
-<br>
-
+<div id="header">
+    <h1>프로그램 상세보기</h1>
+    <div class="log">로그아웃</div>
+    <div class="home"><a href="/manager/home"><img src="https://img.icons8.com/material-outlined/24/home--v2.png" alt="home--v2" /></a></div>
+</div>
+<div class="container">
 <table>
     <tr>
         <th>프로그램번호</th>
@@ -51,6 +52,12 @@
         <td>[[${returnDTO.regiDate}]]</td>
     </tr>
 </table>
-
+</div>
+<div id="nav">
+    <div><a href="/manager/program/list">목록</a></div>
+    <div><a href="/manager/program/chuga">추가</a></div>
+    <div><a th:href="@{|/manager/program/sujung/${returnDTO.no}|}">수정</a></div>
+    <div><a th:href="@{|/manager/program/sakje/${returnDTO.no}|}">삭제</a></div>
+</div>
 </body>
 </html>
