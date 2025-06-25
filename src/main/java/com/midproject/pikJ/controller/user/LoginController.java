@@ -40,7 +40,7 @@ public class LoginController {
 
         String url = "redirect:/homeImsi";
 
-        if (loginDTO.getCheckDTO().equals("일반")) {
+        if (loginDTO.getCheck().equals("일반")) {
             MemberDTO sendDTO = new MemberDTO();
             sendDTO.setId(id);
             sendDTO.setPwd(pwd);
@@ -52,7 +52,7 @@ public class LoginController {
             }
         }
 
-        if (loginDTO.getCheckDTO().equals("상담사")) {
+        if (loginDTO.getCheck().equals("상담사")) {
             CounselorDTO sendDTO = new CounselorDTO();
             sendDTO.setId(id);
             sendDTO.setPwd(pwd);
