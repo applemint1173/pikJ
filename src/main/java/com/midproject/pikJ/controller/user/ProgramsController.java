@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +28,32 @@ public class ProgramsController {
         model.addAttribute("list", programDTOList);
 
         return experienceFolderName + "/list";
+    }
+
+    @PostMapping("/program/experience/listProc")
+    public String experienceListProc(
+            Model model,
+            ProgramDTO programDTO
+    ){
+        List<ProgramDTO> programDTOList = service.getSelectAll("체험");
+
+
+        System.out.println(programDTO.getStage() + "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+        if (programDTO.getStage().equals("진행중,진행예정,종료")) {
+//            model.addAttribute("stage", programDTO.getStage());
+            model.addAttribute("list", programDTOList);
+            model.addAttribute("stage1", "true");
+            model.addAttribute("stage2", "true");
+            model.addAttribute("stage3", "true");
+        } else if (programDTO.getStage().equals("진행중,진행예정")) {
+            model.addAttribute("list", programDTOList);
+            model.addAttribute("stage1", "true");
+            model.addAttribute("stage2", "true");
+            model.addAttribute("stage3", "false");
+        }
+
+
+        return "redirect:/program/experience/list";
     }
 
     @GetMapping("/program/experience/view/{no}")

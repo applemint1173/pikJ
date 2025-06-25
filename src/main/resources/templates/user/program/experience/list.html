@@ -8,18 +8,26 @@
 
 체험 프로그램 <a href="/">홈</a><br>
 
-<input type="checkbox" name="stage" value="진행중" th:checked="true">진행중
-<input type="checkbox" name="stage" value="진행예정" th:checked="true">진행예정
-<input type="checkbox" name="stage" value="종료" th:checked="true">종료
+<form name="form" action="/program/experience/listProc" method="post">
+    <input type="checkbox" name="stage" th:value="진행중" th:checked="${stage1}" onclick="move();">진행중
+    <input type="checkbox" name="stage" th:value="진행예정" th:checked="${stage2}" onclick="move();">진행예정
+    <input type="checkbox" name="stage" th:value="종료" th:checked="${stage3}" onclick="move();">종료
 
-<table>
-    <tr th:each="programDTO : ${list}">
-        <td>[[${programDTO.startDate}]] ~ [[${programDTO.endDate}]] / [[${programDTO.stage}]] / </td>
-        <td>제목: [[${programDTO.subject}]] / </td>
-        <td><a th:href="@{|/program/experience/view/${programDTO.no}|}">첨부: [[${programDTO.attachment}]]</a> / </td>
-        <td>확인용 나중에 삭제 - [[${programDTO.type}]] / </td>
-    </tr>
-</table>
+    <table>
+        <tr th:each="programDTO : ${list}">
+            <td>[[${programDTO.startDate}]] ~ [[${programDTO.endDate}]] / [[${programDTO.stage}]] / </td>
+            <td>제목: [[${programDTO.subject}]] / </td>
+            <td><a th:href="@{|/program/experience/view/${programDTO.no}|}">첨부: [[${programDTO.attachment}]]</a> / </td>
+            <td>확인용 나중에 삭제 - [[${programDTO.type}]] / </td>
+        </tr>
+    </table>
+</form>
+
+<script>
+    function move() {
+        document.form.submit();
+    }
+</script>
 
 </body>
 </html>
