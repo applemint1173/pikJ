@@ -1,75 +1,77 @@
 <!--김태준: html, 박지영: css 추가-->
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>PikJ 관리자 사이트</title>
     <link rel="stylesheet" th:href="@{/css/managerView.css}">
 </head>
+
 <body>
-
-<div id="header">
-    <h1>상담자 수정</h1>
-    <div class="log">로그아웃</div>
-    <div class="home">
-        <a href="/manager/home">
-            <img src="https://img.icons8.com/material-outlined/24/home--v2.png" alt="home--v2" />
-        </a>
+    <div id="header">
+        <h1>상담자 수정</h1>
+        <div class="log">로그아웃</div>
+        <div class="home">
+            <a href="/manager/home">
+                <img src="https://img.icons8.com/material-outlined/24/home--v2.png" alt="home--v2"/>
+            </a>
+        </div>
     </div>
-</div>
 
-<form name="form" th:action="@{|/manager/counselor/sujungProc|}" method="post">
-    <input type="hidden" name="no" th:value="${returnDTO.no}">
-    <table>
-        <tr>
-            <th>아이디</th>
-            <td><input type="text" name="id" th:value="${returnDTO.id}"></td>
-        </tr>
-        <tr>
-            <th>비밀번호</th>
-            <td><input type="password" name="pwd" placeholder="변경할 비밀번호를 입력하세요."></td>
-        </tr>
-        <tr>
-            <th>이름</th>
-            <td><input type="text" name="name" th:value="${returnDTO.name}"></td>
-        </tr>
-        <tr>
-            <th>생년월일</th>
-            <td><input type="date" name="birthDate"  th:value="${returnDTO.birthDate}"></td>
-        </tr>
-        <tr>
-            <th>전화번호</th>
-            <td><input type="text" name="phone" th:value="${returnDTO.phone}"></td>
-        </tr>
-        <tr>
-            <th>이메일</th>
-            <td><input type="text" name="email" th:value="${returnDTO.email}"></td>
-        </tr>
-        <tr>
-            <th>프로필사진</th>
-            <td><input type="text" name="photo" th:value="${returnDTO.photo}"></td>
-        </tr>
-        <tr>
-            <th>소개</th>
-            <td><input type="text" name="intro" th:value="${returnDTO.intro}"></td>
-        </tr>
-        <tr>
-            <th>학력및자격</th>
-            <td><input type="text" name="license" th:value="${returnDTO.license}"></td>
-        </tr>
-    </table>
-</form>
+    <form name="form" th:action="@{|/manager/counselor/sujungProc|}" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="no" th:value="${returnDTO.no}">
+        <input type="hidden" name="photo" th:value="${returnDTO.photo}">
+        <table>
+            <tr>
+                <th>아이디</th>
+                <td><input type="text" name="id" th:value="${returnDTO.id}"></td>
+            </tr>
+            <tr>
+                <th>비밀번호</th>
+                <td><input type="password" name="pwd" placeholder="변경할 비밀번호를 입력하세요."></td>
+            </tr>
+            <tr>
+                <th>이름</th>
+                <td><input type="text" name="name" th:value="${returnDTO.name}"></td>
+            </tr>
+            <tr>
+                <th>생년월일</th>
+                <td><input type="date" name="birthDate"  th:value="${returnDTO.birthDate}"></td>
+            </tr>
+            <tr>
+                <th>전화번호</th>
+                <td><input type="text" name="phone" th:value="${returnDTO.phone}"></td>
+            </tr>
+            <tr>
+                <th>이메일</th>
+                <td><input type="text" name="email" th:value="${returnDTO.email}"></td>
+            </tr>
+            <tr>
+                <th>프로필사진</th>
+                <td><input type="file" name="photoFile" accept="image/*"></td>
+            </tr>
+            <tr>
+                <th>소개</th>
+                <td><input type="text" name="intro" th:value="${returnDTO.intro}"></td>
+            </tr>
+            <tr>
+                <th>학력및자격</th>
+                <td><input type="text" name="license" th:value="${returnDTO.license}"></td>
+            </tr>
+        </table>
+    </form>
 
-<div id="nav">
-    <div onclick="sujung();" style="cursor:pointer;"><a>확인</a></div>
-    <div><a th:href="@{|/manager/counselor/view/${returnDTO.no}|}">취소</a></div>
-</div>
+    <div id="nav">
+        <div onclick="sujung();" style="cursor:pointer;"><a>확인</a></div>
+        <div><a th:href="@{|/manager/counselor/view/${returnDTO.no}|}">취소</a></div>
+    </div>
 
-<script>
-    function sujung() {
-        document.form.submit();
-    }
-</script>
-
+    <script>
+        function sujung() {
+            document.form.submit();
+        }
+    </script>
 </body>
+
 </html>

@@ -87,8 +87,12 @@ public class CounselController {
             return "redirect:/onlyCounselorError";
         }
 
-        managementService.setUpdate(managementDTO);
-        return "redirect:/" + redirectUrl + "/view/" + managementDTO.getNo();
+        try {
+            managementService.setUpdate(managementDTO);
+            return "redirect:/" + redirectUrl + "/view/" + managementDTO.getNo();
+        }catch (Exception e) {
+            return "redirect:/" + redirectUrl + "sujung/" + managementDTO.getNo();
+        }
     }
 
 }

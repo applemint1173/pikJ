@@ -1,63 +1,67 @@
 <!--김태준: html, 박지영: css 추가-->
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>PikJ 관리자 사이트</title>
     <link rel="stylesheet" th:href="@{/css/managerList.css}">
 </head>
+
 <body>
+    <div id="container">
+        <h1>상담사 관리</h1>
+        <div class="log">로그아웃</div>
 
-<div id="container">
-
-    <h1>상담사 관리</h1>
-    <div class="log">로그아웃</div>
-    <div id="main">
-        <div id="nav">
-            <div><a href="/manager/home"><img src="https://img.icons8.com/material-outlined/24/home--v2.png" alt="home--v2"/></a></div>
-            <select class="search">
-                <option selected>===선택===</option>
-                <option th:value="name" th:text="이름"></option>
-                <option th:value="phone" th:text="전화번호"></option>
-                <option th:value="type" th:text="구분"></option>
-            </select>
-            <input type="text" id="search">
-            <button>search</button>
-        </div>
-
-        <div class="chuga"><a href="/manager/counselor/chuga">추가</a></div>
-
-        <table>
-            <thead>
-            <tr>
-                <th>아이디</th>
-                <th>이름</th>
-                <th>생년월일</th>
-                <th>전화번호</th>
-                <th>가입일</th>
-            </tr>
-            </thead>
-
-            <tbody>
-            <div th:if="${list.size() == 0}">
-                <td colspan="5">등록된 상담사가 없습니다.</td>
-            </div>
-
-            <div th:unless="${list.size() == 0}">
-                <div th:each="counselorDTO : ${list}">
-                    <tr>
-                        <td><a th:href="@{|/manager/counselor/view/${counselorDTO.no}|}" th:text="${counselorDTO.id}"></a></td>
-                        <td>[[${counselorDTO.name}]]</td>
-                        <td>[[${counselorDTO.birthDate}]]</td>
-                        <td>[[${counselorDTO.phone}]]</td>
-                        <td th:text="${#temporals.format(counselorDTO.regiDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
-                    </tr>
+        <div id="main">
+            <div id="nav">
+                <div>
+                    <a href="/manager/home">
+                        <img src="https://img.icons8.com/material-outlined/24/home--v2.png" alt="home--v2"/>
+                    </a>
                 </div>
+                <select class="search">
+                    <option selected>===선택===</option>
+                    <option th:value="name" th:text="이름"></option>
+                    <option th:value="phone" th:text="전화번호"></option>
+                    <option th:value="type" th:text="구분"></option>
+                </select>
+                <input type="text" id="search">
+                <button>search</button>
             </div>
-            </tbody>
-        </table>
 
+            <div class="chuga"><a href="/manager/counselor/chuga">추가</a></div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>아이디</th>
+                        <th>이름</th>
+                        <th>생년월일</th>
+                        <th>전화번호</th>
+                        <th>가입일</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <div th:if="${list.size() == 0}">
+                        <td colspan="5">등록된 상담사가 없습니다.</td>
+                    </div>
+                    <div th:unless="${list.size() == 0}">
+                        <div th:each="counselorDTO : ${list}">
+                            <tr>
+                                <td><a th:href="@{|/manager/counselor/view/${counselorDTO.no}|}" th:text="${counselorDTO.id}"></a></td>
+                                <td>[[${counselorDTO.name}]]</td>
+                                <td>[[${counselorDTO.birthDate}]]</td>
+                                <td>[[${counselorDTO.phone}]]</td>
+                                <td th:text="${#temporals.format(counselorDTO.regiDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                            </tr>
+                        </div>
+                    </div>
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>
 </body>
+
 </html>

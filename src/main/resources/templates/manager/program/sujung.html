@@ -17,7 +17,7 @@
         </a>
     </div>
 </div>
-<form name="form" action="/manager/program/chugaProc" method="post">
+<form name="form" action="/manager/program/sujungProc" method="post" enctype="multipart/form-data">
     <input type="hidden" name="no" th:value="${returnDTO.no}">
     <table>
         <tr>
@@ -44,9 +44,7 @@
         </tr>
         <tr>
             <th>첨부파일</th>
-            <td>
-                <textarea name="attachment" style="width: 200px; height: 100px;">[[${returnDTO.attachment}]]</textarea>
-            </td>
+            <td><input type="file" name="attachmentFile"></td>
         </tr>
         <tr>
             <th>진행단계</th>

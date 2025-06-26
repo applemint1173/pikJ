@@ -3,6 +3,7 @@ package com.midproject.pikJ.dto;
 import com.midproject.pikJ.entity.Management;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.sql.Date;
 import java.time.LocalDateTime;
@@ -35,5 +36,7 @@ public class CounselorDTO {
     private LocalDateTime regiDate;
 
     private List<Management> managementList;
+
+    private MultipartFile photoFile;
 
 }

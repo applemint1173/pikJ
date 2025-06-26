@@ -147,9 +147,12 @@ public class RegistController {
     public String counselorChugaProc(
             CounselorDTO submitDTO
     ) {
-        counselorService.setInsert(submitDTO);
-
-        return "redirect:/regist/counselor/finish";
+        try {
+            counselorService.setInsert(submitDTO);
+            return "redirect:/regist/counselor/finish";
+        }catch (Exception e) {
+            return "redirect:/regist/counselor/chuga";
+        }
     }
 
     @GetMapping("/counselor/finish")

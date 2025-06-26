@@ -6,6 +6,7 @@ import com.midproject.pikJ.entity.Counselor;
 import com.midproject.pikJ.entity.Member;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.sql.Date;
 import java.time.LocalDateTime;
@@ -51,5 +52,7 @@ public class ManagementDTO {
     private String location_address;
 
     private String location_detailAddress;
+
+    private MultipartFile attachmentFile;
 
 }

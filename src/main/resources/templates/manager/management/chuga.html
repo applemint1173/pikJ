@@ -13,12 +13,12 @@
     <div class="log">로그아웃</div>
     <div class="home">
         <a href="/manager/home">
-            <img src="https://img.icons8.com/material-outlined/24/home--v2.png" alt="home--v2" />
+            <img src="https://img.icons8.com/material-outlined/24/home--v2.png" alt="home--v2"/>
         </a>
     </div>
 </div>
 
-<form name="form" action="/manager/management/chugaProc" method="post">
+<form name="form" action="/manager/management/chugaProc" method="post" enctype="multipart/form-data">
     <table>
         <tr>
             <th>내담자 번호</th>
@@ -66,9 +66,7 @@
         </tr>
         <tr>
             <th>상담 첨부파일</th>
-            <td>
-                <input type="file" name="attachment" multiple>
-            </td>
+            <td><input type="file" name="attachmentFile"></td>
         </tr>
         <tr>
             <th>구분</th>

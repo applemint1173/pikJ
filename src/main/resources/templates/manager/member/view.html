@@ -1,18 +1,24 @@
 <!--김태준 : html 수정, css 추가-->
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>PikJ 관리자 사이트</title>
     <link rel="stylesheet" th:href="@{/css/managerView.css}">
 </head>
+
 <body>
     <div id="header">
         <h1>내담자 상세보기</h1>
         <div class="log">로그아웃</div>
-        <div class="home"><a href="/manager/home"><img src="https://img.icons8.com/material-outlined/24/home--v2.png"
-                    alt="home--v2" /></a></div>
+        <div class="home">
+            <a href="/manager/home">
+                <img src="https://img.icons8.com/material-outlined/24/home--v2.png" alt="home--v2" />
+            </a>
+        </div>
     </div>
+
     <div id="container">
         <table>
             <tr>
@@ -49,11 +55,28 @@
             </tr>
         </table>
     </div>
+
     <div id="nav">
         <div><a href="/manager/member/list">목록</a></div>
         <div><a href="/manager/member/chuga">추가</a></div>
         <div><a th:href="@{|/manager/member/sujung/${returnDTO.no}|}">수정</a></div>
-        <div><a th:href="@{|/manager/member/sakje/${returnDTO.no}|}">삭제</a></div>
+        <div>
+            <a href="#" onclick="sakje();">
+                <form id="sakjeForm" method="post" action="/manager/member/sakjeProc">
+                    <input type="hidden" name="no" th:value="${returnDTO.no}">
+                </form>삭제
+            </a>
+        </div>
     </div>
+
+    <script>
+        function sakje() {
+            if (confirm("삭제하시겠습니까?")) {
+                alert("삭제되었습니다.");
+                document.getElementById("sakjeForm").submit();
+            }
+        }
+    </script>
 </body>
+
 </html>

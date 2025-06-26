@@ -1,70 +1,77 @@
 <!-- 김태준 : html, css, javaScript 수정 -->
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>PikJ 관리자 사이트</title>
     <link rel="stylesheet" th:href="@{/css/managerView.css}">
 </head>
+
 <body>
     <div id="header">
         <h1>내담자 추가</h1>
         <div class="log">로그아웃</div>
-        <div class="home"><a href="/manager/home"><img src="https://img.icons8.com/material-outlined/24/home--v2.png"
-                    alt="home--v2" /></a></div>
+        <div class="home">
+            <a href="/manager/home">
+                <img src="https://img.icons8.com/material-outlined/24/home--v2.png" alt="home--v2"/>
+            </a>
+        </div>
     </div>
-<form name="form" th:action="@{/manager/member/chugaProc}" method="post">
-    <table>
-        <tr>
-            <th>아이디</th>
-            <td><input type="text" name="id"></td>
-        </tr>
-        <tr>
-            <th>비밀번호</th>
-            <td><input type="password" name="pwd"></td>
-        </tr>
-        <tr>
-            <th>비밀번호 확인</th>
-            <td><input type="password" name="pwdChk"></td>
-        </tr>
-        <tr>
-            <th>이름</th>
-            <td><input type="text" name="name"></td>
-        </tr>
-        <tr>
-            <th>생년월일</th>
-            <td><input type="date" name="birthDate"></td>
-        </tr>
-        <tr>
-            <th>전화번호</th>
-            <td><input type="text" name="phone"></td>
-        </tr>
-        <tr>
-            <th>이메일</th>
-            <td><input type="text" name="email"></td>
-        </tr>
-        <tr>
-            <th>구분</th>
-            <td>
-                <select th:name="type">
-                    <option selected>===선택===</option>
-                    <option th:value="학생" th:text="학생"></option>
-                    <option th:value="학부모" th:text="학부모"></option>
-                    <option th:value="교사" th:text="교사"></option>
-                    <option th:value="일반" th:text="일반"></option>
-                </select>
-            </td>
-        </tr>
-    </table>
-</form>
+
+    <form name="form" th:action="@{/manager/member/chugaProc}" method="post">
+        <table>
+            <tr>
+                <th>아이디</th>
+                <td><input type="text" name="id"></td>
+            </tr>
+            <tr>
+                <th>비밀번호</th>
+                <td><input type="password" name="pwd"></td>
+            </tr>
+            <tr>
+                <th>비밀번호 확인</th>
+                <td><input type="password" name="pwdChk"></td>
+            </tr>
+            <tr>
+                <th>이름</th>
+                <td><input type="text" name="name"></td>
+            </tr>
+            <tr>
+                <th>생년월일</th>
+                <td><input type="date" name="birthDate"></td>
+            </tr>
+            <tr>
+                <th>전화번호</th>
+                <td><input type="text" name="phone"></td>
+            </tr>
+            <tr>
+                <th>이메일</th>
+                <td><input type="text" name="email"></td>
+            </tr>
+            <tr>
+                <th>구분</th>
+                <td>
+                    <select th:name="type">
+                        <option selected>===선택===</option>
+                        <option th:value="학생" th:text="학생"></option>
+                        <option th:value="성인" th:text="성인"></option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+    </form>
+
     <div id="nav">
         <div onclick="chuga();" style="cursor:pointer;"><a>확인</a></div>
         <div><a href="/manager/member/list">취소</a></div>
     </div>
+
+    <script>
+        function chuga() {
+            document.form.submit();
+        }
+    </script>
 </body>
-<script>
-    function chuga() {
-        document.form.submit();
-    }
-</script>
+
 </html>

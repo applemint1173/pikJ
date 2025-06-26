@@ -90,26 +90,35 @@ public class ClientController {
             imsiCounselorDTO.setBirthDate(Date.valueOf("1900-01-01"));
             imsiCounselorDTO.setEmail("-");
             imsiCounselorDTO.setPhone("-");
-            imsiCounselorDTO.setPhoto("-");
+            imsiCounselorDTO.setPhoto("");
             imsiCounselorDTO.setLicense("-");
             imsiCounselorDTO.setIntro("-");
 
-            counselorService.setInsert(imsiCounselorDTO);
-            imsiCounselorDTO = counselorService.getSelectLoginOne(imsiCounselorDTO);
+            try {
+                counselorService.setInsert(imsiCounselorDTO);
+                imsiCounselorDTO = counselorService.getSelectLoginOne(imsiCounselorDTO);
+                model.addAttribute("defaultCounselorDTO", imsiCounselorDTO);
 
-            model.addAttribute("defaultCounselorDTO", imsiCounselorDTO);
+                return userFolderName + "/chuga";
+            } catch (Exception e) {
+                return "redirect:/" + userFolderName + "chuga";
+            }
         }
 
         return userFolderName + "/chuga";
     }
 
+
     @PostMapping("/chugaProc")
     public String userChugaProc(
             ManagementDTO managementDTO
     ) {
-        managementService.setInsert(managementDTO);
-
-        return "redirect:/";
+        try {
+            managementService.setInsert(managementDTO);
+            return "redirect:/";
+        }catch (Exception e) {
+            return "redirect:/" + userFolderName + "chuga";
+        }
     }
 
     @GetMapping("/list")

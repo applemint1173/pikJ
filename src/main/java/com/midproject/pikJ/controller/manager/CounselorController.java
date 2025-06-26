@@ -9,7 +9,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 @RequestMapping("/manager/counselor")
@@ -29,9 +32,13 @@ public class CounselorController {
     }
 
     @GetMapping("/view/{no}")
-    public String view(CounselorDTO counselorDTO, Model model) {
+    public String view(
+            CounselorDTO counselorDTO,
+            Model model
+    ) {
         CounselorDTO returnDTO = service.getSelectOne(counselorDTO);
         model.addAttribute("returnDTO",returnDTO);
+
         return folderName + "view";
     }
 
@@ -41,9 +48,15 @@ public class CounselorController {
     }
 
     @PostMapping("/chugaProc")
-    public String chugaProc(CounselorDTO counselorDTO) {
-        service.setInsert(counselorDTO);
-        return "redirect:/" + folderName + "list";
+    public String chugaProc(
+            CounselorDTO counselorDTO
+    ){
+        try {
+            service.setInsert(counselorDTO);
+            return "redirect:/" + folderName + "list";
+        }catch (Exception e) {
+            return "redirect:/" + folderName + "chuga";
+        }
     }
 
     @GetMapping("/sujung/{no}")
@@ -54,21 +67,25 @@ public class CounselorController {
     }
 
     @PostMapping("/sujungProc")
-    public String sujungProc(CounselorDTO counselorDTO) {
-        service.setUpdate(counselorDTO);
-        return "redirect:/" + folderName + "view/" + counselorDTO.getNo();
-    }
-
-    @GetMapping("/sakje/{no}")
-    public String sakje(CounselorDTO counselorDTO, Model model) {
-        CounselorDTO returnDTO = service.getSelectOne(counselorDTO);
-        model.addAttribute("returnDTO",returnDTO);
-        return folderName + "sakje";
+    public String sujungProc(
+            CounselorDTO counselorDTO
+    ) {
+        try {
+            service.setUpdate(counselorDTO);
+            return "redirect:/" + folderName + "view/" + counselorDTO.getNo();
+        }catch (Exception e) {
+            return "redirect:/" + folderName + "sujung/" + counselorDTO.getNo();
+        }
     }
 
     @PostMapping("/sakjeProc")
     public String sakjeProc(CounselorDTO counselorDTO) {
-        service.setDelete(counselorDTO);
-        return "redirect:/" + folderName + "list";
+        try {
+            service.setDelete(counselorDTO);
+            return "redirect:/" + folderName + "list";
+        }catch (Exception e) {
+            return "redirect:/" + folderName + "view/" + counselorDTO.getNo();
+        }
     }
+
 }

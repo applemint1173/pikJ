@@ -3,6 +3,7 @@ package com.midproject.pikJ.dto;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.sql.Date;
 import java.time.LocalDateTime;
@@ -28,5 +29,7 @@ public class ProgramDTO {
     private String type;
 
     private LocalDateTime regiDate;
+
+    private MultipartFile attachmentFile;
 
 }

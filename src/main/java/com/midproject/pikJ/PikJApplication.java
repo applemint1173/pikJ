@@ -11,6 +11,7 @@ public class PikJApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(PikJApplication.class, args);
+		System.out.println("-- 시작 --");
 	}
 
 }

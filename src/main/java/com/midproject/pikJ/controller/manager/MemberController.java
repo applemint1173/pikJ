@@ -59,13 +59,6 @@ public class MemberController {
         return "redirect:/" + folderName + "view/" + memberDTO.getNo();
     }
 
-    @GetMapping("/sakje/{no}")
-    public String sakje(MemberDTO memberDTO, Model model) {
-        MemberDTO returnDTO = service.getSelectOne(memberDTO);
-        model.addAttribute("returnDTO",returnDTO);
-        return folderName + "sakje";
-    }
-
     @PostMapping("/sakjeProc")
     public String sakjeProc(MemberDTO memberDTO) {
         service.setDelete(memberDTO);

@@ -52,12 +52,12 @@ public class ManagementController {
     public String chugaProc(
             ManagementDTO submitDTO
     ) {
-        service.setInsert(submitDTO);
-
-        // 존재하지 않는 내담자, 상담사, 학교 정보 처리할 것
-        // 서비스 반환형 이용해서 실패시 경고, 성공시 처리
-
-        return "redirect:/" + folderName + "/list";
+        try {
+            service.setInsert(submitDTO);
+            return "redirect:/" + folderName + "/list";
+        }catch (Exception e) {
+            return "redirect:/" + folderName + "/chuga";
+        }
     }
 
     @GetMapping("/sujung/{no}")
@@ -76,9 +76,12 @@ public class ManagementController {
     public String sujungProc(
             ManagementDTO submitDTO
     ) {
-        service.setUpdate(submitDTO);
-
-        return "redirect:/" + folderName + "/view/" + submitDTO.getNo();
+        try {
+            service.setUpdate(submitDTO);
+            return "redirect:/" + folderName + "/view/" + submitDTO.getNo();
+        }catch (Exception e) {
+            return "redirect:/" + folderName + "/sujung/" + submitDTO.getNo();
+        }
     }
 
     @GetMapping("/sakje/{no}")

@@ -13,10 +13,16 @@ import com.midproject.pikJ.repository.SchoolRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -27,6 +33,8 @@ public class ManagementService {
     private final CounselorRepository counselorRepository;
     private final SchoolRepository schoolRepository;
     private final ModelMapper modelMapper;
+
+    private final String ATTACHMENT_PATH = "src/main/resources/static/userImg/";
 
     public List<ManagementDTO> getSelectAll() {
         List<Management> entityList = repository.findAll();
@@ -73,8 +81,25 @@ public class ManagementService {
         return modelMapper.map(management, ManagementDTO.class);
     }
 
-    public void setInsert(ManagementDTO managementDTO) {
-        //managementDTO.setPassword(passwordEncoder.encode(managementDTO.getPassword()));
+    public void setInsert(ManagementDTO managementDTO) throws IOException {
+        MultipartFile multiPhoto = managementDTO.getAttachmentFile();
+
+        if (multiPhoto != null && !multiPhoto.isEmpty()) {
+            String fileName = UUID.randomUUID() + "_" + multiPhoto.getOriginalFilename();
+            Path photoPath = Paths.get(ATTACHMENT_PATH);
+
+            if (!Files.exists(photoPath)) {
+                Files.createDirectories(photoPath);
+            }
+
+            Path filePath = photoPath.resolve(fileName);
+            Files.copy(multiPhoto.getInputStream(), filePath);
+
+            managementDTO.setAttachment("/userImg/" + fileName);
+        } else {
+            managementDTO.setAttachment(null);
+        }
+
         Optional<Member> om = memberRepository.findById(managementDTO.getMember_no());
         Optional<Counselor> oc = counselorRepository.findById(managementDTO.getCounselor_no());
         Optional<School> os = schoolRepository.findById(managementDTO.getSchool_no());
@@ -93,8 +118,34 @@ public class ManagementService {
         }
     }
 
-    public void setUpdate(ManagementDTO managementDTO) {
-        //managementDTO.setPassword(passwordEncoder.encode(managementDTO.getPassword()));
+    public void setUpdate(ManagementDTO managementDTO) throws IOException {
+        MultipartFile multiPhoto = managementDTO.getAttachmentFile();
+
+        if (multiPhoto != null && !multiPhoto.isEmpty()) {
+            if (managementDTO.getAttachment() != null) {
+                String oldFileName = managementDTO.getAttachment().replace("/userImg/", "");
+                Path oldFilePath = Paths.get(ATTACHMENT_PATH + oldFileName);
+
+                if (Files.exists(oldFilePath)) {
+                    Files.delete(oldFilePath);
+                }
+            }
+
+            String fileName = UUID.randomUUID() + "_" + multiPhoto.getOriginalFilename();
+            Path photoPath = Paths.get(ATTACHMENT_PATH);
+
+            if (!Files.exists(photoPath)) {
+                Files.createDirectories(photoPath);
+            }
+
+            Path filePath = photoPath.resolve(fileName);
+            Files.copy(multiPhoto.getInputStream(), filePath);
+
+            managementDTO.setAttachment("/userImg/" + fileName);
+        } else {
+            managementDTO.setAttachment(null);
+        }
+
         Optional<Member> om = memberRepository.findById(managementDTO.getMember_no());
         Optional<Counselor> oc = counselorRepository.findById(managementDTO.getCounselor_no());
         Optional<School> os = schoolRepository.findById(managementDTO.getSchool_no());

@@ -9,6 +9,7 @@
 
 <form id="deleteForm" method="post" action="/manager/management/sakjeProc">
     <input type="hidden" name="no" th:value="${returnDTO.no}">
+    <input type="hidden" name="photo" th:value="${returnDTO.photo}">
 </form>
 
 <form id="backForm" method="get" th:action="@{|/manager/management/view/${returnDTO.no}|}">
