@@ -34,11 +34,16 @@ public class NoticeService {
         Pageable pageable = PageRequest.of(page, 10, Sort.by(Sort.Order.desc("no")));
         Page<Notice> pageList;
 
-        boolean noSearch = (searchType == null || searchType.isEmpty()) ||
+        boolean noKeyword = (searchType == null || searchType.isEmpty()) &&
                 (keyword == null || keyword.isEmpty());
+        boolean noSearch = (searchType == null || searchType.isEmpty()) &&
+                (keyword != null);
 
-        if (noSearch) {
+        if (noKeyword) {
             pageList = repository.findAll(pageable);
+        } else if (noSearch) {
+            pageList = repository.findBySubjectContainingOrWriterContainingOrContentContaining(
+                    keyword, keyword, keyword, pageable);
         } else {
             switch (searchType) {
                 case "subject":
@@ -51,7 +56,7 @@ public class NoticeService {
                     pageList = repository.findByContentContaining(keyword, pageable);
                     break;
                 default:
-                    pageList = repository.findAll(pageable);  // fallback 처리
+                    pageList = repository.findAll(pageable);
             }
         }
 
