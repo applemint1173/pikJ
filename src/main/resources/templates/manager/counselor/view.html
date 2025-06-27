@@ -11,7 +11,6 @@
 <body>
     <div id="header">
         <h1>상담자 상세보기</h1>
-        <div class="log">로그아웃</div>
         <div class="home">
             <a href="/manager/home">
                 <img src="https://img.icons8.com/material-outlined/24/home--v2.png" alt="home--v2"/>
@@ -80,6 +79,36 @@
             </a>
         </div>
     </div>
+
+    <br>
+    <br>
+    <hr>
+    <h1>상담내역</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>내담자이름</th>
+            <th>상담일</th>
+            <th>상담구분</th>
+            <th>작성일</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <div th:if="${list.size() == 0}">
+            <td colspan="4">등록된 상담 리스트가 없습니다.</td>
+        </div>
+
+        <div th:unless="${list.size() == 0}">
+            <tr th:each="managementDTO, loop:${list}">
+                <td><a th:href="@{|/manager/management/view/${managementDTO.no}|}" th:text="${managementDTO.member.name}"></a></td>
+                <td>[[${managementDTO.meetingDate}]]</td>
+                <td>[[${managementDTO.checks}]]</td>
+                <td th:text="${#temporals.format(managementDTO.regiDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+            </tr>
+        </div>
+        </tbody>
+    </table>
 
     <script>
         function sakje() {

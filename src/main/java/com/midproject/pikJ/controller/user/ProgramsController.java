@@ -20,16 +20,20 @@ public class ProgramsController {
     String experienceFolderName = "user/program/experience";
     String lectureFolderName = "user/program/lecture";
 
+    // 김태준 수정
     @GetMapping("/program/experience/list")
     public String experienceList(
-            Model model
+            Model model, ProgramDTO programDTO
     ){
-        List<ProgramDTO> programDTOList = service.getSelectAll("체험");
-        model.addAttribute("list", programDTOList);
+        List<ProgramDTO> list = service.getSelectByTypeAndStage(programDTO);
+        model.addAttribute("list",list);
+        model.addAttribute("type",programDTO.getType());
+        model.addAttribute("stage",programDTO.getStage());
 
         return experienceFolderName + "/list";
     }
 
+    // JY: 태준님이 보시고 지우거나 수정요청~
     @PostMapping("/program/experience/listProc")
     public String experienceListProc(
             Model model,
@@ -66,23 +70,24 @@ public class ProgramsController {
         return experienceFolderName + "/view";
     }
 
-    @GetMapping("/program/lecture/list")
-    public String lectureList(
-            Model model
-    ){
-        List<ProgramDTO> programDTOList = service.getSelectAll("강연");
-        model.addAttribute("list", programDTOList);
-
-        return lectureFolderName + "/list";
-    }
-
-    @GetMapping("/program/lecture/view/{no}")
-    public String lectureView(
-            Model model,
-            ProgramDTO submitDTO
-    ){
-        ProgramDTO returnDTO = service.getSelectOne(submitDTO);
-        model.addAttribute("returnDTO", returnDTO);
-        return lectureFolderName + "/view";
-    }
+    // 김태준 수정 중이여서 주석 처리 함
+//    @GetMapping("/program/lecture/list")
+//    public String lectureList(
+//            Model model
+//    ){
+//        List<ProgramDTO> programDTOList = service.getSelectByType("강연");
+//        model.addAttribute("list", programDTOList);
+//
+//        return lectureFolderName + "/list";
+//    }
+//
+//    @GetMapping("/program/lecture/view/{no}")
+//    public String lectureView(
+//            Model model,
+//            ProgramDTO submitDTO
+//    ){
+//        ProgramDTO returnDTO = service.getSelectOne(submitDTO);
+//        model.addAttribute("returnDTO", returnDTO);
+//        return lectureFolderName + "/view";
+//    }
 }

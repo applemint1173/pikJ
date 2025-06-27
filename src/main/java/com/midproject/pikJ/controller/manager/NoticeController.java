@@ -24,6 +24,9 @@ public class NoticeController {
     public String list(
             Model model
     ) {
+        String redirect = ErrorManager.notManager();
+        if (redirect != null) return redirect;
+
         List<NoticeDTO> list = service.getSelectAll();
         model.addAttribute("list", list);
 
@@ -35,6 +38,9 @@ public class NoticeController {
             Model model,
             NoticeDTO submitDTO
     ) {
+        String redirect = ErrorManager.notManager();
+        if (redirect != null) return redirect;
+
         NoticeDTO returnDTO = service.getSelectOne(submitDTO);
         model.addAttribute("returnDTO", returnDTO);
 
@@ -44,6 +50,9 @@ public class NoticeController {
     @GetMapping("/chuga")
     public String chuga(
     ) {
+        String redirect = ErrorManager.notManager();
+        if (redirect != null) return redirect;
+
         return folderName + "/chuga";
     }
 
@@ -51,6 +60,9 @@ public class NoticeController {
     public String chugaProc(
             NoticeDTO submitDTO
     ) {
+        String redirect = ErrorManager.notManager();
+        if (redirect != null) return redirect;
+
         service.setInsert(submitDTO);
 
         return "redirect:/" + folderName + "/list";
@@ -61,6 +73,9 @@ public class NoticeController {
             Model model,
             NoticeDTO submitDTO
     ) {
+        String redirect = ErrorManager.notManager();
+        if (redirect != null) return redirect;
+
         NoticeDTO returnDTO = service.getSelectOne(submitDTO);
 
         model.addAttribute("returnDTO", returnDTO);
@@ -72,6 +87,9 @@ public class NoticeController {
     public String sujungProc(
             NoticeDTO submitDTO
     ) {
+        String redirect = ErrorManager.notManager();
+        if (redirect != null) return redirect;
+
         service.setUpdate(submitDTO);
 
         return "redirect:/" + folderName + "/view/" + submitDTO.getNo();
@@ -82,6 +100,9 @@ public class NoticeController {
             Model model,
             NoticeDTO submitDTO
     ) {
+        String redirect = ErrorManager.notManager();
+        if (redirect != null) return redirect;
+
         NoticeDTO returnDTO = service.getSelectOne(submitDTO);
         model.addAttribute("returnDTO", returnDTO);
 
@@ -92,6 +113,9 @@ public class NoticeController {
     public String sakjeProc(
             NoticeDTO submitDTO
     ) {
+        String redirect = ErrorManager.notManager();
+        if (redirect != null) return redirect;
+
         service.setDelete(submitDTO);
 
         return "redirect:/" + folderName + "/list";

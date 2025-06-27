@@ -25,6 +25,9 @@ public class ManagementController {
     public String list(
             Model model
     ) {
+        String redirect = ErrorManager.notManager();
+        if (redirect != null) return redirect;
+
         List<ManagementDTO> list = service.getSelectAll();
         model.addAttribute("list", list);
 
@@ -36,6 +39,9 @@ public class ManagementController {
             Model model,
             ManagementDTO submitDTO
     ) {
+        String redirect = ErrorManager.notManager();
+        if (redirect != null) return redirect;
+
         ManagementDTO returnDTO = service.getSelectOne(submitDTO);
         model.addAttribute("returnDTO", returnDTO);
 
@@ -45,6 +51,9 @@ public class ManagementController {
     @GetMapping("/chuga")
     public String chuga(
     ) {
+        String redirect = ErrorManager.notManager();
+        if (redirect != null) return redirect;
+
         return folderName + "/chuga";
     }
 
@@ -52,6 +61,9 @@ public class ManagementController {
     public String chugaProc(
             ManagementDTO submitDTO
     ) {
+        String redirect = ErrorManager.notManager();
+        if (redirect != null) return redirect;
+
         try {
             service.setInsert(submitDTO);
             return "redirect:/" + folderName + "/list";
@@ -65,6 +77,9 @@ public class ManagementController {
             Model model,
             ManagementDTO submitDTO
     ) {
+        String redirect = ErrorManager.notManager();
+        if (redirect != null) return redirect;
+
         ManagementDTO returnDTO = service.getSelectOne(submitDTO);
 
         model.addAttribute("returnDTO", returnDTO);
@@ -76,6 +91,9 @@ public class ManagementController {
     public String sujungProc(
             ManagementDTO submitDTO
     ) {
+        String redirect = ErrorManager.notManager();
+        if (redirect != null) return redirect;
+
         try {
             service.setUpdate(submitDTO);
             return "redirect:/" + folderName + "/view/" + submitDTO.getNo();
@@ -89,6 +107,9 @@ public class ManagementController {
             Model model,
             ManagementDTO submitDTO
     ) {
+        String redirect = ErrorManager.notManager();
+        if (redirect != null) return redirect;
+
         ManagementDTO returnDTO = service.getSelectOne(submitDTO);
         model.addAttribute("returnDTO", returnDTO);
 
@@ -99,6 +120,9 @@ public class ManagementController {
     public String sakjeProc(
             ManagementDTO submitDTO
     ) {
+        String redirect = ErrorManager.notManager();
+        if (redirect != null) return redirect;
+
         service.setDelete(submitDTO);
 
         return "redirect:/" + folderName + "/list";

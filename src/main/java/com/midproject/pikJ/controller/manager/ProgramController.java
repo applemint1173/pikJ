@@ -33,6 +33,9 @@ public class ProgramController {
     public String list(
             Model model
     ) {
+        String redirect = ErrorManager.notManager();
+        if (redirect != null) return redirect;
+
         List<ProgramDTO> list = service.getSelectAll();
         model.addAttribute("list", list);
 
@@ -44,6 +47,9 @@ public class ProgramController {
             Model model,
             ProgramDTO submitDTO
     ) {
+        String redirect = ErrorManager.notManager();
+        if (redirect != null) return redirect;
+
         ProgramDTO returnDTO = service.getSelectOne(submitDTO);
         model.addAttribute("returnDTO", returnDTO);
 
@@ -53,6 +59,9 @@ public class ProgramController {
     @GetMapping("/chuga")
     public String chuga(
     ) {
+        String redirect = ErrorManager.notManager();
+        if (redirect != null) return redirect;
+
         return folderName + "/chuga";
     }
 
@@ -60,6 +69,9 @@ public class ProgramController {
     public String chugaProc(
             ProgramDTO submitDTO
     ) throws ParseException {
+        String redirect = ErrorManager.notManager();
+        if (redirect != null) return redirect;
+
         LocalDate date = LocalDate.now();
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         String todayString = date.format(dateTimeFormatter);
@@ -94,6 +106,9 @@ public class ProgramController {
             Model model,
             ProgramDTO submitDTO
     ) {
+        String redirect = ErrorManager.notManager();
+        if (redirect != null) return redirect;
+
         ProgramDTO returnDTO = service.getSelectOne(submitDTO);
 
         model.addAttribute("returnDTO", returnDTO);
@@ -105,6 +120,9 @@ public class ProgramController {
     public String sujungProc(
             ProgramDTO submitDTO
     ) throws ParseException {
+        String redirect = ErrorManager.notManager();
+        if (redirect != null) return redirect;
+
         LocalDate date = LocalDate.now();
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         String todayString = date.format(dateTimeFormatter);
@@ -139,6 +157,9 @@ public class ProgramController {
             Model model,
             ProgramDTO submitDTO
     ) {
+        String redirect = ErrorManager.notManager();
+        if (redirect != null) return redirect;
+
         ProgramDTO returnDTO = service.getSelectOne(submitDTO);
         model.addAttribute("returnDTO", returnDTO);
 
@@ -149,6 +170,9 @@ public class ProgramController {
     public String sakjeProc(
             ProgramDTO submitDTO
     ) {
+        String redirect = ErrorManager.notManager();
+        if (redirect != null) return redirect;
+
         service.setDelete(submitDTO);
 
         return "redirect:/" + folderName + "/list";

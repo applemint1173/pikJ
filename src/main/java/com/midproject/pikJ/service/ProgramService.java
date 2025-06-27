@@ -48,6 +48,23 @@ public class ProgramService {
         return dtoList;
     }
 
+    //김태준 추가
+    public List<ProgramDTO> getSelectByTypeAndStage(ProgramDTO programDTO) {
+        List<Program> entityList = repository.findByType(programDTO.getType());
+        List<ProgramDTO> dtoList = new ArrayList<>();
+
+        for (int i=0; i < entityList.size(); i++) {
+            Program program = entityList.get(i);
+            String programStage = program.getStage();
+
+            if(programDTO.getStage() == null || programDTO.getStage().equals(programStage)) {
+                dtoList.add(modelMapper.map(program, ProgramDTO.class));
+            }
+        }
+
+        return dtoList;
+    }
+
     public ProgramDTO getSelectOne(ProgramDTO programDTO) {
         Optional<Program> op = repository.findById(programDTO.getNo());
 
