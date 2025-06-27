@@ -21,21 +21,23 @@ import java.util.List;
 @RequestMapping("/manager/notice")
 @RequiredArgsConstructor
 public class NoticeController {
+
     private final NoticeService service;
 
     String folderName = "manager/notice";
 
     @GetMapping("/list")
-    public String list(Model model,
-                       @RequestParam(value = "page", defaultValue = "0") int page,
-                       @RequestParam(value = "searchType", required = false) String searchType,
-                       @RequestParam(value = "keyword", required = false) String keyword) {
-
+    public String list(
+            Model model,
+            @RequestParam(value = "page", defaultValue = "0") int page,
+            @RequestParam(value = "searchType", required = false) String searchType,
+            @RequestParam(value = "keyword", required = false) String keyword
+    ){
         String redirect = ErrorManager.notManager();
         if (redirect != null) return redirect;
 
         Page<NoticeDTO> pageList = service.getSelectAll(page, searchType, keyword);
-        List<NoticeDTO> noticeList = pageList.getContent();
+        List<NoticeDTO> list = pageList.getContent();
 
         if(keyword == null){
             keyword = "";
@@ -44,7 +46,7 @@ public class NoticeController {
             searchType = "";
         }
 
-        model.addAttribute("list", noticeList);
+        model.addAttribute("list", list);
         model.addAttribute("paging", pageList);
         model.addAttribute("searchType", searchType);
         model.addAttribute("keyword", keyword);

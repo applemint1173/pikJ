@@ -2,10 +2,16 @@
 package com.midproject.pikJ.service;
 
 import com.midproject.pikJ.dto.CounselorDTO;
+import com.midproject.pikJ.dto.ProgramDTO;
 import com.midproject.pikJ.entity.Counselor;
+import com.midproject.pikJ.entity.Program;
 import com.midproject.pikJ.repository.CounselorRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -34,6 +40,36 @@ public class CounselorService {
             dtoList.add(modelMapper.map(entityList.get(i), CounselorDTO.class));
         }
         return dtoList;
+    }
+
+    public Page<CounselorDTO> getSelectAll(int page, String searchType, String keyword) {
+        Pageable pageable = PageRequest.of(page, 10, Sort.by(Sort.Order.desc("no")));
+        Page<Counselor> pageList;
+
+        boolean noKeyword = (searchType == null || searchType.isEmpty()) &&
+                (keyword == null || keyword.isEmpty());
+        boolean noSearch = (searchType == null || searchType.isEmpty()) &&
+                (keyword != null);
+
+        if (noKeyword) {
+            pageList = repository.findAll(pageable);
+        } else if (noSearch) {
+            pageList = repository.findByNameContainingOrPhoneContaining(
+                    keyword, keyword, pageable);
+        } else {
+            switch (searchType) {
+                case "name":
+                    pageList = repository.findByNameContaining(keyword, pageable);
+                    break;
+                case "phone":
+                    pageList = repository.findByPhoneContaining(keyword, pageable);
+                    break;
+                default:
+                    pageList = repository.findAll(pageable);
+            }
+        }
+
+        return pageList.map(counselor -> modelMapper.map(counselor, CounselorDTO.class));
     }
 
     public CounselorDTO getSelectOne(CounselorDTO counselorDTO) {

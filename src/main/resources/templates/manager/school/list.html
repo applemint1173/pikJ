@@ -8,21 +8,28 @@
 </head>
 <body>
 
-<div id="container">
+<!--<div id="container">-->
 
     <h1>학교 관리</h1>
     <div id="main">
-        <div id="nav">
-            <div><a href="/manager/home"><img src="https://img.icons8.com/material-outlined/24/home--v2.png" alt="home--v2"/></a></div>
-            <select class="search">
-                <option selected>===선택===</option>
-                <option th:value="name" th:text="학교명"></option>
-                <option th:value="sido" th:text="시도"></option>
-                <option th:value="sgg" th:text="시군구"></option>
-            </select>
-            <input type="text" id="search">
-            <button>search</button>
-        </div>
+        <form name="form" method="get" action="/manager/school/list" style="display: inline;">
+            <div id="nav">
+                <div>
+                    <a href="/manager/home">
+                        <img src="https://img.icons8.com/material-outlined/24/home--v2.png" alt="home--v2"/>
+                    </a>
+                </div>
+                <select class="search" name="searchType">
+                    <option value="" th:selected="${searchType == null}">===선택===</option>
+                    <option value="name" th:selected="${searchType == 'name'}">학교명</option>
+                    <option value="sort" th:selected="${searchType == 'sort'}">구분</option>
+                    <option value="location" th:selected="${searchType == 'location'}">위치</option>
+                    <option value="phone" th:selected="${searchType == 'phone'}">전화번호</option>
+                </select>
+                <input type="text" name="keyword" id="search" th:value="${keyword}" placeholder="검색어 입력">
+                <button type="submit">search</button>
+            </div>
+        </form>
 
         <div class="chuga"><a href="/manager/school/chuga">추가</a></div>
 
@@ -53,8 +60,10 @@
 
         </table>
 
+        <div th:replace="header/paging :: paging"></div>
+
     </div>
-</div>
+<!--</div>-->
 
 </body>
 </html>

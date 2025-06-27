@@ -1,11 +1,17 @@
 // 박지영
 package com.midproject.pikJ.service;
 
+import com.midproject.pikJ.dto.ProgramDTO;
 import com.midproject.pikJ.dto.SchoolDTO;
+import com.midproject.pikJ.entity.Program;
 import com.midproject.pikJ.entity.School;
 import com.midproject.pikJ.repository.SchoolRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -28,6 +34,42 @@ public class SchoolService {
         }
 
         return dtoList;
+    }
+
+    public Page<SchoolDTO> getSelectAll(int page, String searchType, String keyword) {
+        Pageable pageable = PageRequest.of(page, 10, Sort.by(Sort.Order.desc("no")));
+        Page<School> pageList;
+
+        boolean noKeyword = (searchType == null || searchType.isEmpty()) &&
+                (keyword == null || keyword.isEmpty());
+        boolean noSearch = (searchType == null || searchType.isEmpty()) &&
+                (keyword != null);
+
+        if (noKeyword) {
+            pageList = repository.findAll(pageable);
+        } else if (noSearch) {
+            pageList = repository.findByNameContainingOrSortContainingOrLocationContainingOrPhoneContaining(
+                    keyword, keyword, keyword, keyword, pageable);
+        } else {
+            switch (searchType) {
+                case "name":
+                    pageList = repository.findByNameContaining(keyword, pageable);
+                    break;
+                case "sort":
+                    pageList = repository.findBySortContaining(keyword, pageable);
+                    break;
+                case "location":
+                    pageList = repository.findByLocationContaining(keyword, pageable);
+                    break;
+                case "phone":
+                    pageList = repository.findByPhoneContaining(keyword, pageable);
+                    break;
+                default:
+                    pageList = repository.findAll(pageable);
+            }
+        }
+
+        return pageList.map(school -> modelMapper.map(school, SchoolDTO.class));
     }
 
     public SchoolDTO getSelectOne(SchoolDTO schoolDTO) {

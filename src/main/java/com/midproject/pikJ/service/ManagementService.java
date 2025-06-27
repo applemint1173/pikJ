@@ -2,16 +2,18 @@
 package com.midproject.pikJ.service;
 
 import com.midproject.pikJ.dto.ManagementDTO;
-import com.midproject.pikJ.entity.Counselor;
-import com.midproject.pikJ.entity.Management;
-import com.midproject.pikJ.entity.Member;
-import com.midproject.pikJ.entity.School;
+import com.midproject.pikJ.dto.ProgramDTO;
+import com.midproject.pikJ.entity.*;
 import com.midproject.pikJ.repository.CounselorRepository;
 import com.midproject.pikJ.repository.ManagementRepository;
 import com.midproject.pikJ.repository.MemberRepository;
 import com.midproject.pikJ.repository.SchoolRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -45,6 +47,48 @@ public class ManagementService {
         }
 
         return dtoList;
+    }
+
+    public Page<ManagementDTO> getSelectAll(int page, String searchType, String keyword) {
+        Pageable pageable = PageRequest.of(page, 10, Sort.by(Sort.Order.desc("no")));
+        Page<Management> pageList;
+
+        boolean noKeyword = (searchType == null || searchType.isEmpty()) &&
+                (keyword == null || keyword.isEmpty());
+        boolean noSearch = (searchType == null || searchType.isEmpty()) &&
+                (keyword != null);
+
+        if (noKeyword) {
+            pageList = repository.findAll(pageable);
+        } else if (noSearch) {
+            pageList = repository.findByFourContaining(
+                    keyword, pageable);
+        } else {
+            switch (searchType) {
+                case "member.name":
+                    pageList = repository.findByMemberNameContaining(keyword, pageable);
+                    break;
+                case "member.phone":
+                    pageList = repository.findByMemberPhoneContaining(keyword, pageable);
+                    break;
+                case "counselor.name":
+                    pageList = repository.findByCounselorNameContaining(keyword, pageable);
+                    break;
+                case "counselor.phone":
+                    pageList = repository.findByCounselorPhoneContaining(keyword, pageable);
+                    break;
+                case "school.name":
+                    pageList = repository.findBySchoolNameContaining(keyword, pageable);
+                    break;
+                case "checks":
+                    pageList = repository.findByChecksContaining(keyword, pageable);
+                    break;
+                default:
+                    pageList = repository.findAll(pageable);
+            }
+        }
+
+        return pageList.map(management -> modelMapper.map(management, ManagementDTO.class));
     }
 
     // 김태준

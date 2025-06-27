@@ -66,7 +66,7 @@
         </div>
     </div>
 
-    <div id="nav">
+<!--    <div id="nav">-->
         <div><a href="/manager/counselor/list">목록</a></div>
         <div><a href="/manager/counselor/chuga">추가</a></div>
         <div><a th:href="@{|/manager/counselor/sujung/${returnDTO.no}|}">수정</a></div>
@@ -78,16 +78,30 @@
                 </form>삭제
             </a>
         </div>
-    </div>
+<!--    </div>-->
 
     <br>
     <br>
     <hr>
     <h1>상담내역</h1>
+
+    <form name="form" method="get" th:action="@{|/manager/counselor/view/${returnDTO.no}|}" style="display: inline;">
+        <div id="nav">
+            <select class="search" name="searchType">
+                <option value="" th:selected="${searchType == null}">===선택===</option>
+                <option value="member.name" th:selected="${searchType == 'member.name'}">내담자이름</option>
+                <option value="member.phone" th:selected="${searchType == 'member.phone'}">내담자전화번호</option>
+            </select>
+            <input type="text" name="keyword" id="search" th:value="${keyword}" placeholder="검색어 입력">
+            <button type="submit">search</button>
+        </div>
+    </form>
+
     <table>
         <thead>
         <tr>
             <th>내담자이름</th>
+            <th>내담자전화번호</th>
             <th>상담일</th>
             <th>상담구분</th>
             <th>작성일</th>
@@ -102,6 +116,7 @@
         <div th:unless="${list.size() == 0}">
             <tr th:each="managementDTO, loop:${list}">
                 <td><a th:href="@{|/manager/management/view/${managementDTO.no}|}" th:text="${managementDTO.member.name}"></a></td>
+                <td>[[${managementDTO.member.phone}]]</td>
                 <td>[[${managementDTO.meetingDate}]]</td>
                 <td>[[${managementDTO.checks}]]</td>
                 <td th:text="${#temporals.format(managementDTO.regiDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
@@ -109,6 +124,8 @@
         </div>
         </tbody>
     </table>
+
+    <div th:replace="header/paging :: paging"></div>
 
     <script>
         function sakje() {

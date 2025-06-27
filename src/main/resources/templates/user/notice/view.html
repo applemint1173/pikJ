@@ -5,6 +5,79 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" th:href="@{/css/userHome.css}">
+    <style>
+        body {
+        margin: 0;
+        font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+        background-color: #fffdf6; /* 따뜻한 아이보리 배경 */
+        color: #333;
+        }
+
+        table {
+        width: 90%;
+        margin: 40px auto;
+        border-collapse: separate;
+        border-spacing: 0 12px; /* 행 간격 */
+        }
+
+        th {
+         width: 20%;              /* 또는 100px 처럼 px 단위로도 가능 */
+          padding: 12px 10px;
+          background-color: #f4f1e8;
+          color: #5c5248;
+          font-weight: bold;
+          text-align: left;
+          border-bottom: 2px solid #e0dccc;
+          font-size: 16px;
+        }
+
+        td {
+        background-color: #fdfcf9;
+        padding: 14px 20px;
+        border: 1px solid #f0ede6;
+        border-radius: 12px;
+        box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.04);
+        font-size: 15px;
+        }
+
+        tr td:first-child a {
+        color: #3c70a4;
+        font-weight: 600;
+        text-decoration: none;
+        transition: color 0.3s;
+        }
+
+        tr td:first-child a:hover {
+        color: #1f4d80;
+        text-decoration: underline;
+        }
+
+        tr td {
+        transition: background-color 0.3s ease;
+        }
+
+        tr:hover td {
+        background-color: #f0f4ff;
+        }
+
+        /* 포근한 느낌의 로고 주위 여백 */
+        #logo {
+        padding: 10px;
+        max-height: 60px;
+        }
+
+        /* 미디어 대응 */
+        @media (max-width: 768px) {
+        table {
+        width: 100%;
+        }
+
+        td, th {
+        padding: 10px;
+        font-size: 14px;
+        }
+        }
+    </style>
 </head>
 <body>
 

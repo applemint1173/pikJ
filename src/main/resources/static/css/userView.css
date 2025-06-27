@@ -1,5 +1,5 @@
 /*정재백 CSS*/
-  header {
+header {
      display: flex;
   align-items: center;
   justify-content: space-between;
@@ -80,8 +80,8 @@
 
     .menu > a {
       text-decoration: none;
-      color: #333;
-      font-weight: bold;
+          color: #5c5248;
+          font-weight: bold;
       padding: 10px;
       display: block;
     }
@@ -104,13 +104,16 @@
       display: block;
       padding: 8px 12px;
       text-decoration: none;
-      color: #333;
+    color: #5c5248;
+              font-weight: bold;
       white-space: nowrap;
 
     }
 
     .dropdown a:hover {
       background-color: #eee;
+      color: #5c5248;
+                font-weight: bold;
       transition: max-height 1s ease, opacity 1s ease, padding 0.3s ease;
     }
 

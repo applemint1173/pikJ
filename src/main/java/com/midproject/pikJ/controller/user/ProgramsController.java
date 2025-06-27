@@ -4,6 +4,10 @@ package com.midproject.pikJ.controller.user;
 import com.midproject.pikJ.dto.ProgramDTO;
 import com.midproject.pikJ.service.ProgramService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,18 +29,20 @@ public class ProgramsController {
     // 김태준 수정
     @GetMapping("/program/experience/list")
     public String experienceList(
-            Model model, ProgramDTO programDTO,@RequestParam(required = false) String stage
-    ){
-        programDTO.setType("체험");
-        if ("전체".equals(stage) || stage == null || stage.isEmpty()) {
-            programDTO.setStage(null);
-        } else {
-            programDTO.setStage(stage);
-        }
-        List<ProgramDTO> list = service.getSelectByTypeAndStage(programDTO);
-        model.addAttribute("list",list);
-        model.addAttribute("type","체험");
-        model.addAttribute("stage",stage);
+            Model model,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(required = false) String stage
+    ) {
+        ProgramDTO dto = new ProgramDTO();
+        dto.setType("체험");
+        dto.setStage("전체".equals(stage) || stage == null || stage.isEmpty() ? null : stage);
+
+        Page<ProgramDTO> result = service.getSelectByTypeAndStage(dto, page);
+
+        model.addAttribute("list", result.getContent());
+        model.addAttribute("paging", result);
+        model.addAttribute("type", "체험");
+        model.addAttribute("stage", stage);
 
         return experienceFolderName + "/list";
     }
@@ -54,18 +60,20 @@ public class ProgramsController {
     // 김태준 수정
     @GetMapping("/program/lecture/list")
     public String lectureList(
-            Model model, ProgramDTO programDTO,@RequestParam(required = false) String stage
-    ){
-        programDTO.setType("강연");
-        if ("전체".equals(stage) || stage == null || stage.isEmpty()) {
-            programDTO.setStage(null);
-        } else {
-            programDTO.setStage(stage);
-        }
-        List<ProgramDTO> list = service.getSelectByTypeAndStage(programDTO);
-        model.addAttribute("list",list);
-        model.addAttribute("type","강연");
-        model.addAttribute("stage",stage);
+            Model model,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(required = false) String stage
+    ) {
+        ProgramDTO dto = new ProgramDTO();
+        dto.setType("강연");
+        dto.setStage("전체".equals(stage) || stage == null || stage.isEmpty() ? null : stage);
+
+        Page<ProgramDTO> result = service.getSelectByTypeAndStage(dto, page);
+
+        model.addAttribute("list", result.getContent());
+        model.addAttribute("paging", result);
+        model.addAttribute("type", "강연");
+        model.addAttribute("stage", stage);
 
         return lectureFolderName + "/list";
     }

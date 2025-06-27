@@ -4,10 +4,13 @@ package com.midproject.pikJ.controller.manager;
 import com.midproject.pikJ.dto.CounselorDTO;
 import com.midproject.pikJ.dto.ManagementDTO;
 import com.midproject.pikJ.dto.MemberDTO;
+import com.midproject.pikJ.dto.SchoolDTO;
 import com.midproject.pikJ.service.CounselorService;
 import com.midproject.pikJ.service.ManagementService;
+import com.midproject.pikJ.service.MemberService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,28 +34,61 @@ public class CounselorController {
 
     @GetMapping("/list")
     public String list(
-            Model model) {
+            Model model,
+            @RequestParam(value = "page", defaultValue = "0") int page,
+            @RequestParam(value = "searchType", required = false) String searchType,
+            @RequestParam(value = "keyword", required = false) String keyword
+    ) {
         String redirect = ErrorManager.notManager();
         if (redirect != null) return redirect;
 
-        List<CounselorDTO> list = service.getSelectAll();
-        model.addAttribute("list",list);
+        Page<CounselorDTO> pageList = service.getSelectAll(page, searchType, keyword);
+        List<CounselorDTO> list = pageList.getContent();
+
+        if(keyword == null){
+            keyword = "";
+        }
+        if(searchType == null){
+            searchType = "";
+        }
+
+        model.addAttribute("list", list);
+        model.addAttribute("paging", pageList);
+        model.addAttribute("searchType", searchType);
+        model.addAttribute("keyword", keyword);
+
         return folderName + "list";
     }
 
     @GetMapping("/view/{no}")
     public String view(
             CounselorDTO counselorDTO,
-            Model model
+            Model model,
+            @RequestParam(value = "page", defaultValue = "0") int page,
+            @RequestParam(value = "searchType", required = false) String searchType,
+            @RequestParam(value = "keyword", required = false) String keyword
     ) {
         String redirect = ErrorManager.notManager();
         if (redirect != null) return redirect;
 
         CounselorDTO returnDTO = service.getSelectOne(counselorDTO);
-        List<ManagementDTO> list = managementService.getSelectByCounselorId(returnDTO.getId());
 
         model.addAttribute("returnDTO",returnDTO);
+
+        Page<ManagementDTO> pageList = managementService.getSelectAll(page, searchType, keyword);
+        List<ManagementDTO> list = pageList.getContent();
+
+        if(keyword == null){
+            keyword = "";
+        }
+        if(searchType == null){
+            searchType = "";
+        }
+
         model.addAttribute("list",list);
+        model.addAttribute("paging", pageList);
+        model.addAttribute("searchType", searchType);
+        model.addAttribute("keyword", keyword);
 
         return folderName + "view";
     }

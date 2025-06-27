@@ -1,10 +1,16 @@
 package com.midproject.pikJ.service;
 
+import com.midproject.pikJ.dto.NoticeDTO;
 import com.midproject.pikJ.dto.ProgramDTO;
+import com.midproject.pikJ.entity.Notice;
 import com.midproject.pikJ.entity.Program;
 import com.midproject.pikJ.repository.ProgramRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -49,6 +55,56 @@ public class ProgramService {
     }
 
     //김태준 추가
+    public Page<ProgramDTO> getSelectAll(int page) {
+        Pageable pageable = PageRequest.of(page, 10, Sort.by(Sort.Order.desc("no")));
+        Page<Program> entityPage = repository.findAll(pageable);
+        return entityPage.map(entity -> modelMapper.map(entity, ProgramDTO.class));
+    }
+    //김태준 추가
+    public Page<ProgramDTO> getSelectAll(String type, int page) {
+        Pageable pageable = PageRequest.of(page, 10, Sort.by(Sort.Order.desc("no")));
+        Page<Program> entityPage = repository.findByType(type, pageable);
+        return entityPage.map(entity -> modelMapper.map(entity, ProgramDTO.class));
+    }
+
+    // 박지영
+    public Page<ProgramDTO> getSelectAll(int page, String searchType, String keyword) {
+        Pageable pageable = PageRequest.of(page, 10, Sort.by(Sort.Order.desc("no")));
+        Page<Program> pageList;
+
+        boolean noKeyword = (searchType == null || searchType.isEmpty()) &&
+                (keyword == null || keyword.isEmpty());
+        boolean noSearch = (searchType == null || searchType.isEmpty()) &&
+                (keyword != null);
+
+        if (noKeyword) {
+            pageList = repository.findAll(pageable);
+        } else if (noSearch) {
+            pageList = repository.findBySubjectContainingOrContentContainingOrStageContainingOrTypeContaining(
+                    keyword, keyword, keyword, keyword, pageable);
+        } else {
+            switch (searchType) {
+                case "subject":
+                    pageList = repository.findBySubjectContaining(keyword, pageable);
+                    break;
+                case "content":
+                    pageList = repository.findByContentContaining(keyword, pageable);
+                    break;
+                case "stage":
+                    pageList = repository.findByStageContaining(keyword, pageable);
+                    break;
+                case "type":
+                    pageList = repository.findByTypeContaining(keyword, pageable);
+                    break;
+                default:
+                    pageList = repository.findAll(pageable);
+            }
+        }
+
+        return pageList.map(program -> modelMapper.map(program, ProgramDTO.class));
+    }
+
+    //김태준 추가
     public List<ProgramDTO> getSelectByTypeAndStage(ProgramDTO programDTO) {
         List<Program> entityList = repository.findByType(programDTO.getType());
         List<ProgramDTO> dtoList = new ArrayList<>();
@@ -63,6 +119,22 @@ public class ProgramService {
         }
 
         return dtoList;
+    }
+
+    //김태준 추가
+    public Page<ProgramDTO> getSelectByTypeAndStage(ProgramDTO programDTO, int page) {
+        String type = programDTO.getType();
+        String stage = programDTO.getStage();
+        Pageable pageable = PageRequest.of(page, 10, Sort.by(Sort.Order.desc("no")));
+        Page<Program> entityPage;
+
+        if (stage == null || stage.isEmpty()) {
+            entityPage = repository.findByType(type, pageable);
+        } else {
+            entityPage = repository.findByTypeAndStage(type, stage, pageable);
+        }
+
+        return entityPage.map(program -> modelMapper.map(program, ProgramDTO.class));
     }
 
     public ProgramDTO getSelectOne(ProgramDTO programDTO) {
