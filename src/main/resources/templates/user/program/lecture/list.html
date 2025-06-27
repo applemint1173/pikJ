@@ -8,12 +8,11 @@
 
 강연 프로그램 <a href="/">홈</a><br>
 
-<input type="checkbox" name="stage" value="진행중" th:checked="true">진행중
-<input type="checkbox" name="stage" value="진행예정" th:checked="true">진행예정
-<input type="checkbox" name="stage" value="종료" th:checked="true">종료
+<input type="checkbox" name="stage" value="진행중" >진행중
+<input type="checkbox" name="stage" value="진행예정" >진행예정
+<input type="checkbox" name="stage" value="종료" >종료
 
 <table>
-
     </div>
     <tr th:each="programDTO : ${list}">
         <td>[[${programDTO.startDate}]] ~ [[${programDTO.endDate}]] / [[${programDTO.stage}]] / </td>

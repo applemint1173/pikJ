@@ -7,12 +7,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ProgramRepository extends JpaRepository<Program, Integer> {
 
-    @Query(value = "select * from program where type = :type " +
-            "order by field (stage, '진행중', '진행예정', '진행완료') desc, start_date desc",
-            nativeQuery = true)
-    List<Program> findByType(@Param("type") String type);
-
+    List<Program> findByType(String type);
 }
