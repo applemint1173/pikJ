@@ -1,0 +1,43 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<header th:fragment="main-header">
+    <div class="logo">
+        <a href="/">
+            <img class="log" src="/img/logo.webp" alt="로고" style="width: 100px; height: auto; cursor:pointer;" >
+        </a>
+    </div>
+
+    <nav>
+        <a href="/management/client/chugaNotice">상담신청</a>
+
+        <div class="menu">
+            <a href="#">상담관리 ▼</a>
+            <div class="dropdown">
+                <a href="/management/client/list">내담자</a>
+                <a href="/management/counselor/list">상담사</a>
+            </div>
+        </div>
+
+        <div class="menu">
+            <a href="#">프로그램 ▼</a>
+            <div class="dropdown">
+                <a href="/program/experience/list">체험</a>
+                <a href="/program/lecture/list">강연</a>
+            </div>
+        </div>
+
+        <div class="menu">
+            <a href="#">안내사항 ▼</a>
+            <div class="dropdown">
+                <a href="/introduce/view">소개</a>
+                <a href="/notice/list">공지사항</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="auth">
+        <a href="/manager/home">관리자페이지</a> /
+        <a href="/login">로그인</a> /
+        <a href="/logout">로그아웃</a> /
+        <a href="/regist">회원가입</a>
+    </div>
+</header>

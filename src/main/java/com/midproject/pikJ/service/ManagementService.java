@@ -163,7 +163,16 @@ public class ManagementService {
         }
     }
 
-    public void setDelete(ManagementDTO managementDTO) {
+    public void setDelete(ManagementDTO managementDTO) throws IOException {
+        if (managementDTO.getAttachment() != null) {
+            String oldFileName = managementDTO.getAttachment().replace("/userImg/", "");
+            Path oldFilePath = Paths.get(ATTACHMENT_PATH + oldFileName);
+
+            if (Files.exists(oldFilePath)) {
+                Files.delete(oldFilePath);
+            }
+        }
+
         repository.delete(modelMapper.map(managementDTO, Management.class));
     }
 

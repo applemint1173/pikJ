@@ -6,6 +6,8 @@ import com.midproject.pikJ.entity.Notice;
 import com.midproject.pikJ.repository.NoticeRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -28,6 +30,19 @@ public class NoticeService {
 
         return dtoList;
     }
+
+    public Page<NoticeDTO> getSelectAll(Pageable pageable, String searchType, String keyword) {
+        Page<Notice> entityPage;
+
+        if (keyword != null && !keyword.trim().isEmpty()) {
+            entityPage = repository.findByWriterContainingOrSubjectContainingOrContentContaining(keyword, keyword, keyword, pageable);
+        } else {
+            entityPage = repository.findAll(pageable);
+        }
+
+        return entityPage.map(notice -> modelMapper.map(notice, NoticeDTO.class));
+    }
+
 
     public NoticeDTO getSelectOne(NoticeDTO noticeDTO) {
         Optional<Notice> op = repository.findById(noticeDTO.getNo());

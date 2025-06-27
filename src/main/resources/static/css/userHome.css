@@ -11,123 +11,128 @@
     }
 
     /* 헤더 */
-    header {
+   header {
+        display: flex;
+     align-items: center;
+     justify-content: space-between;
+     padding: 15px 30px;
+     background-color: #faf19d50;
+     flex-wrap: nowrap; /* 줄바꿈 방지 */
+     gap: 20px;
+       }
+
+   .logo {
+     width: 150px;
+     height: auto;
+   }
+
+   .menu-bar {
      display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 15px 30px;
-  background-color: #faf19d50;
-  flex-wrap: nowrap; /* 줄바꿈 방지 */
-  gap: 20px;
-    }
+     gap: 30px;
+     align-items: center;
+     flex: 1; /* 남는 공간을 차지하여 로고와 auth 사이에 위치 */
+     justify-content: center;
+   }
 
-.logo {
-  width: 150px;
-  height: auto;
-}
+   .chatbot {
+         position: fixed;
+         bottom: 20px;
+         right: 20px;
+         width: 300px;
+         background-color: white;
+         border: 1px solid #ccc;
+         border-radius: 10px;
+         display: none;
+         flex-direction: column;
+         box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+         z-index: 1000;
+       }
+       .chat-header {
+         background-color: #256cb3;
+         color: white;
+         padding: 10px;
+         font-weight: bold;
+         display: flex;
+         justify-content: space-between;
+       }
+       .chat-content {
+         padding: 10px;
+         height: 200px;
+         overflow-y: auto;
+       }
+       .chat-input {
+         border-top: 1px solid #ccc;
+         padding: 10px;
+       }
+       .chat-input input {
+         width: 100%;
+         padding: 8px;
+       }
+       #chatbot-btn {
+         position: fixed;
+         bottom: 20px;
+         right: 20px;
+         padding: 10px 20px;
+         background-color: #4cc3cc;
+         color: white;
+         border: none;
+         border-radius: 20px;
+         cursor: pointer;
+       }
 
-.menu-bar {
-  display: flex;
-  gap: 30px;
-  align-items: center;
-  flex: 1; /* 남는 공간을 차지하여 로고와 auth 사이에 위치 */
-  justify-content: center;
-}
+       nav {
+         display: flex;
+         gap: 30px;
+         align-items: center;
+       }
 
-.chatbot {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      width: 300px;
-      background-color: white;
-      border: 1px solid #ccc;
-      border-radius: 10px;
-      display: none;
-      flex-direction: column;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-      z-index: 1000;
-    }
-    .chat-header {
-      background-color: #256cb3;
-      color: white;
-      padding: 10px;
-      font-weight: bold;
-      display: flex;
-      justify-content: space-between;
-    }
-    .chat-content {
-      padding: 10px;
-      height: 200px;
-      overflow-y: auto;
-    }
-    .chat-input {
-      border-top: 1px solid #ccc;
-      padding: 10px;
-    }
-    .chat-input input {
-      width: 100%;
-      padding: 8px;
-    }
-    #chatbot-btn {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      padding: 10px 20px;
-      background-color: #4cc3cc;
-      color: white;
-      border: none;
-      border-radius: 20px;
-      cursor: pointer;
-    }
+       .menu {
+         position: relative;
+       }
 
-    nav {
-      display: flex;
-      gap: 30px;
-      align-items: center;
-    }
+       .menu > a {
+         text-decoration: none;
+         color: #333;
+         font-weight: bold;
+         padding: 10px;
+         display: block;
+       }
 
-    .menu {
-      position: relative;
-    }
+       .dropdown {
+         position: absolute;
+         top: 100%;
+         left: 0;
+         background-color: white;
+         border: 1px solid #ccc;
+         display: none;
+         min-width: 150px;
+         z-index: 1000;
+          border-radius: 12px;
+           box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
 
-    .menu > a {
-      text-decoration: none;
-      color: #333;
-      font-weight: bold;
-      padding: 10px;
-      display: block;
-    }
+       }
 
-    .dropdown {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      background-color: white;
-      border: 1px solid #ccc;
-      display: none;
-      min-width: 150px;
-      z-index: 1000;
-    }
+       .dropdown a {
+         display: block;
+         padding: 8px 12px;
+         text-decoration: none;
+         color: #333;
+         white-space: nowrap;
 
-    .dropdown a {
-      display: block;
-      padding: 8px 12px;
-      text-decoration: none;
-      color: #333;
-      white-space: nowrap;
-    }
+       }
 
-    .dropdown a:hover {
-      background-color: #eee;
-    }
+       .dropdown a:hover {
+         background-color: #eee;
+         transition: max-height 1s ease, opacity 1s ease, padding 0.3s ease;
+       }
 
-    .menu:hover .dropdown {
-      display: block;
-    }
+       .menu:hover .dropdown {
+         display: block;
+       }
 
-    .auth {
-      font-size: 14px;
-    }
+       .auth {
+         font-size: 14px;
+       }
 
     /* 슬라이더 */
   .banner-wrapper {
@@ -164,7 +169,7 @@
 
     /* 섹션 */
     .section {
-      padding: 30px;
+      padding: 15%;
       border-bottom: 1px solid #ccc;
       text-align: center;
     }

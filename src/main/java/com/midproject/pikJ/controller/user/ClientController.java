@@ -43,6 +43,8 @@ public class ClientController {
 
         if (memberDTO == null && counselorDTO == null) {
             url = "redirect:/login";
+        } else if (memberDTO != null && memberDTO.getType().equals("관리자")) {
+            url = "redirect:/manager/management/chuga";
         } else if (counselorDTO != null && memberDTO == null) {
             url = "redirect:/onlyMemberError";
         } else {
@@ -62,6 +64,8 @@ public class ClientController {
 
         if (memberDTO == null && counselorDTO == null) {
             return "redirect:/login";
+        } else if (memberDTO != null && memberDTO.getType().equals("관리자")) {
+            return "redirect:/manager/management/chuga";
         } else if (counselorDTO != null && memberDTO == null) {
             return "redirect:/onlyMemberError";
         }
@@ -131,6 +135,8 @@ public class ClientController {
 
         if (memberDTO == null && counselorDTO == null) {
             return "redirect:/login";
+        } else if (memberDTO != null && memberDTO.getType().equals("관리자")) {
+            return "redirect:/manager/management/list";
         } else if (counselorDTO != null && memberDTO == null) {
             return "redirect:/onlyMemberError";
         }
@@ -151,6 +157,8 @@ public class ClientController {
 
         if (memberDTO == null && counselorDTO == null) {
             return "redirect:/login";
+        } else if (memberDTO != null && memberDTO.getType().equals("관리자")) {
+            return "redirect:/manager/management/list";
         } else if (counselorDTO != null && memberDTO == null) {
             return "redirect:/onlyMemberError";
         }

@@ -35,8 +35,8 @@ public class CounselController {
 
         if (memberDTO == null && counselorDTO == null) {
             return "redirect:/login";
-        } else if (memberDTO != null && memberDTO.getType().equals("관리자")){
-            return "redirect:/manager/counselor/list";
+        } else if (memberDTO != null && memberDTO.getType().equals("관리자")) {
+            return "redirect:/manager/management/list";
         } else if (memberDTO != null && counselorDTO == null) {
             return "redirect:/onlyCounselorError";
         }

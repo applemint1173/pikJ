@@ -130,7 +130,16 @@ public class ProgramService {
         repository.save(modelMapper.map(programDTO, Program.class));
     }
 
-    public void setDelete(ProgramDTO programDTO) {
+    public void setDelete(ProgramDTO programDTO) throws IOException {
+        if (programDTO.getAttachment() != null) {
+            String oldFileName = programDTO.getAttachment().replace("/userImg/", "");
+            Path oldFilePath = Paths.get(ATTACHMENT_PATH + oldFileName);
+
+            if (Files.exists(oldFilePath)) {
+                Files.delete(oldFilePath);
+            }
+        }
+
         repository.delete(modelMapper.map(programDTO, Program.class));
     }
 

@@ -1,33 +1,41 @@
+<!--김태준-->
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>체험 프로그램 목록</title>
+    <link rel="stylesheet" th:href="@{/css/userHome.css}">
 </head>
 <body>
 
-체험 프로그램 <a href="/">홈</a><br>
+<div th:replace="header/userHeader :: main-header"></div>
 
-<form name="form" action="/program/experience/listProc" method="post">
-    <input type="checkbox" name="stage" th:value="진행중" th:checked="${stage1}" onclick="move();">진행중
-    <input type="checkbox" name="stage" th:value="진행예정" th:checked="${stage2}" onclick="move();">진행예정
-    <input type="checkbox" name="stage" th:value="종료" th:checked="${stage3}" onclick="move();">종료
+<h1>체험 프로그램 목록</h1>
 
-    <table>
-        <tr th:each="programDTO : ${list}">
-            <td>[[${programDTO.startDate}]] ~ [[${programDTO.endDate}]] / [[${programDTO.stage}]] / </td>
-            <td>제목: [[${programDTO.subject}]] / </td>
-            <td><a th:href="@{|/program/experience/view/${programDTO.no}|}">첨부: [[${programDTO.attachment}]]</a> / </td>
-            <td>확인용 나중에 삭제 - [[${programDTO.type}]] / </td>
-        </tr>
-    </table>
+
+<form th:action="@{/program/experience/list}" method="get">
+    <label for="stage">진행 단계(Stage):</label>
+    <select name="stage" id="stage" onchange="this.form.submit()">
+        <option th:value="전체" th:selected="${stage == null || stage == ' '}">전체</option>
+        <option th:value="진행예정" th:selected="${stage == '진행예정'}">진행예정</option>
+        <option th:value="진행중" th:selected="${stage == '진행중'}">진행중</option>
+        <option th:value="종료" th:selected="${stage == '종료'}">종료</option>
+    </select>
 </form>
 
-<script>
-    function move() {
-        document.form.submit();
-    }
-</script>
+<table>
+    <tbody>
+    <tr th:each="programDTO : ${list}">
+        <td>[[${programDTO.startDate}]] ~ [[${programDTO.endDate}]] / [[${programDTO.stage}]] / </td>
+        <td>제목: [[${programDTO.subject}]] / </td>
+        <td><a th:href="@{|/program/experience/view/${programDTO.no}|}">첨부: [[${programDTO.attachment}]]</a> / </td>
+        <td>확인용 나중에 삭제 - [[${programDTO.type}]] / </td>
+    </tr>
+    <tr th:if="${list.size() == 0}">
+        <td colspan="4">해당 조건에 맞는 프로그램이 없습니다.</td>
+    </tr>
+    </tbody>
+</table>
 
 </body>
 </html>

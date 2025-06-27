@@ -1,18 +1,22 @@
+<!--김태준-->
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/userHome.css}">
 </head>
 <body>
 
-<a href="/">홈</a><br>
+<div th:replace="header/userHeader :: main-header"></div>
 
 작성일 : [[${returnDTO.regiDate}]]<br>
 [[${returnDTO.startDate}]] ~ [[${returnDTO.endDate}]] / [[${returnDTO.stage}]]<br>
 제목 : [[${returnDTO.regiDate}]]<br>
 첨부 : [[${returnDTO.attachment}]]<br>
 내용 : [[${returnDTO.content}]]<br>
+
+<a href="/program/lecture/list">목록으로</a>
 
 </body>
 </html>

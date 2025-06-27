@@ -123,9 +123,12 @@ public class ManagementController {
         String redirect = ErrorManager.notManager();
         if (redirect != null) return redirect;
 
-        service.setDelete(submitDTO);
-
-        return "redirect:/" + folderName + "/list";
+        try {
+            service.setDelete(submitDTO);
+            return "redirect:/" + folderName + "/list";
+        }catch (Exception e) {
+            return "redirect:/" + folderName + "/view/" + submitDTO.getNo();
+        }
     }
 
 }
