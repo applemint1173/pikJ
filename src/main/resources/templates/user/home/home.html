@@ -10,51 +10,57 @@
 <body>
 
 <header>
-<div class="logo" ><a href="/">로고</a></div>
-
-<nav>
-    <a href="/management/client/chugaNotice">상담신청</a>
-
-    <div class="menu">
-        <a href="#">상담관리 ▼</a>
-        <div class="dropdown">
-            <a href="/management/client/list">내담자</a>
-            <a href="/management/counselor/list">상담사</a>
-        </div>
+    <div class="logo">
+        <img class="log" src="img/logo.webp" alt="로고" style="width: 100px; height: auto;" >
     </div>
 
-    <div class="menu">
-        <a href="#">프로그램 ▼</a>
-        <div class="dropdown">
-            <a href="/program/experience/list">체험</a>
-            <a href="/program/lecture/list">강연</a>
-        </div>
-    </div>
+    <nav>
+        <a href="/management/client/chugaNotice">상담신청</a>
 
-    <div class="menu">
-        <a href="#">안내사항 ▼</a>
-        <div class="dropdown">
-            <a href="/introduce/view">소개</a>
-            <a href="/notice/list">공지사항</a>
+        <div class="menu">
+            <a href="#">상담관리 ▼</a>
+            <div class="dropdown">
+                <a href="/management/client/list">내담자</a>
+                <a href="/management/counselor/list">상담사</a>
+            </div>
         </div>
-    </div>
-</nav>
 
-<div class="auth">
-    <a href="/manager/home">관리자페이지</a> /
-    <a href="/login">로그인</a> /
-    <a href="/logout">로그아웃</a> /
-    <a href="/regist">회원가입</a>
-</div>
+        <div class="menu">
+            <a href="#">프로그램 ▼</a>
+            <div class="dropdown">
+                <a href="/program/experience/list">체험</a>
+                <a href="/program/lecture/list">강연</a>
+            </div>
+        </div>
+
+        <div class="menu">
+            <a href="#">안내사항 ▼</a>
+            <div class="dropdown">
+                <a href="/introduce/view">소개</a>
+                <a href="/notice/list">공지사항</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="auth">
+        <a href="/manager/home">관리자페이지</a> /
+        <a href="/login">로그인</a> /
+        <a href="/logout">로그아웃</a> /
+        <a href="/regist">회원가입</a>
+    </div>
 </header>
 
 
 
 <!-- 슬라이더 배너 -->
-<div class="slider">
-    <img class="slide active" src="https://via.placeholder.com/1200x300?text=슬라이드+1" alt="1번">
-    <img class="slide" src="https://via.placeholder.com/1200x300?text=슬라이드+2" alt="2번">
-    <img class="slide" src="https://via.placeholder.com/1200x300?text=슬라이드+3" alt="3번">
+<div class="banner-wrapper">
+    <div class="slider">
+        <img class="slide active" src="/img/1750899073792.jpg" alt="1번">
+        <img class="slide" src="/img/1750899030812.jpg" alt="2번">
+        <img class="slide" src="/img/1750899035097.jpg" alt="3번">
+        <img class="slide" src="/img/1750899044634.jpg" alt="4번">
+        <img class="slide" src="/img/1750899115367.jpg" alt="5번">
+    </div>
 </div>
 
 <script>
@@ -65,7 +71,7 @@
       slides[current].classList.remove('active');
       current = (current + 1) % slides.length;
       slides[current].classList.add('active');
-    }, 3000); // 3초 간격
+    }, 5000); // 5초 간격
 </script>
 
 <!-- 사진 섹션 -->
@@ -76,9 +82,121 @@
 
 <!-- 협력업체 섹션 -->
 <footer class="footer">
-    <h2>협력업체</h2>
-    <img src="https://via.placeholder.com/600x150?text=협력업체+로고" alt="협력업체 로고">
+    <div class="partner-slider">
+        <div class="partner-track" id="partner-track">
+            <!-- 총 7개 원본 -->
+            <a href="https://www.nct.go.kr/" target="_blank">
+                <img src="https://weepl.sen.go.kr/UPFILES/WEEPL/relatedInstitution/20231219/31da36e492e443048486f7ecd2df4fbb.png" alt="국가트라우마센터">
+            </a>
+            <a href="https://www.iapc.or.kr/" target="_blank">
+                <img src="https://weepl.sen.go.kr/UPFILES/WEEPL/relatedInstitution/20231219/05d96a22c605407eacb2167b790be2b4.png" alt="스마트쉼센터">
+            </a>
+            <a href="https://www.1388.go.kr" target="_blank">
+                <img src="https://weepl.sen.go.kr/UPFILES/WEEPL/relatedInstitution/20240620/ba92c147507c4bc984bb69fbb52695a8.png" alt="청소년 1388">
+            </a>
+            <a href="https://www.lanweeclass.co.kr/" target="_blank">
+                <img src="https://weepl.sen.go.kr/UPFILES/WEEPL/relatedInstitution/20231219/433210aba09b412c8daab559bd2cf796.png" alt="랜선 위클래스">
+            </a>
+            <a href="https://www.kdream.or.kr:446/user/index.asp" target="_blank">
+                <img src="https://weepl.sen.go.kr/UPFILES/WEEPL/relatedInstitution/20231219/d5faddc8d431493298251a24acdd3b2e.png" alt="꿈드림">
+            </a>
+            <a href="https://www.lifeline.or.kr/index.php" target="_blank">
+                <img src="https://weepl.sen.go.kr/UPFILES/WEEPL/relatedInstitution/20231219/4b84f01ac9b04a3285826a91feac66b5.png" alt="한국생명의전화">
+            </a>
+            <a href="https://app.allhearyou.or.kr/" target="_blank">
+                <img src="https://weepl.sen.go.kr/UPFILES/WEEPL/relatedInstitution/20231219/af6a556dc35b4a309fbc7f0e258fa7fc.png" alt="다들어줄개">
+            </a>
+
+            <!-- 클론 5개 (무한 슬라이드용: 처음 5개 복제) -->
+            <a href="https://www.nct.go.kr/" target="_blank">
+                <img src="https://weepl.sen.go.kr/UPFILES/WEEPL/relatedInstitution/20231219/31da36e492e443048486f7ecd2df4fbb.png" alt="국가트라우마센터">
+            </a>
+            <a href="https://www.iapc.or.kr/" target="_blank">
+                <img src="https://weepl.sen.go.kr/UPFILES/WEEPL/relatedInstitution/20231219/05d96a22c605407eacb2167b790be2b4.png" alt="스마트쉼센터">
+            </a>
+            <a href="https://www.1388.go.kr" target="_blank">
+                <img src="https://weepl.sen.go.kr/UPFILES/WEEPL/relatedInstitution/20240620/ba92c147507c4bc984bb69fbb52695a8.png" alt="청소년 1388">
+            </a>
+            <a href="https://www.lanweeclass.co.kr/" target="_blank">
+                <img src="https://weepl.sen.go.kr/UPFILES/WEEPL/relatedInstitution/20231219/433210aba09b412c8daab559bd2cf796.png" alt="랜선 위클래스">
+            </a>
+            <a href="https://www.kdream.or.kr:446/user/index.asp" target="_blank">
+                <img src="https://weepl.sen.go.kr/UPFILES/WEEPL/relatedInstitution/20231219/d5faddc8d431493298251a24acdd3b2e.png" alt="꿈드림">
+            </a>
+        </div>
+    </div>
+
 </footer>
+
+<script>
+    const track = document.getElementById('partner-track');
+    const items = track.children.length;
+    const visibleCount = 5;
+    let index = 0;
+
+    function slide() {
+      index++;
+      track.style.transition = 'transform 0.5s ease-in-out';
+      track.style.transform = `translateX(-${index * 20}%)`;
+
+      // 마지막 슬라이드 도달 → 처음으로 재설정
+      if (index === items - visibleCount) {
+        setTimeout(() => {
+          track.style.transition = 'none';
+          index = 0;
+          track.style.transform = 'translateX(0)';
+        }, 600);
+      }
+    }
+
+    setInterval(slide, 3000);
+</script>
+
+
+<button id="chatbot-btn" onclick="toggleChatbot()">챗봇 열기</button>
+
+<!-- 챗봇 박스 -->
+<div class="chatbot" id="chatbot">
+    <div class="chat-header">
+        챗봇
+        <span style="cursor:pointer;" onclick="toggleChatbot()">✕</span>
+    </div>
+    <div class="chat-content" id="chat-log">
+        <p>안녕하세요! 무엇을 도와드릴까요?</p>
+    </div>
+    <div class="chat-input">
+        <input type="text" id="chat-input" placeholder="메시지를 입력하세요" onkeypress="if(event.keyCode==13) sendMessage()">
+    </div>
+</div>
+
+<footer>
+    ⓒ 2025 pik J. All rights reserved.
+</footer>
+
+<script>
+    function toggleChatbot() {
+      const chatbot = document.getElementById('chatbot');
+      chatbot.style.display = (chatbot.style.display === 'flex') ? 'none' : 'flex';
+    }
+
+    function sendMessage() {
+      const input = document.getElementById('chat-input');
+      const msg = input.value.trim();
+      if (msg === '') return;
+      const log = document.getElementById('chat-log');
+      const p = document.createElement('p');
+      p.textContent = "사용자: " + msg;
+      log.appendChild(p);
+      input.value = '';
+      setTimeout(() => {
+        const res = document.createElement('p');
+        res.textContent = "챗봇: 질문에 대한 답변입니다.";
+        log.appendChild(res);
+        log.scrollTop = log.scrollHeight;
+      }, 500);
+    }
+</script>
+
 
 </body>
 </html>
