@@ -27,25 +27,27 @@ public class NoticeController {
 
     @GetMapping("/list")
     public String list(Model model,
-                       @PageableDefault(page = 0, size = 10, sort = "regiDate", direction = Sort.Direction.DESC) Pageable pageable,
+                       @RequestParam(value = "page", defaultValue = "0") int page,
                        @RequestParam(value = "searchType", required = false) String searchType,
                        @RequestParam(value = "keyword", required = false) String keyword) {
 
         String redirect = ErrorManager.notManager();
         if (redirect != null) return redirect;
 
-        Page<NoticeDTO> pageList = service.getSelectAll(pageable, searchType, keyword);
+        Page<NoticeDTO> pageList = service.getSelectAll(page, searchType, keyword);
+        List<NoticeDTO> noticeList = pageList.getContent();
 
-        int nowPage = pageList.getNumber() + 1;
-        int startPage = Math.max(1, nowPage - 4);
-        int endPage = Math.min(pageList.getTotalPages(), nowPage + 4);
+        if(keyword == null){
+            keyword = "";
+        }
+        if(searchType == null){
+            searchType = "";
+        }
 
-        model.addAttribute("list", pageList);           // 페이지 객체
-        model.addAttribute("nowPage", nowPage);         // 현재 페이지
-        model.addAttribute("startPage", startPage);     // 시작 페이지
-        model.addAttribute("endPage", endPage);         // 끝 페이지
-        model.addAttribute("searchType", searchType);   // 검색타입 (뷰 표시용)
-        model.addAttribute("keyword", keyword);         // 키워드 (뷰 유지용)
+        model.addAttribute("list", noticeList);
+        model.addAttribute("paging", pageList);
+        model.addAttribute("searchType", searchType);
+        model.addAttribute("keyword", keyword);
 
         return folderName + "/list";
     }

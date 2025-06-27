@@ -6,8 +6,7 @@ import com.midproject.pikJ.entity.Notice;
 import com.midproject.pikJ.repository.NoticeRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -31,18 +30,33 @@ public class NoticeService {
         return dtoList;
     }
 
-    public Page<NoticeDTO> getSelectAll(Pageable pageable, String searchType, String keyword) {
-        Page<Notice> entityPage;
+    public Page<NoticeDTO> getSelectAll(int page, String searchType, String keyword) {
+        Pageable pageable = PageRequest.of(page, 10, Sort.by(Sort.Order.desc("no")));
+        Page<Notice> pageList;
 
-        if (keyword != null && !keyword.trim().isEmpty()) {
-            entityPage = repository.findByWriterContainingOrSubjectContainingOrContentContaining(keyword, keyword, keyword, pageable);
+        boolean noSearch = (searchType == null || searchType.isEmpty()) ||
+                (keyword == null || keyword.isEmpty());
+
+        if (noSearch) {
+            pageList = repository.findAll(pageable);
         } else {
-            entityPage = repository.findAll(pageable);
+            switch (searchType) {
+                case "subject":
+                    pageList = repository.findBySubjectContaining(keyword, pageable);
+                    break;
+                case "writer":
+                    pageList = repository.findByWriterContaining(keyword, pageable);
+                    break;
+                case "content":
+                    pageList = repository.findByContentContaining(keyword, pageable);
+                    break;
+                default:
+                    pageList = repository.findAll(pageable);  // fallback 처리
+            }
         }
 
-        return entityPage.map(notice -> modelMapper.map(notice, NoticeDTO.class));
+        return pageList.map(notice -> modelMapper.map(notice, NoticeDTO.class));
     }
-
 
     public NoticeDTO getSelectOne(NoticeDTO noticeDTO) {
         Optional<Notice> op = repository.findById(noticeDTO.getNo());

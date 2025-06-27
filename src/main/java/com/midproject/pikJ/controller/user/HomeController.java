@@ -18,17 +18,6 @@ public class HomeController implements ErrorController {
         return "user/home/home";
     }
 
-    @GetMapping("/homeImsi")
-    public String homedImsi(
-            HttpSession httpSession,
-            Model model
-    ) {
-        String id = (String) httpSession.getAttribute("id");
-
-        model.addAttribute("id", id);
-        return "user/home/homeImsi";
-    }
-
     @RequestMapping("/error")
     public String errorPage(HttpServletRequest request) {
         Object status = request.getAttribute("javax.servlet.error.status_code");
@@ -45,4 +34,5 @@ public class HomeController implements ErrorController {
         // 그 외 모든 에러 및 status가 null
         return "user/login/onlyManagerError";
     }
+
 }

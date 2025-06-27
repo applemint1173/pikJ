@@ -8,7 +8,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface NoticeRepository extends JpaRepository<Notice, Integer> {
 
-    Page<Notice> findByWriterContainingOrSubjectContainingOrContentContaining(
-            String writerKeyword, String subjectKeyword, String contentKeyword, Pageable pageable);
+    Page<Notice> findAll(Pageable pageable);
+
+    Page<Notice> findBySubjectContaining(String keyword, Pageable pageable);
+    Page<Notice> findByWriterContaining(String keyword, Pageable pageable);
+    Page<Notice> findByContentContaining(String keyword, Pageable pageable);
 
 }

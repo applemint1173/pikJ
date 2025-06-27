@@ -10,9 +10,13 @@
 <body>
 <h1>공지사항 목록</h1>
 <div id="main">
+    <form name="form" method="get" action="/manager/notice/list" style="display: inline;">
     <div id="nav">
-        <div><a href="/manager/home"><img src="https://img.icons8.com/material-outlined/24/home--v2.png" alt="home--v2"/></a></div>
-        <form name="form" method="get" action="/manager/notice/list" style="display: inline;">
+        <div>
+            <a href="/manager/home">
+                <img src="https://img.icons8.com/material-outlined/24/home--v2.png" alt="home--v2"/>
+            </a>
+        </div>
             <select class="search" name="searchType">
                 <option value="" th:selected="${searchType == null}">===선택===</option>
                 <option value="subject" th:selected="${searchType == 'subject'}">제목</option>
@@ -21,55 +25,51 @@
             </select>
             <input type="text" name="keyword" id="search" th:value="${keyword}" placeholder="검색어 입력">
             <button type="submit">search</button>
-        </form>
-<!--        <select class="search">-->
-<!--            <option selected>===선택===</option>-->
-<!--            <option th:value="name" th:text="이름"></option>-->
-<!--            <option th:value="phone" th:text="전화번호"></option>-->
-<!--            <option th:value="type" th:text="구분"></option>-->
-<!--        </select>-->
-<!--        <input type="text" id="search">-->
-<!--        <button>search</button>-->
     </div>
+    </form>
+
     <div class="chuga"><a href="/manager/notice/chuga">추가</a></div>
 
-<table>
-    <thead>
-        <tr>
-            <th>제목</th>
-            <th>작성자</th>
-            <th>작성일</th>
+    <table>
+        <thead>
+            <tr>
+                <th>제목</th>
+                <th>작성자</th>
+                <th>작성일</th>
+            </tr>
+        </thead>
+        <tr th:each="noticeDTO, loop:${list}">
+            <td><a th:href="@{|/manager/notice/view/${noticeDTO.no}|}" th:text="${noticeDTO.subject}"></a></td>
+            <td>[[${noticeDTO.writer}]]</td>
+            <td th:text="${#temporals.format(noticeDTO.regiDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
         </tr>
-    </thead>
-    <tr th:each="noticeDTO, loop:${list}">
-        <td><a th:href="@{|/manager/notice/view/${noticeDTO.no}|}" th:text="${noticeDTO.subject}"></a></td>
-        <td>[[${noticeDTO.writer}]]</td>
-        <td th:text="${#temporals.format(noticeDTO.regiDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
-    </tr>
-</table>
+    </table>
 
-    <nav>
+    <div th:if="${!paging.isEmpty()}">
         <ul>
-            <!-- 이전 버튼 -->
-            <li th:if="${list.hasPrevious()}">
-                <a th:href="@{|/list?page=${list.number - 1}&searchType=${searchType}&keyword=${keyword}|}">이전</a>
+            <li th:classappend="${!paging.hasPrevious} ? 'disabled'">
+                <a th:if="${!paging.first}"
+                   th:href="@{|?page=${paging.number - 1}&searchType=${searchType}&keyword=${keyword}|}">
+                    <span>이전</span>
+                </a>
+                <span th:if="${paging.first}">이전</span>
             </li>
-
-            <!-- 페이지 번호 반복 -->
-            <li th:each="page : ${#numbers.sequence(startPage, endPage)}">
-                <a th:if="${page != nowPage}"
-                   th:href="@{|/list?page=${page - 1}&searchType=${searchType}&keyword=${keyword}|}"
-                   th:text="${page}"></a>
-                <span th:if="${page == nowPage}" th:text="${page}"></span>
+            <li th:each="page : ${#numbers.sequence(0, paging.totalPages - 1)}"
+                th:if="${page >= paging.number - 3 and page <= paging.number + 3}"
+                th:classappend="${page == paging.number} ? 'active'">
+                <a th:text="${page + 1}"
+                   th:href="@{|?page=${page}&searchType=${searchType}&keyword=${keyword}|}">
+                </a>
             </li>
-
-            <!-- 다음 버튼 -->
-            <li th:if="${list.hasNext()}">
-                <a th:href="@{|/list?page=${list.number + 1}&searchType=${searchType}&keyword=${keyword}|}">다음</a>
+            <li th:classappend="${paging.last} ? 'disabled'">
+                <a th:if="${!paging.last}"
+                   th:href="@{|?page=${paging.number + 1}&searchType=${searchType}&keyword=${keyword}|}">
+                    <span>다음</span>
+                </a>
+                <span th:if="${paging.last}">다음</span>
             </li>
         </ul>
-    </nav>
-
+    </div>
 </div>
 
 
