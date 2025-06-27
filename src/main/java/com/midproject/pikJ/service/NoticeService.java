@@ -6,6 +6,10 @@ import com.midproject.pikJ.entity.Notice;
 import com.midproject.pikJ.repository.NoticeRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -27,6 +31,14 @@ public class NoticeService {
         }
 
         return dtoList;
+    }
+
+    //김태준
+    public Page<Notice>getSelectAll(int page) {
+        List<Sort.Order> sorts = new ArrayList<>();
+        sorts.add(Sort.Order.desc("no"));
+        Pageable pageable = PageRequest.of(page,10,Sort.by(sorts));
+        return repository.findAll(pageable);
     }
 
     public NoticeDTO getSelectOne(NoticeDTO noticeDTO) {
