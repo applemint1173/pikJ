@@ -69,7 +69,6 @@
 
     <div id="nav">
         <div><a href="/manager/counselor/list">목록</a></div>
-        <div><a href="/manager/counselor/chuga">추가</a></div>
         <div><a th:href="@{|/manager/counselor/sujung/${returnDTO.no}|}">수정</a></div>
         <div>
             <a href="#" onclick="sakje();">
@@ -111,7 +110,7 @@
 
         <tbody>
         <div th:if="${list.size() == 0}">
-            <td colspan="4">등록된 상담 리스트가 없습니다.</td>
+            <td colspan="5">등록된 상담 리스트가 없습니다.</td>
         </div>
 
         <div th:unless="${list.size() == 0}">
