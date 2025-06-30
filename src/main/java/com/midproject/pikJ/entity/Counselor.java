@@ -21,7 +21,7 @@ public class Counselor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int no;
 
-    @Column(length = 20, unique = true, updatable = false)
+    @Column(length = 20, unique = true)//, updatable = false)
     private String id;
 
     private String pwd;

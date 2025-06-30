@@ -64,8 +64,9 @@
             <tr>
                 <th>상담 첨부파일</th>
                 <td>
-                    <img th:src="${returnDTO.attachment}" alt="" style="max-width: 250px; height: auto;">
-                    <span th:if="${returnDTO.attachment == null or returnDTO.attachment.isEmpty()}">등록된 파일이 없습니다.</span>
+<!--                    <img th:src="${returnDTO.attachment}" alt="" style="max-width: 250px; height: auto;">-->
+<!--                    <span th:if="${returnDTO.attachment == null or returnDTO.attachment.isEmpty()}">등록된 파일이 없습니다.</span>-->
+                    [[${returnDTO.attachment}]]
                 </td>
             </tr>
             <tr>

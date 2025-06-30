@@ -17,7 +17,8 @@
     </div>
 </div>
 
-<form name="form" action="/manager/management/chugaProc" method="post" enctype="multipart/form-data">
+<form name="form" action="/manager/management/chugaProc" method="post">
+<!--      enctype="multipart/form-data">-->
     <table>
         <tr>
             <th>내담자 번호</th>
@@ -42,7 +43,7 @@
         </tr>
         <tr>
             <th>학년</th>
-            <td><input type="text" name="grade"></td>
+            <td><input type="number" name="grade"></td>
         </tr>
         <tr>
             <th>학생 이름</th>
@@ -74,7 +75,10 @@
         </tr>
         <tr>
             <th>상담 첨부파일</th>
-            <td><input type="file" name="attachmentFile"></td>
+            <td>
+<!--                <input type="file" name="attachmentFile">-->
+                <input type="text" name="attachment">
+            </td>
         </tr>
         <tr>
             <th>구분</th>

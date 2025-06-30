@@ -6,7 +6,11 @@
     <title>Title</title>
 </head>
 <body>
-<form name="form" action="/management/counselor/sujungProc" method="post" enctype="multipart/form-data">
+
+<a href="/">로고</a><br>
+
+<form name="form" action="/management/counselor/sujungProc" method="post">
+<!--      enctype="multipart/form-data">-->
     <input type="hidden" name="no" th:value="${returnDTO.no}">
     <input type="hidden" name="member_no" th:value="${returnDTO.member.no}">
     <input type="hidden" name="counselor_no" th:value="${returnDTO.counselor.no}">
@@ -60,14 +64,15 @@
         <tr>
             <th>상담 첨부파일</th>
             <td>
-                <input type="file" name="attachmentFile" accept="">
+<!--                <input type="file" name="attachmentFile" accept="">-->
+                <input type="text" name="attachment" th:value="${returnDTO.attachment}">
             </td>
         </tr>
         <tr>
             <th>구분</th>
             <td>
-                <input type="radio" name="checks" value="진행중" checked>진행중
-                <input type="radio" name="checks" value="진행완료">진행완료
+                <input type="radio" name="checks" value="진행중" th:checked="${returnDTO.checks == '진행중'}">진행중
+                <input type="radio" name="checks" value="진행완료" th:checked="${returnDTO.checks == '진행완료'}">진행완료
             </td>
         </tr>
         <tr>

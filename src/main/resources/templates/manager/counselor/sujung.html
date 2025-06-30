@@ -18,9 +18,10 @@
         </div>
     </div>
 
-    <form name="form" th:action="@{|/manager/counselor/sujungProc|}" method="post" enctype="multipart/form-data">
+    <form name="form" th:action="@{|/manager/counselor/sujungProc|}" method="post">
+<!--          enctype="multipart/form-data">-->
         <input type="hidden" name="no" th:value="${returnDTO.no}">
-        <input type="hidden" name="photo" th:value="${returnDTO.photo}">
+<!--        <input type="hidden" name="photo" th:value="${returnDTO.photo}">-->
         <table>
             <tr>
                 <th>아이디</th>
@@ -48,7 +49,10 @@
             </tr>
             <tr>
                 <th>프로필사진</th>
-                <td><input type="file" name="photoFile" accept="image/*"></td>
+                <td>
+<!--                    <input type="file" name="photoFile" accept="image/*">-->
+                    <input type="text" name="photo" th:value="${returnDTO.photo}">
+                </td>
             </tr>
             <tr>
                 <th>소개</th>

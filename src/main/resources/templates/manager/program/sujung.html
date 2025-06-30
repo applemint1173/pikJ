@@ -18,6 +18,7 @@
 </div>
 <form name="form" action="/manager/program/sujungProc" method="post" enctype="multipart/form-data">
     <input type="hidden" name="no" th:value="${returnDTO.no}">
+    <input type="hidden" name="attachment" th:value="${returnDTO.attachment}">
     <table>
         <tr>
             <th>프로그램번호</th>
@@ -52,13 +53,13 @@
         <tr>
             <th>프로그램구분</th>
             <td>
-                <input type="radio" name="type" value="체험" checked>체험
-                <input type="radio" name="type" value="강연" >강연
+                <input type="radio" name="type" value="체험" th:checked="${returnDTO.type == '체험'}">체험
+                <input type="radio" name="type" value="강연" th:checked="${returnDTO.type == '강연'}">강연
             </td>
         </tr>
         <tr>
             <th>작성일</th>
-            <td>[[${returnDTO.regiDate}]]</td>
+            <td th:text="${#temporals.format(returnDTO.regiDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
         </tr>
     </table>
 </form>

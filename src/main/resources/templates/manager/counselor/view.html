@@ -46,8 +46,9 @@
                 <tr>
                     <th>프로필사진</th>
                     <td>
-                        <img th:src="${returnDTO.photo}" alt="" style="max-width: 250px; height: auto;">
-                        <span th:if="${returnDTO.photo == null or returnDTO.photo.isEmpty()}">등록된 프로필 사진이 없습니다.</span>
+<!--                        <img th:src="${returnDTO.photo}" alt="" style="max-width: 250px; height: auto;">-->
+<!--                        <span th:if="${returnDTO.photo == null or returnDTO.photo.isEmpty()}">등록된 프로필 사진이 없습니다.</span>-->
+                        [[${returnDTO.photo}]]
                     </td>
                 </tr>
                 <tr>
@@ -66,7 +67,7 @@
         </div>
     </div>
 
-<!--    <div id="nav">-->
+    <div id="nav">
         <div><a href="/manager/counselor/list">목록</a></div>
         <div><a href="/manager/counselor/chuga">추가</a></div>
         <div><a th:href="@{|/manager/counselor/sujung/${returnDTO.no}|}">수정</a></div>
@@ -74,11 +75,11 @@
             <a href="#" onclick="sakje();">
                 <form id="sakjeForm" method="post" action="/manager/counselor/sakjeProc">
                     <input type="hidden" name="no" th:value="${returnDTO.no}">
-                    <input type="hidden" name="photo" th:value="${returnDTO.photo}">
+<!--                    <input type="hidden" name="photo" th:value="${returnDTO.photo}">-->
                 </form>삭제
             </a>
         </div>
-<!--    </div>-->
+    </div>
 
     <br>
     <br>
@@ -86,7 +87,7 @@
     <h1>상담내역</h1>
 
     <form name="form" method="get" th:action="@{|/manager/counselor/view/${returnDTO.no}|}" style="display: inline;">
-        <div id="nav">
+<!--        <div id="nav">-->
             <select class="search" name="searchType">
                 <option value="" th:selected="${searchType == null}">===선택===</option>
                 <option value="member.name" th:selected="${searchType == 'member.name'}">내담자이름</option>
@@ -94,7 +95,7 @@
             </select>
             <input type="text" name="keyword" id="search" th:value="${keyword}" placeholder="검색어 입력">
             <button type="submit">search</button>
-        </div>
+<!--        </div>-->
     </form>
 
     <table>

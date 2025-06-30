@@ -51,7 +51,7 @@
     </tr>
     <tr>
         <th>작성일</th>
-        <td>[[${returnDTO.regiDate}]]</td>
+        <td th:text="${#temporals.format(returnDTO.regiDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
     </tr>
 </table>
 </div>

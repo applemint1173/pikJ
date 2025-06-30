@@ -21,7 +21,7 @@ public class Member {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int no;
 
-    @Column(length = 20, unique = true, updatable = false)
+    @Column(length = 20, unique = true)//, updatable = false)
     private String id;
 
     private String pwd;
@@ -29,7 +29,7 @@ public class Member {
     @Column(length = 100)
     private String name;
 
-    @Column(updatable = false)
+    @Column//(updatable = false)
     private Date birthDate;
 
     @Column(length = 20)

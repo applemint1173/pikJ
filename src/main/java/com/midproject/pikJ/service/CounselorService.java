@@ -99,69 +99,69 @@ public class CounselorService {
     }
 
     public void setInsert(CounselorDTO counselorDTO) throws IOException {
-        MultipartFile multiPhoto = counselorDTO.getPhotoFile();
-
-        if (multiPhoto != null && !multiPhoto.isEmpty()) {
-            String fileName = UUID.randomUUID() + "_" + multiPhoto.getOriginalFilename();
-            Path photoPath = Paths.get(PHOTO_PATH);
-
-            if (!Files.exists(photoPath)) {
-                Files.createDirectories(photoPath);
-            }
-
-            Path filePath = photoPath.resolve(fileName);
-            Files.copy(multiPhoto.getInputStream(), filePath);
-
-            counselorDTO.setPhoto("/userImg/" + fileName); // 뷰 사진 src에 다이렉트로 경로 두기 위함
-        } else {
-            counselorDTO.setPhoto(null);
-        }
+//        MultipartFile multiPhoto = counselorDTO.getPhotoFile();
+//
+//        if (multiPhoto != null && !multiPhoto.isEmpty()) {
+//            String fileName = UUID.randomUUID() + "_" + multiPhoto.getOriginalFilename();
+//            Path photoPath = Paths.get(PHOTO_PATH);
+//
+//            if (!Files.exists(photoPath)) {
+//                Files.createDirectories(photoPath);
+//            }
+//
+//            Path filePath = photoPath.resolve(fileName);
+//            Files.copy(multiPhoto.getInputStream(), filePath);
+//
+//            counselorDTO.setPhoto("/userImg/" + fileName); // 뷰 사진 src에 다이렉트로 경로 두기 위함
+//        } else {
+//            counselorDTO.setPhoto(null);
+//        }
 
         Counselor entity = modelMapper.map(counselorDTO, Counselor.class);
         repository.save(entity);
     }
 
     public void setUpdate(CounselorDTO counselorDTO) throws IOException {
-        MultipartFile multiPhoto = counselorDTO.getPhotoFile();
-
-        if (multiPhoto != null && !multiPhoto.isEmpty()) {
-            if (counselorDTO.getPhoto() != null) {
-                String oldFileName = counselorDTO.getPhoto().replace("/userImg/", "");
-                Path oldFilePath = Paths.get(PHOTO_PATH + oldFileName);
-
-                if (Files.exists(oldFilePath)) {
-                    Files.delete(oldFilePath);
-                }
-            }
-
-            String fileName = UUID.randomUUID() + "_" + multiPhoto.getOriginalFilename();
-            Path photoPath = Paths.get(PHOTO_PATH);
-
-            if (!Files.exists(photoPath)) {
-                Files.createDirectories(photoPath);
-            }
-
-            Path filePath = photoPath.resolve(fileName);
-            Files.copy(multiPhoto.getInputStream(), filePath);
-
-            counselorDTO.setPhoto("/userImg/" + fileName);
-        } else {
-            counselorDTO.setPhoto(null);
-        }
+//        MultipartFile multiPhoto = counselorDTO.getPhotoFile();
+//
+//        if (multiPhoto != null && !multiPhoto.isEmpty()) {
+//            if (counselorDTO.getPhoto() != null) {
+//                String oldFileName = counselorDTO.getPhoto().replace("/userImg/", "");
+//                Path oldFilePath = Paths.get(PHOTO_PATH + oldFileName);
+//
+//                if (Files.exists(oldFilePath)) {
+//                    Files.delete(oldFilePath);
+//                }
+//            }
+//
+//            String fileName = UUID.randomUUID() + "_" + multiPhoto.getOriginalFilename();
+//            Path photoPath = Paths.get(PHOTO_PATH);
+//
+//            if (!Files.exists(photoPath)) {
+//                Files.createDirectories(photoPath);
+//            }
+//
+//            Path filePath = photoPath.resolve(fileName);
+//            Files.copy(multiPhoto.getInputStream(), filePath);
+//
+//            counselorDTO.setPhoto("/userImg/" + fileName);
+//        } else {
+//            counselorDTO.setPhoto(null);
+//        }
 
         Counselor entity = modelMapper.map(counselorDTO, Counselor.class);
         repository.save(entity);
     }
 
     public void setDelete(CounselorDTO counselorDTO) throws IOException {
-        if (counselorDTO.getPhoto() != null) {
-            String oldFileName = counselorDTO.getPhoto().replace("/userImg/", "");
-            Path oldFilePath = Paths.get(PHOTO_PATH + oldFileName);
-
-            if (Files.exists(oldFilePath)) {
-                Files.delete(oldFilePath);
-            }
-        }
+//        if (counselorDTO.getPhoto() != null) {
+//            String oldFileName = counselorDTO.getPhoto().replace("/userImg/", "");
+//            Path oldFilePath = Paths.get(PHOTO_PATH + oldFileName);
+//
+//            if (Files.exists(oldFilePath)) {
+//                Files.delete(oldFilePath);
+//            }
+//        }
 
         repository.delete(modelMapper.map(counselorDTO, Counselor.class));
     }

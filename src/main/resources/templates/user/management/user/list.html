@@ -6,6 +6,9 @@
     <title>Title</title>
 </head>
 <body>
+
+<a href="/">로고</a><br>
+
 <table>
     <tr>
         <th>순번</th>
@@ -17,7 +20,11 @@
 
     <tr th:each="managementDTO, loop : ${list}">
         <td>[[${loop.count}]]</td>
-        <td><a th:href="@{|/management/client/getCounselorInfo/${managementDTO.no}|}">[[${managementDTO.counselor.name}]]</a></td>
+        <td><a th:if="${managementDTO.counselor.id != 'imsiSangdamsa'}"
+               th:href="@{|/management/client/getCounselorInfo/${managementDTO.no}|}">[[${managementDTO.counselor.name}]]</a>
+            <span th:if="${managementDTO.counselor.id == 'imsiSangdamsa'}">[[${managementDTO.counselor.name}]]
+    </span>
+        </td>
         <td>[[${managementDTO.meetingDate}]]</td>
         <td>[[${managementDTO.checks}]]</td>
         <td><div><a th:href="@{|/management/client/view/${managementDTO.no}|}">버튼</a></div></td>
