@@ -119,7 +119,7 @@ public class ClientController {
     ) {
         try {
             managementService.setInsert(managementDTO);
-            return "redirect:/";
+            return "redirect:/management/client/list";
         }catch (Exception e) {
             return "redirect:/" + userFolderName + "chuga";
         }

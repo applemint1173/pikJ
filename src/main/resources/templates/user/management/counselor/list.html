@@ -23,13 +23,18 @@
         <th>상담 내역 보기</th>
     </tr>
 
-    <tr th:each="managementDTO, loop : ${list}">
-        <td>[[${loop.count}]]</td>
-        <td><a th:href="@{|/management/counselor/getUserInfo/${managementDTO.no}|}">[[${managementDTO.member.name}]]</a></td>
-        <td>[[${managementDTO.meetingDate}]]</td>
-        <td>[[${managementDTO.checks}]]</td>
-        <td><div><a th:href="@{|/management/counselor/view/${managementDTO.no}|}">버튼</a></div></td>
-    </tr>
+    <div th:if="${list.size() == 0}">
+        <td colspan="5">신청된 상담 내역이 없습니다.</td>
+    </div>
+    <div th:unless="${list.size() == 0}">
+        <tr th:each="managementDTO, loop : ${list}">
+            <td>[[${loop.count}]]</td>
+            <td><a th:href="@{|/management/counselor/getUserInfo/${managementDTO.no}|}">[[${managementDTO.member.name}]]</a></td>
+            <td>[[${managementDTO.meetingDate}]]</td>
+            <td>[[${managementDTO.checks}]]</td>
+            <td><div><a th:href="@{|/management/counselor/view/${managementDTO.no}|}">버튼</a></div></td>
+        </tr>
+    </div>
 </table>
 
 <script>

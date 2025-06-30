@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @RequestMapping("/manager/counselor")
@@ -76,7 +77,7 @@ public class CounselorController {
         model.addAttribute("returnDTO",returnDTO);
 
         Page<ManagementDTO> pageList = managementService.getSelectAll(page, searchType, keyword);
-        List<ManagementDTO> list = pageList.getContent();
+//        List<ManagementDTO> list = pageList.getContent();
 
         if(keyword == null){
             keyword = "";
@@ -85,7 +86,14 @@ public class CounselorController {
             searchType = "";
         }
 
-        model.addAttribute("list",list);
+        List<ManagementDTO> listCopy = new ArrayList<>(pageList.getContent());
+        for (int i = listCopy.size() - 1; i >= 0; i--){
+            if (listCopy.get(i).getCounselor().getNo() != counselorDTO.getNo()) {
+                listCopy.remove(i);
+            }
+        }
+
+        model.addAttribute("list",listCopy);
         model.addAttribute("paging", pageList);
         model.addAttribute("searchType", searchType);
         model.addAttribute("keyword", keyword);

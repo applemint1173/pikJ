@@ -18,17 +18,21 @@
         <th>상담 내역 보기</th>
     </tr>
 
-    <tr th:each="managementDTO, loop : ${list}">
-        <td>[[${loop.count}]]</td>
-        <td><a th:if="${managementDTO.counselor.id != 'imsiSangdamsa'}"
-               th:href="@{|/management/client/getCounselorInfo/${managementDTO.no}|}">[[${managementDTO.counselor.name}]]</a>
-            <span th:if="${managementDTO.counselor.id == 'imsiSangdamsa'}">[[${managementDTO.counselor.name}]]
-    </span>
-        </td>
-        <td>[[${managementDTO.meetingDate}]]</td>
-        <td>[[${managementDTO.checks}]]</td>
-        <td><div><a th:href="@{|/management/client/view/${managementDTO.no}|}">버튼</a></div></td>
-    </tr>
+    <div th:if="${list.size() == 0}">
+        <td colspan="5">신청한 상담 내역이 없습니다.</td>
+    </div>
+    <div th:unless="${list.size() == 0}">
+        <tr th:each="managementDTO, loop : ${list}">
+            <td>[[${loop.count}]]</td>
+            <td><a th:if="${managementDTO.counselor.id != 'imsiSangdamsa'}"
+                   th:href="@{|/management/client/getCounselorInfo/${managementDTO.no}|}">[[${managementDTO.counselor.name}]]</a>
+                <span th:if="${managementDTO.counselor.id == 'imsiSangdamsa'}">[[${managementDTO.counselor.name}]]</span>
+            </td>
+            <td>[[${managementDTO.meetingDate}]]</td>
+            <td>[[${managementDTO.checks}]]</td>
+            <td><div><a th:href="@{|/management/client/view/${managementDTO.no}|}">버튼</a></div></td>
+        </tr>
+    </div>
 
 </table>
 </body>

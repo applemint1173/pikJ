@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -71,7 +72,7 @@ public class MemberController {
 
         // JY 0628 : 페이징 수정
         Page<ManagementDTO> pageList = managementService.getSelectAll(page, searchType, keyword);
-        List<ManagementDTO> list = pageList.getContent();
+//        List<ManagementDTO> list = pageList.getContent();
 
         if(keyword == null){
             keyword = "";
@@ -80,7 +81,14 @@ public class MemberController {
             searchType = "";
         }
 
-        model.addAttribute("list",list);
+        List<ManagementDTO> listCopy = new ArrayList<>(pageList.getContent());
+        for (int i = listCopy.size() - 1; i >= 0; i--){
+            if (listCopy.get(i).getMember().getNo() != memberDTO.getNo()) {
+                listCopy.remove(i);
+            }
+        }
+
+        model.addAttribute("list",listCopy);
         model.addAttribute("paging", pageList);
         model.addAttribute("searchType", searchType);
         model.addAttribute("keyword", keyword);

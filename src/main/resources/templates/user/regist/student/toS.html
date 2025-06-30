@@ -47,13 +47,28 @@
             <input type="radio" name="agree3" value="no">
             <label>동의하지않음</label>
         </div>
-        <button>다음</button>
+        <button type="button" onclick="agree();">다음</button>
         <button type="button" onclick="location.href='/'">취소</button>
     </div>
 </div>
 <div id="footer">
 </div>
 </form>
+
+<script>
+    function agree(){
+        let k = 0;
+        if (document.querySelector('input[name="agree1"]:checked').value === 'yes') k++;
+        if (document.querySelector('input[name="agree2"]:checked').value === 'yes') k++;
+        if (document.querySelector('input[name="agree3"]:checked').value === 'yes') k++;
+
+        if (k == 3) {
+            form.submit();
+        } else {
+            alert("모든 동의는 필수입니다.");
+        }
+    }
+</script>
 
 </body>
 </html>

@@ -6,31 +6,31 @@
 </head>
 <body>
 
-<div th:fragment="paging">
-  <div th:if="${!paging.isEmpty()}">
-    <ul>
-      <li th:classappend="${!paging.hasPrevious} ? 'disabled'">
-        <a th:if="${!paging.first}"
-           th:href="@{|?page=${paging.number - 1}&searchType=${searchType}&keyword=${keyword}|}">
-          <span>이전</span>
-        </a>
-        <span th:if="${paging.first}">이전</span>
-      </li>
-      <li th:each="page : ${#numbers.sequence(0, paging.totalPages - 1)}"
-          th:if="${page >= paging.number - 3 and page <= paging.number + 3}"
-          th:classappend="${page == paging.number} ? 'active'">
-        <a th:text="${page + 1}"
-           th:href="@{|?page=${page}&searchType=${searchType}&keyword=${keyword}|}">
-        </a>
-      </li>
-      <li th:classappend="${paging.last} ? 'disabled'">
-        <a th:if="${!paging.last}"
-           th:href="@{|?page=${paging.number + 1}&searchType=${searchType}&keyword=${keyword}|}">
-          <span>다음</span>
-        </a>
-        <span th:if="${paging.last}">다음</span>
-      </li>
-    </ul>
+  <div th:fragment="paging">
+    <div th:if="${!paging.isEmpty()}">
+      <ul>
+        <li th:classappend="${!paging.hasPrevious} ? 'disabled'">
+          <a th:if="${!paging.first}"
+             th:href="@{|?page=${paging.number - 1}&searchType=${searchType}&keyword=${keyword}|}">
+            <span>이전</span>
+          </a>
+          <span th:if="${paging.first}">이전</span>
+        </li>
+        <li th:each="page : ${#numbers.sequence(0, paging.totalPages - 1)}"
+            th:if="${page >= paging.number - 3 and page <= paging.number + 3}"
+            th:classappend="${page == paging.number} ? 'active'">
+          <a th:text="${page + 1}"
+             th:href="@{|?page=${page}&searchType=${searchType}&keyword=${keyword}|}">
+          </a>
+        </li>
+        <li th:classappend="${paging.last} ? 'disabled'">
+          <a th:if="${!paging.last}"
+             th:href="@{|?page=${paging.number + 1}&searchType=${searchType}&keyword=${keyword}|}">
+            <span>다음</span>
+          </a>
+          <span th:if="${paging.last}">다음</span>
+        </li>
+      </ul>
   </div>
 </div>
 
