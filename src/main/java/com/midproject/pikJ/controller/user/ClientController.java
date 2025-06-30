@@ -105,7 +105,7 @@ public class ClientController {
 
                 return userFolderName + "/chuga";
             } catch (Exception e) {
-                return "redirect:/" + userFolderName + "chuga";
+                return "redirect:/management/client/chuga";
             }
         }
 
@@ -167,6 +167,71 @@ public class ClientController {
         model.addAttribute("returnDTO",returnDTO);
 
         return userFolderName + "/view";
+    }
+
+    // JY 0628 : 내담자 목록에서 상담사 상세정보
+    @GetMapping("/getCounselorInfo/{no}")
+    public String getCounselorInfo(
+            ManagementDTO managementDTO,
+            Model model,
+            HttpSession session) {
+        MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+        CounselorDTO counselorDTO = (CounselorDTO) session.getAttribute("counselor");
+
+        if (memberDTO == null && counselorDTO == null) {
+            return "redirect:/login";
+        } else if (memberDTO != null && memberDTO.getType().equals("관리자")) {
+            return "redirect:/manager/management/list";
+        } else if (counselorDTO != null && memberDTO == null) {
+            return "redirect:/onlyMemberError";
+        }
+
+        ManagementDTO returnDTO = managementService.getSelectOne(managementDTO);
+        model.addAttribute("returnDTO",returnDTO);
+
+        return "user/management/user/getCounselorInfo";
+    }
+
+    // JY 0628 : 내담자 정보 수정 기능 추가
+    @GetMapping("/sujung/{no}")
+    public String sujung(ManagementDTO managementDTO, Model model, HttpSession session) {
+        MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+        CounselorDTO counselorDTO = (CounselorDTO) session.getAttribute("counselor");
+
+        if (memberDTO == null && counselorDTO == null) {
+            return "redirect:/login";
+        } else if (memberDTO != null && memberDTO.getType().equals("관리자")) {
+            return "redirect:/manager/management/list";
+        } else if (counselorDTO != null && memberDTO == null) {
+            return "redirect:/onlyMemberError";
+        }
+
+        ManagementDTO returnDTO = managementService.getSelectOne(managementDTO);
+        List<SchoolDTO> schoolList = schoolService.getSelectAll();
+        model.addAttribute("returnDTO",returnDTO);
+        model.addAttribute("schoolList", schoolList);
+        return userFolderName + "/sujung";
+    }
+
+    @PostMapping("/sujungProc")
+    public String sujungProc(ManagementDTO managementDTO, HttpSession session) {
+        MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+        CounselorDTO counselorDTO = (CounselorDTO) session.getAttribute("counselor");
+
+        if (memberDTO == null && counselorDTO == null) {
+            return "redirect:/login";
+        } else if (memberDTO != null && memberDTO.getType().equals("관리자")) {
+            return "redirect:/manager/management/list";
+        } else if (counselorDTO != null && memberDTO == null) {
+            return "redirect:/onlyMemberError";
+        }
+
+        try {
+            managementService.setUpdate(managementDTO);
+            return "redirect:/management/client/view/" + managementDTO.getNo();
+        }catch (Exception e) {
+            return "redirect:/management/client/sujung/" + managementDTO.getNo();
+        }
     }
 
 }

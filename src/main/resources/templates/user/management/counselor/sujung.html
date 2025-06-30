@@ -6,11 +6,14 @@
     <title>Title</title>
 </head>
 <body>
-<form name="form" action="/management/counselor/sujungProc" method="post">
+<form name="form" action="/management/counselor/sujungProc" method="post" enctype="multipart/form-data">
     <input type="hidden" name="no" th:value="${returnDTO.no}">
     <input type="hidden" name="member_no" th:value="${returnDTO.member.no}">
     <input type="hidden" name="counselor_no" th:value="${returnDTO.counselor.no}">
     <input type="hidden" name="school_no" th:value="${returnDTO.school.no}">
+    <input type="hidden" name="grade" th:value="${returnDTO.grade}">
+    <input type="hidden" name="studentName" th:value="${returnDTO.studentName}">
+    <input type="hidden" name="concern" th:value="${returnDTO.concern}">
     <table>
         <tr>
             <th>상담번호</th>
@@ -18,29 +21,23 @@
         </tr>
         <tr>
             <th>내담자</th>
-            <td><input type="text" name="member_name" th:value="${returnDTO.member.name}"></td>
-        </tr>
-        <tr>
-            <th>상담사</th>
-            <td><input type="text" name="counselor_name" th:value="${returnDTO.counselor.name}"></td>
+            <td>[[${returnDTO.member.name}]]</td>
         </tr>
         <tr>
             <th>학교</th>
-            <td><input type="text" name="school_noname" th:value="${returnDTO.school.name}"></td>
+            <td>[[${returnDTO.school.name}]]</td>
         </tr>
         <tr>
             <th>학년</th>
-            <td><input type="text" name="grade" th:value="${returnDTO.grade}"></td>
+            <td>[[${returnDTO.grade}]]</td>
         </tr>
         <tr>
             <th>학생 이름</th>
-            <td><input type="text" name="studentName" th:value="${returnDTO.studentName}"></td>
+            <td>[[${returnDTO.studentName}]]</td>
         </tr>
         <tr>
             <th>고민 내용</th>
-            <td>
-                <textarea name="concern" style="width: 200px; height: 100px;">[[${returnDTO.concern}]]</textarea>
-            </td>
+            <td>[[${returnDTO.concern}]]</td>
         </tr>
         <tr>
             <th>상담일</th>
@@ -63,7 +60,7 @@
         <tr>
             <th>상담 첨부파일</th>
             <td>
-                <textarea name="attachment" style="width: 200px; height: 100px;">[[${returnDTO.attachment}]]</textarea>
+                <input type="file" name="attachmentFile" accept="">
             </td>
         </tr>
         <tr>
@@ -75,13 +72,13 @@
         </tr>
         <tr>
             <th>작성일</th>
-            <td>[[${returnDTO.regiDate}]]</td>
+            <td th:text="${#temporals.format(returnDTO.regiDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
         </tr>
     </table>
     <div onclick="sujung();" style="cursor:pointer;"><a>수정</a></div>
     <div><a th:href="@{|/management/counselor/view/${returnDTO.no}|}">취소</a></div>
 </form>
-</body>
+
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
     function sujung() {
@@ -122,4 +119,6 @@
         }).open();
     }
 </script>
+
+</body>
 </html>

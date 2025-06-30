@@ -21,15 +21,24 @@
     <table>
         <tr>
             <th>내담자 번호</th>
-            <td><input type="number" name="member_no"></td>
+            <td>
+                <input type="number" name="member_no">
+                <button type="button" onclick="window.open('/manager/member/list');">내담자검색</button>
+            </td>
         </tr>
         <tr>
             <th>상담사 번호</th>
-            <td><input type="number" name="counselor_no"></td>
+            <td>
+                <input type="number" name="counselor_no">
+                <button type="button" onclick="window.open('/manager/counselor/list');">상담사검색</button>
+            </td>
         </tr>
         <tr>
             <th>학교 번호</th>
-            <td><input type="number" name="school_no"></td>
+            <td>
+                <input type="number" name="school_no">
+                <button type="button" onclick="window.open('/manager/school/list');">학교검색</button>
+            </td>
         </tr>
         <tr>
             <th>학년</th>

@@ -38,6 +38,7 @@
             <table>
                 <thead>
                     <tr>
+                        <th>내담자번호</th>
                         <th>아이디</th>
                         <th>이름</th>
                         <th>전화번호</th>
@@ -47,11 +48,12 @@
                 </thead>
                 <tbody>
                     <div th:if="${list.size() == 0}">
-                        <td colspan="5">등록된 회원이 없습니다.</td>
+                        <td colspan="6">등록된 회원이 없습니다.</td>
                     </div>
                     <div th:unless="${list.size() == 0}">
                         <div th:each="memberDTO : ${list}">
                             <tr>
+                                <td>[[${memberDTO.no}]]</td>
                                 <td><a th:href="@{|/manager/member/view/${memberDTO.no}|}" th:text="${memberDTO.id}"></a></td>
                                 <td>[[${memberDTO.name}]]</td>
                                 <td>[[${memberDTO.phone}]]</td>

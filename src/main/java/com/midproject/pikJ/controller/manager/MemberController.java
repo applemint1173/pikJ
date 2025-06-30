@@ -56,15 +56,34 @@ public class MemberController {
     }
 
     @GetMapping("/view/{no}")
-    public String view(MemberDTO memberDTO, Model model) {
+    public String view(
+            MemberDTO memberDTO,
+            Model model,
+            @RequestParam(value = "page", defaultValue = "0") int page,
+            @RequestParam(value = "searchType", required = false) String searchType,
+            @RequestParam(value = "keyword", required = false) String keyword) {
         String redirect = ErrorManager.notManager();
         if (redirect != null) return redirect;
 
         MemberDTO returnDTO = service.getSelectOne(memberDTO);
-        List<ManagementDTO> list = managementService.getSelectByMemberId(returnDTO.getId());
 
         model.addAttribute("returnDTO",returnDTO);
+
+        // JY 0628 : 페이징 수정
+        Page<ManagementDTO> pageList = managementService.getSelectAll(page, searchType, keyword);
+        List<ManagementDTO> list = pageList.getContent();
+
+        if(keyword == null){
+            keyword = "";
+        }
+        if(searchType == null){
+            searchType = "";
+        }
+
         model.addAttribute("list",list);
+        model.addAttribute("paging", pageList);
+        model.addAttribute("searchType", searchType);
+        model.addAttribute("keyword", keyword);
 
         return folderName + "view";
     }

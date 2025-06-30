@@ -20,25 +20,31 @@
 
 <form name="form" action="/manager/management/sujungProc" method="post" enctype="multipart/form-data">
     <input type="hidden" name="no" th:value="${returnDTO.no}">
-    <input type="hidden" name="member_no" th:value="${returnDTO.member.no}">
-    <input type="hidden" name="counselor_no" th:value="${returnDTO.counselor.no}">
-    <input type="hidden" name="school_no" th:value="${returnDTO.school.no}">
     <table>
         <tr>
             <th>상담번호</th>
             <td>[[${returnDTO.no}]]</td>
         </tr>
         <tr>
-            <th>내담자</th>
-            <td><input type="text" name="member_name" th:value="${returnDTO.member.name}"></td>
+            <th>내담자번호</th>
+            <td>
+                <input type="number" name="member_no" th:value="${returnDTO.member.no}">
+                <button type="button" onclick="window.open('/manager/member/list');">내담자검색</button>
+            </td>
         </tr>
         <tr>
-            <th>상담사</th>
-            <td><input type="text" name="counselor_name" th:value="${returnDTO.counselor.name}"></td>
+            <th>상담사번호</th>
+            <td>
+                <input type="number" name="counselor_no" th:value="${returnDTO.counselor.no}">
+                <button type="button" onclick="window.open('/manager/counselor/list');">상담사검색</button>
+            </td>
         </tr>
         <tr>
-            <th>학교</th>
-            <td><input type="text" name="school_name" th:value="${returnDTO.school.name}"></td>
+            <th>학교번호</th>
+            <td>
+                <input type="number" name="school_no" th:value="${returnDTO.school.no}">
+                <button type="button" onclick="window.open('/manager/school/list');">학교검색</button>
+            </td>
         </tr>
         <tr>
             <th>학년</th>
@@ -85,7 +91,7 @@
         </tr>
         <tr>
             <th>작성일</th>
-            <td>[[${returnDTO.regiDate}]]</td>
+            <td th:text="${#temporals.format(managementDTO.regiDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
         </tr>
     </table>
 </form>

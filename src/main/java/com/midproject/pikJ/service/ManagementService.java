@@ -1,6 +1,7 @@
 // 박지영
 package com.midproject.pikJ.service;
 
+import com.midproject.pikJ.dto.CounselorDTO;
 import com.midproject.pikJ.dto.ManagementDTO;
 import com.midproject.pikJ.dto.ProgramDTO;
 import com.midproject.pikJ.entity.*;
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -211,7 +213,6 @@ public class ManagementService {
         if (managementDTO.getAttachment() != null) {
             String oldFileName = managementDTO.getAttachment().replace("/userImg/", "");
             Path oldFilePath = Paths.get(ATTACHMENT_PATH + oldFileName);
-
             if (Files.exists(oldFilePath)) {
                 Files.delete(oldFilePath);
             }

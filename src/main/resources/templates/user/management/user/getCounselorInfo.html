@@ -1,0 +1,49 @@
+<!--박지영-->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<h1>상담사 정보 보기</h1>
+
+<table>
+  <tr>
+    <th>이름</th>
+    <td>[[${returnDTO.counselor.name}]]</td>
+  </tr>
+  <tr>
+    <th>생년월일</th>
+    <td>[[${returnDTO.counselor.birthDate}]]</td>
+  </tr>
+  <tr>
+    <th>전화번호</th>
+    <td>[[${returnDTO.counselor.phone}]]</td>
+  </tr>
+  <tr>
+    <th>이메일</th>
+    <td>[[${returnDTO.counselor.email}]]</td>
+  </tr>
+  <tr>
+    <th>프로필사진</th>
+    <td>
+      <img th:src="${returnDTO.counselor.photo}" alt="" style="max-width: 250px; height: auto;">
+      <span th:if="${returnDTO.counselor.photo == null or returnDTO.counselor.photo.isEmpty()}">등록된 상담사 사진이 없습니다.</span>
+    </td>
+  </tr>
+  <tr>
+    <th>소개</th>
+    <td>[[${returnDTO.counselor.intro}]]</td>
+  </tr>
+  <tr>
+    <th>학력및자격</th>
+    <td>[[${returnDTO.counselor.license}]]</td>
+  </tr>
+</table>
+
+<a href="/management/client/list">이전으로</a>
+
+</body>
+</html>

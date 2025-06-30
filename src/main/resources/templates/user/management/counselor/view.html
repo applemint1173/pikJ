@@ -48,12 +48,15 @@
     </tr>
     <tr>
         <th>상담 기록</th>
-        <td>[[${returnDTO.comments}]]</td>
+        <td>
+            [[${returnDTO.comments}]]
+        </td>
     </tr>
     <tr>
         <th>상담 첨부파일</th>
         <td>
-            [[${returnDTO.attachment}]]
+            <img th:src="${returnDTO.attachment}" alt="" style="max-width: 250px; height: auto;">
+            <span th:if="${returnDTO.attachment == null or returnDTO.attachment.isEmpty()}">등록된 프로필 사진이 없습니다.</span>
         </td>
     </tr>
     <tr>
@@ -67,18 +70,8 @@
 </table>
 
 <hr><br>
-|
 <a th:href="@{|/management/counselor/sujung/${returnDTO.no}|}">수정</a>
-|
-<form name="form" method="post" action="/management/counselor/list" style="display:inline;">
-    <input type="hidden" name="id" th:value="${returnDTO.counselor.id}">
-    <div onclick="list();" style="cursor:pointer; display:inline;"><a>확인</a></div>
-</form>
-|
+<a href="/management/counselor/list">이전으로</a>
+
 </body>
-<script>
-    function list() {
-        document.form.submit();
-    }
-</script>
 </html>

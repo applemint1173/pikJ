@@ -17,7 +17,7 @@
 
     <tr th:each="managementDTO, loop : ${list}">
         <td>[[${loop.count}]]</td>
-        <td>[[${managementDTO.counselor.name}]]</td>
+        <td><a th:href="@{|/management/client/getCounselorInfo/${managementDTO.no}|}">[[${managementDTO.counselor.name}]]</a></td>
         <td>[[${managementDTO.meetingDate}]]</td>
         <td>[[${managementDTO.checks}]]</td>
         <td><div><a th:href="@{|/management/client/view/${managementDTO.no}|}">버튼</a></div></td>

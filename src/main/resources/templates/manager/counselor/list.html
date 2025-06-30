@@ -35,6 +35,7 @@
         <table>
             <thead>
                 <tr>
+                    <th>상담사번호</th>
                     <th>아이디</th>
                     <th>이름</th>
                     <th>생년월일</th>
@@ -45,11 +46,12 @@
 
             <tbody>
                 <div th:if="${list.size() == 0}">
-                    <td colspan="5">등록된 상담사가 없습니다.</td>
+                    <td colspan="6">등록된 상담사가 없습니다.</td>
                 </div>
                 <div th:unless="${list.size() == 0}">
                     <div th:each="counselorDTO : ${list}">
                         <tr>
+                            <td>[[${counselorDTO.no}]]</td>
                             <td><a th:href="@{|/manager/counselor/view/${counselorDTO.no}|}" th:text="${counselorDTO.id}"></a></td>
                             <td>[[${counselorDTO.name}]]</td>
                             <td>[[${counselorDTO.birthDate}]]</td>

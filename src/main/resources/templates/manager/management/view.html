@@ -23,15 +23,15 @@
                 <td>[[${returnDTO.no}]]</td>
             </tr>
             <tr>
-                <th>내담자</th>
+                <th>내담자이름</th>
                 <td><a th:href="@{|/manager/member/view/${returnDTO.member.no}|}">[[${returnDTO.member.name}]]</a></td>
             </tr>
             <tr>
-                <th>상담사</th>
+                <th>상담사이름</th>
                 <td><a th:href="@{|/manager/counselor/view/${returnDTO.counselor.no}|}">[[${returnDTO.counselor.name}]]</a></td>
             </tr>
             <tr>
-                <th>학교</th>
+                <th>학교명</th>
                 <td><a th:href="@{|/manager/school/view/${returnDTO.school.no}|}">[[${returnDTO.school.name}]]</a></td>
             </tr>
             <tr>
@@ -65,7 +65,7 @@
                 <th>상담 첨부파일</th>
                 <td>
                     <img th:src="${returnDTO.attachment}" alt="" style="max-width: 250px; height: auto;">
-                    <span th:if="${returnDTO.attachment == null or returnDTO.attachment.isEmpty()}">등록된 프로필 사진이 없습니다.</span>
+                    <span th:if="${returnDTO.attachment == null or returnDTO.attachment.isEmpty()}">등록된 파일이 없습니다.</span>
                 </td>
             </tr>
             <tr>

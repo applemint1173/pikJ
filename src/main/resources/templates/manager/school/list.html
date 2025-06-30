@@ -36,6 +36,7 @@
         <table>
             <thead>
             <tr>
+                <th>학교번호</th>
                 <th>학교명</th>
                 <th>전화번호</th>
                 <th>시도</th>
@@ -45,11 +46,12 @@
 
             <tbody>
                 <div th:if="${list.size() == 0}">
-                    <td colspan="4">등록된 학교가 없습니다.</td>
+                    <td colspan="5">등록된 학교가 없습니다.</td>
                 </div>
 
                 <div th:unless="${list.size() == 0}">
                     <tr th:each="schoolDTO, loop:${list}">
+                        <td>[[${schoolDTO.no}]]</td>
                         <td><a th:href="@{|/manager/school/view/${schoolDTO.no}|}" th:text="${schoolDTO.name}"></a></td>
                         <td>[[${schoolDTO.phone}]]</td>
                         <td>[[${schoolDTO.sido}]]</td>

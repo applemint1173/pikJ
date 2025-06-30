@@ -7,6 +7,11 @@
 </head>
 <body>
 
+<a href="/management/counselor/list">나의 상담내역 보기</a>
+<a href="/management/counselor/allList">미배정 상담 신청서 보기</a>
+
+<h1>나의 상담내역 보기</h1>
+
 <table>
     <tr>
         <th>순번</th>
@@ -18,13 +23,18 @@
 
     <tr th:each="managementDTO, loop : ${list}">
         <td>[[${loop.count}]]</td>
-        <td>[[${managementDTO.member.name}]]</td>
+        <td><a th:href="@{|/management/counselor/getUserInfo/${managementDTO.no}|}">[[${managementDTO.member.name}]]</a></td>
         <td>[[${managementDTO.meetingDate}]]</td>
         <td>[[${managementDTO.checks}]]</td>
         <td><div><a th:href="@{|/management/counselor/view/${managementDTO.no}|}">버튼</a></div></td>
     </tr>
-
 </table>
+
+<script>
+    function move() {
+        document.form.submit();
+    }
+</script>
 
 </body>
 </html>
