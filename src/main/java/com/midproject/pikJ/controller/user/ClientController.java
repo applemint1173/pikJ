@@ -94,7 +94,7 @@ public class ClientController {
             imsiCounselorDTO.setBirthDate(Date.valueOf("1900-01-01"));
             imsiCounselorDTO.setEmail("-");
             imsiCounselorDTO.setPhone("-");
-            imsiCounselorDTO.setPhoto("");
+            imsiCounselorDTO.setPhoto(null);
             imsiCounselorDTO.setLicense("-");
             imsiCounselorDTO.setIntro("-");
 

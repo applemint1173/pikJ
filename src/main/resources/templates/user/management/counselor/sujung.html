@@ -9,8 +9,7 @@
 
 <a href="/">로고</a><br>
 
-<form name="form" action="/management/counselor/sujungProc" method="post">
-<!--      enctype="multipart/form-data">-->
+<form name="form" action="/management/counselor/sujungProc" method="post" enctype="multipart/form-data">
     <input type="hidden" name="no" th:value="${returnDTO.no}">
     <input type="hidden" name="member_no" th:value="${returnDTO.member.no}">
     <input type="hidden" name="counselor_no" th:value="${returnDTO.counselor.no}">
@@ -18,6 +17,7 @@
     <input type="hidden" name="grade" th:value="${returnDTO.grade}">
     <input type="hidden" name="studentName" th:value="${returnDTO.studentName}">
     <input type="hidden" name="concern" th:value="${returnDTO.concern}">
+    <input th:if="${returnDTO.attachment != null}" type="hidden" name="attachment" th:value="${returnDTO.attachment}">
     <table>
         <tr>
             <th>상담번호</th>
@@ -64,8 +64,8 @@
         <tr>
             <th>상담 첨부파일</th>
             <td>
-<!--                <input type="file" name="attachmentFile" accept="">-->
-                <input type="text" name="attachment" th:value="${returnDTO.attachment}">
+                <input type="file" name="attachmentFile" accept="image/*">
+<!--                <input type="text" name="attachment" th:value="${returnDTO.attachment}">-->
             </td>
         </tr>
         <tr>

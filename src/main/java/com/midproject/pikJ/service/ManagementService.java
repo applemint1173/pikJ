@@ -128,23 +128,23 @@ public class ManagementService {
     }
 
     public void setInsert(ManagementDTO managementDTO) throws IOException {
-//        MultipartFile multiPhoto = managementDTO.getAttachmentFile();
-//
-//        if (multiPhoto != null && !multiPhoto.isEmpty()) {
-//            String fileName = UUID.randomUUID() + "_" + multiPhoto.getOriginalFilename();
-//            Path photoPath = Paths.get(ATTACHMENT_PATH);
-//
-//            if (!Files.exists(photoPath)) {
-//                Files.createDirectories(photoPath);
-//            }
-//
-//            Path filePath = photoPath.resolve(fileName);
-//            Files.copy(multiPhoto.getInputStream(), filePath);
-//
-//            managementDTO.setAttachment("/userImg/" + fileName);
-//        } else {
-//            managementDTO.setAttachment(null);
-//        }
+        MultipartFile multiPhoto = managementDTO.getAttachmentFile();
+
+        if (multiPhoto != null && !multiPhoto.isEmpty()) {
+            String fileName = UUID.randomUUID() + "_" + multiPhoto.getOriginalFilename();
+            Path photoPath = Paths.get(ATTACHMENT_PATH);
+
+            if (!Files.exists(photoPath)) {
+                Files.createDirectories(photoPath);
+            }
+
+            Path filePath = photoPath.resolve(fileName);
+            Files.copy(multiPhoto.getInputStream(), filePath);
+
+            managementDTO.setAttachment("/userImg/" + fileName);
+        } else {
+            managementDTO.setAttachment(null);
+        }
 
         Optional<Member> om = memberRepository.findById(managementDTO.getMember_no());
         Optional<Counselor> oc = counselorRepository.findById(managementDTO.getCounselor_no());
@@ -165,32 +165,32 @@ public class ManagementService {
     }
 
     public void setUpdate(ManagementDTO managementDTO) throws IOException {
-//        MultipartFile multiPhoto = managementDTO.getAttachmentFile();
-//
-//        if (multiPhoto != null && !multiPhoto.isEmpty()) {
-//            if (managementDTO.getAttachment() != null) {
-//                String oldFileName = managementDTO.getAttachment().replace("/userImg/", "");
-//                Path oldFilePath = Paths.get(ATTACHMENT_PATH + oldFileName);
-//
-//                if (Files.exists(oldFilePath)) {
-//                    Files.delete(oldFilePath);
-//                }
-//            }
-//
-//            String fileName = UUID.randomUUID() + "_" + multiPhoto.getOriginalFilename();
-//            Path photoPath = Paths.get(ATTACHMENT_PATH);
-//
-//            if (!Files.exists(photoPath)) {
-//                Files.createDirectories(photoPath);
-//            }
-//
-//            Path filePath = photoPath.resolve(fileName);
-//            Files.copy(multiPhoto.getInputStream(), filePath);
-//
-//            managementDTO.setAttachment("/userImg/" + fileName);
-//        } else {
-//            managementDTO.setAttachment(null);
-//        }
+        MultipartFile multiPhoto = managementDTO.getAttachmentFile();
+
+        if (multiPhoto != null && !multiPhoto.isEmpty()) {
+            if (managementDTO.getAttachment() != null) {
+                String oldFileName = managementDTO.getAttachment().replace("/userImg/", "");
+                Path oldFilePath = Paths.get(ATTACHMENT_PATH + oldFileName);
+
+                if (Files.exists(oldFilePath)) {
+                    Files.delete(oldFilePath);
+                }
+            }
+
+            String fileName = UUID.randomUUID() + "_" + multiPhoto.getOriginalFilename();
+            Path photoPath = Paths.get(ATTACHMENT_PATH);
+
+            if (!Files.exists(photoPath)) {
+                Files.createDirectories(photoPath);
+            }
+
+            Path filePath = photoPath.resolve(fileName);
+            Files.copy(multiPhoto.getInputStream(), filePath);
+
+            managementDTO.setAttachment("/userImg/" + fileName);
+        } else {
+            managementDTO.setAttachment(null);
+        }
 
         Optional<Member> om = memberRepository.findById(managementDTO.getMember_no());
         Optional<Counselor> oc = counselorRepository.findById(managementDTO.getCounselor_no());
@@ -210,13 +210,13 @@ public class ManagementService {
     }
 
     public void setDelete(ManagementDTO managementDTO) throws IOException {
-//        if (managementDTO.getAttachment() != null) {
-//            String oldFileName = managementDTO.getAttachment().replace("/userImg/", "");
-//            Path oldFilePath = Paths.get(ATTACHMENT_PATH + oldFileName);
-//            if (Files.exists(oldFilePath)) {
-//                Files.delete(oldFilePath);
-//            }
-//        }
+        if (managementDTO.getAttachment() != null) {
+            String oldFileName = managementDTO.getAttachment().replace("/userImg/", "");
+            Path oldFilePath = Paths.get(ATTACHMENT_PATH + oldFileName);
+            if (Files.exists(oldFilePath)) {
+                Files.delete(oldFilePath);
+            }
+        }
 
         repository.delete(modelMapper.map(managementDTO, Management.class));
     }

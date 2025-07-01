@@ -31,9 +31,9 @@
   <tr>
     <th>프로필사진</th>
     <td>
-<!--      <img th:src="${returnDTO.counselor.photo}" alt="" style="max-width: 250px; height: auto;">-->
-<!--      <span th:if="${returnDTO.counselor.photo == null or returnDTO.counselor.photo.isEmpty()}">등록된 상담사 사진이 없습니다.</span>-->
-      [[${returnDTO.counselor.photo}]]
+      <img th:src="${returnDTO.counselor.photo}" alt="" style="max-width: 250px; height: auto;">
+      <span th:if="${returnDTO.counselor.photo == null or returnDTO.counselor.photo.isEmpty()}">등록된 상담사 사진이 없습니다.</span>
+<!--      [[${returnDTO.counselor.photo}]]-->
     </td>
   </tr>
   <tr>

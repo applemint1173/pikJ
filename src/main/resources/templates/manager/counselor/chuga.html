@@ -18,8 +18,7 @@
         </div>
     </div>
 
-    <form name="form" th:action="@{/manager/counselor/chugaProc}" method="post">
-<!--          enctype="multipart/form-data">-->
+    <form name="form" th:action="@{/manager/counselor/chugaProc}" method="post" enctype="multipart/form-data">
         <table>
             <tr>
                 <th>아이디</th>
@@ -52,8 +51,8 @@
             <tr>
                 <th>프로필사진</th>
                 <td>
-<!--                    <input type="file" name="photoFile" accept="image/*">-->
-                    <input type="text" name="photo">
+                    <input type="file" name="photoFile" accept="image/*">
+<!--                    <input type="text" name="photo">-->
                 </td>
             </tr>
             <tr>

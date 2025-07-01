@@ -46,9 +46,9 @@
                 <tr>
                     <th>프로필사진</th>
                     <td>
-<!--                        <img th:src="${returnDTO.photo}" alt="" style="max-width: 250px; height: auto;">-->
-<!--                        <span th:if="${returnDTO.photo == null or returnDTO.photo.isEmpty()}">등록된 프로필 사진이 없습니다.</span>-->
-                        [[${returnDTO.photo}]]
+                        <img th:src="${returnDTO.photo}" alt="" style="max-width: 250px; height: auto;">
+                        <span th:if="${returnDTO.photo == null or returnDTO.photo.isEmpty()}">등록된 프로필 사진이 없습니다.</span>
+<!--                        [[${returnDTO.photo}]]-->
                     </td>
                 </tr>
                 <tr>
@@ -74,7 +74,7 @@
             <a href="#" onclick="sakje();">
                 <form id="sakjeForm" method="post" action="/manager/counselor/sakjeProc">
                     <input type="hidden" name="no" th:value="${returnDTO.no}">
-<!--                    <input type="hidden" name="photo" th:value="${returnDTO.photo}">-->
+                    <input th:if="${returnDTO.photo != null}" type="hidden" name="photo" th:value="${returnDTO.photo}">
                 </form>삭제
             </a>
         </div>

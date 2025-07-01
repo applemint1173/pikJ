@@ -8,8 +8,7 @@
 
 <a href="/">로고</a><br>
 
-<form name="form" action="/management/counselor/yeyakProc" method="post">
-<!--      enctype="multipart/form-data">-->
+<form name="form" action="/management/counselor/yeyakProc" method="post" enctype="multipart/form-data">
   <input type="hidden" name="no" th:value="${returnDTO.no}">
   <input type="hidden" name="member_no" th:value="${returnDTO.member.no}">
   <input type="hidden" name="counselor_no" th:value="${returnDTO.counselor.no}">
@@ -64,8 +63,8 @@
     <tr>
       <th>상담 첨부파일</th>
       <td>
-<!--        <input type="file" name="attachmentFile" accept="">-->
-        <input type="text" name="attachment">
+        <input type="file" name="attachmentFile" accept="">
+<!--        <input type="text" name="attachment">-->
       </td>
     </tr>
     <tr>
