@@ -6,6 +6,60 @@
     <meta charset="UTF-8">
     <title>PikJ 관리자 사이트</title>
     <link rel="stylesheet" th:href="@{/css/managerView.css}">
+    <style>
+        #nav2 {
+            width: 50%;
+            display: flex;
+            justify-content: flex-start;
+            margin: auto;
+            margin-bottom: 3%;
+        }
+
+
+        #nav2 * {
+            display: flexbox;
+            text-align: center;
+            font-size: 1.1em;
+            line-height: 1%;
+        }
+
+        #nav2 div:nth-child(1) {
+            margin: 0 5% 0 1%;
+            border: 1px solid #a39485;
+            border-radius: 5px;
+            background-color: #f5f5f5;
+            font-size: 1.2em;
+            padding: 1%;
+        }
+
+
+        #nav2 input {
+            width: 60%;
+            margin-left: 2%;
+            margin-right: 5%;
+        }
+
+        #nav2 button {
+            padding: 0.5% 1%;
+        }
+
+
+        #nav2 div:nth-last-child(2) {
+            margin-left: auto;
+            border: 1px solid #a39485;
+            border-radius: 5px;
+            font-size: 1.2em;
+            padding: 1% 1%;
+        }
+
+        #nav2 div:nth-last-child(1) {
+            margin-left: 5%;
+            border: 1px solid #a39485;
+            border-radius: 5px;
+            font-size: 1.2em;
+            padding: 1% 1%;
+        }
+    </style>
 </head>
 
 <body>
@@ -72,8 +126,8 @@
     <hr>
     <h1>상담내역</h1>
 
-    <form name="form" method="get" th:action="@{|/manager/member/view/${returnDTO.no}|}" style="display: inline;">
-<!--        <div id="nav">-->
+    <form name="form" method="get" th:action="@{|/manager/member/view/${returnDTO.no}#nav2|}" style="display: inline;">
+        <div id="nav2">
             <select class="search" name="searchType">
                 <option value="" th:selected="${searchType == null}">===선택===</option>
                 <option value="counselor.name" th:selected="${searchType == 'counselor.name'}">상담사이름</option>
@@ -81,7 +135,7 @@
             </select>
             <input type="text" name="keyword" id="search" th:value="${keyword}" placeholder="검색어 입력">
             <button type="submit">search</button>
-<!--        </div>-->
+        </div>
     </form>
 
     <table>
@@ -106,7 +160,7 @@
                 <td>[[${managementDTO.counselor.phone}]]</td>
                 <td>[[${managementDTO.meetingDate}]]</td>
                 <td>[[${managementDTO.checks}]]</td>
-                <td th:text="${#temporals.format(managementDTO.regiDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                <td th:text="${#temporals.format(managementDTO.regiDate, 'yyyy-MM-dd')}"></td>
             </tr>
         </div>
         </tbody>
