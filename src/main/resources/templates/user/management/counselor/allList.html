@@ -103,7 +103,7 @@
    font-size: 14px;
    }
    }
-  </style>
+   </style>
 </head>
 <body>
 
@@ -115,21 +115,21 @@
 <h1>미배정 상담 신청서 보기</h1>
 
 <table>
-  <tr>
-    <th>순번</th>
-    <th>내담자</th>
-    <th>학교</th>
-    <th>신청일</th>
-    <th>상담예약하기</th>
-  </tr>
+<tr>
+<th>순번</th>
+<th>내담자</th>
+<th>학교</th>
+<th>신청일</th>
+<th>상담예약하기</th>
+</tr>
 
-  <tr th:each="managementDTO, loop : ${list}">
-    <td>[[${loop.count}]]</td>
-    <td><a th:href="@{|/management/counselor/getUserInfo/${managementDTO.no}|}">[[${managementDTO.member.name}]]</a></td>
-    <td>[[${managementDTO.school.name}]]</td>
-    <td th:text="${#temporals.format(managementDTO.regiDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
-    <td><div><a th:href="@{|/management/counselor/yeyak/${managementDTO.no}|}">예약</a></div></td>
-  </tr>
+<tr th:each="managementDTO, loop : ${list}">
+<td>[[${loop.count}]]</td>
+<td><a th:href="@{|/management/counselor/getUserInfo/${managementDTO.no}|}">[[${managementDTO.member.name}]]</a></td>
+<td>[[${managementDTO.school.name}]]</td>
+<td th:text="${#temporals.format(managementDTO.regiDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+<td><div><a th:href="@{|/management/counselor/yeyak/${managementDTO.no}|}">예약</a></div></td>
+</tr>
 </table>
 
 </body>
