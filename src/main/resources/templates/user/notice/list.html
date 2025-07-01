@@ -9,166 +9,176 @@
     <style>
 
         * {
-            margin: 0;
-            padding: 0;
-            text-decoration: none;
-            list-style: none;
-            box-sizing: border-box;
-        }
+           margin: 0;
+           padding: 0;
+           text-decoration: none;
+           list-style: none;
+           box-sizing: border-box;
+       }
 
 
-        body {
-        font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
-        background-color: #fffdf6; /* 따뜻한 아이보리 배경 */
-        color: #333;
-        }
+       body {
+       font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+       background-color: #fffdf6; /* 따뜻한 아이보리 배경 */
+       color: #333;
+       }
 
 
-         /* 포근한 느낌의 로고 주위 여백 */
-        #logo {
-        padding: 10px;
-        max-height: 60px;
-        }
+        /* 포근한 느낌의 로고 주위 여백 */
+       #logo {
+       padding: 10px;
+       max-height: 60px;
+       }
 
 
-        form {
-            width: 50%;
-            height: 70px;
-            border: 1px solid #e0dccc;
-            border-radius: 2em;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 2% auto;
-        }
+       form {
+           width: 50%;
+           height: 70px;
+           border: 1px solid #e0dccc;
+           border-radius: 2em;
+           display: flex;
+           justify-content: center;
+           align-items: center;
+           margin: 2% auto;
+       }
 
-        form * {
-            height: 100%;
-            border: none;
-            font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
-            font-size: 1.1em;
-        }
+       form * {
+           height: 100%;
+           border: none;
+           font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+           font-size: 1.1em;
+       }
 
-        .search {
-            width: 15%;
-            text-align: center;
-            border-radius: 2em 0 0 2em;
-        }
-
-
-        form input {
-            width: 75%;
-            padding: 2%;
-        }
-
-        form button {
-            width:10%;
-            border-radius: 0 2em 2em 0;
-            background-color: white;
-            margin-left: 1px;
-
-        }
+       .search {
+           width: 15%;
+           text-align: center;
+           border-radius: 2em 0 0 2em;
+       }
 
 
-        table {
-        width: 850px;
-        margin: 40px auto;
-        border-collapse: separate;
-        border-spacing: 0 12px; /* 행 간격 */
-        }
+       form input {
+           width: 75%;
+           padding: 2%;
+       }
 
-        th {
-        background-color: #f4f1e8;
-        color: #5c5248;
-        font-weight: bold;
-        padding: 12px 20px;
-        text-align: center;
-        border-bottom: 2px solid #e0dccc;
-        font-size: 20px;
-        }
+       form button {
+           width:10%;
+           border-radius: 0 2em 2em 0;
+           background-color: white;
+           margin-left: 1px;
 
-       tr td:nth-child(2) a {
-        color: #3c70a4;
-        font-weight: 600;
-        transition: color 0.3s;
-        padding: 0 6%;
-        }
-
-        tr td:nth-child(2) a:hover {
-        color: #1f4d80;
-        text-decoration: underline;
-        }
-
-        tr td {
-        transition: background-color 0.3s ease;
-        }
-
-        tr:hover td {
-        background-color: #f0f4ff;
-        }
-
-        td {
-        background-color: #fdfcf9;
-        padding: 14px 20px;
-        border-top: 1px solid #f0ede6;
-        box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.04);
-        font-size: 15px;
-        }
-
-        td:nth-child(1) {
-            width: 100px;
-            text-align: center;
-        }
+       }
 
 
-        td:nth-child(3) {
-            width:150px;
-            text-align: center;
-        }
+       table {
+       width: 65%;
+       margin: 40px auto;
+       border-collapse: separate;
+       border-spacing: 0 12px; /* 행 간격 */
+       }
 
-        td:nth-child(4) {
-            width:200px;
-            text-align: center;
-        }
+       th {
+       background-color: #f4f1e8;
+       color: #5c5248;
+       font-weight: bold;
+       padding: 12px 20px;
+       text-align: center;
+       border-bottom: 2px solid #e0dccc;
+       font-size: 20px;
+       }
 
-        .pager {
-            width: 50%;
-            margin: auto;
-            margin-bottom: 2%;
-            text-align: center;
-        }
+      tr td:nth-child(2) a {
+       color: #3c70a4;
+       font-weight: 600;
+       transition: color 0.3s;
+       padding: 0 6%;
+       }
 
-        .pager ul {
-            display: flex;
-            justify-content: space-around;
-        }
+       tr td:nth-child(2) a:hover {
+       color: #1f4d80;
+       text-decoration: underline;
+       }
 
-        .pager li {
-            font-size: 1.3em;
-            color: #5c5248;
-        }
+       tr td {
+       transition: background-color 0.3s ease;
+       }
 
-        .pagenumber {
-            color: #3c70a4;
-        }
+       tr:hover td {
+       background-color: #f0f4ff;
+       }
 
-        .pagenumber:hover {
-            color: #1f4d80;
-            text-decoration: underline;
-        }
+       td {
+       background-color: #fdfcf9;
+       padding: 14px 20px;
+       border-top: 1px solid #f0ede6;
+       box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.04);
+       font-size: 15px;
+       }
+
+       td:nth-child(1) {
+           width: 100px;
+           text-align: center;
+       }
 
 
-        /* 미디어 대응 */
-        @media (max-width: 768px) {
-        table {
-        width: 100%;
-        }
+       td:nth-child(3) {
+           width:150px;
+           text-align: center;
+       }
 
-        td, th {
-        padding: 10px;
-        font-size: 14px;
-        }
-        }
+       td:nth-child(4) {
+           width:200px;
+           text-align: center;
+       }
+
+       .pager {
+           width: 50%;
+           margin: auto;
+           margin-bottom: 2%;
+           text-align: center;
+       }
+
+       .pager ul {
+           width: 60%;
+           display: flex;
+           justify-content: space-around;
+           margin: auto;
+       }
+
+       .pager li {
+           display: block;
+           font-size: 1.3em;
+           color: #5c5248;
+           width: 15%;
+       }
+
+       .pagenumber {
+           color: #3c70a4;
+           padding: 0 15%;
+
+       }
+
+       .pagenumber:active {
+            font-weight: bold;
+       }
+
+       .pagenumber:hover {
+           color: #1f4d80;
+           text-decoration: underline;
+       }
+
+
+       /* 미디어 대응 */
+       @media (max-width: 768px) {
+       table {
+       width: 100%;
+       }
+
+       td, th {
+       padding: 10px;
+       font-size: 14px;
+       }
+       }
     </style>
 </head>
 <body>
@@ -195,35 +205,51 @@
         <th>작성일</th>
     </tr>
     <tr th:each="noticeDTO, loop:${list}" th:onclick="|location.href='/notice/view/${noticeDTO.no}'|" style="cursor: pointer;">
-        <td th:text="${loop.count}"></td>
+        <td th:text="${totalCount - (paging.number * paging.size) - loop.index}"></td>
         <td><a th:href="@{|/notice/view/${noticeDTO.no}|}" th:text="${noticeDTO.subject}"></a></td>
         <td>[[${noticeDTO.writer}]]</td>
-        <td th:text="${#temporals.format(noticeDTO.regiDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+        <td th:text="${#temporals.format(noticeDTO.regiDate, 'yyyy-MM-dd')}"></td>
     </tr>
 </table>
 
 <div class="pager" th:if="${!paging.isEmpty()}">
     <ul>
-        <li th:classappend="${!paging.hasPrevious} ? 'disabled'">
-            <a th:if="${!paging.first}"
-               th:href="@{|?page=${paging.number - 1}&searchType=${searchType}&keyword=${keyword}|}">
+        <li th:classappend="${paging.first} ? 'disabled'">
+            <a th:if="${paging.number >= 10}"
+               th:href="@{|?page=${paging.number - 10}&searchType=${searchType}&keyword=${keyword}|}">
                 <span>이전</span>
             </a>
-            <span th:if="${paging.first}">이전</span>
+
+            <a th:if="${(paging.number < 10) and
+                    ((paging.number / 10) * 10 - 10) > 0}"
+               th:href="@{|?page=0&searchType=${searchType}&keyword=${keyword}|}">
+                <span>이전</span>
+            </a>
+
+            <span th:if="${((paging.number < 10)) and (paging.number / 10) * 10 - 10 < 0}">이전</span>
         </li>
         <li th:each="page : ${#numbers.sequence(0, paging.totalPages - 1)}"
-            th:if="${page >= paging.number - 3 and page <= paging.number + 3}"
+            th:if="${page >= ((paging.number / 10) * 10) and page <= T(java.lang.Math).min(((paging.number / 10) * 10) + 9, paging.totalPages - 1)}"
             th:classappend="${page == paging.number} ? 'active'">
             <a class="pagenumber" th:text="${page + 1}"
                th:href="@{|?page=${page}&searchType=${searchType}&keyword=${keyword}|}">
             </a>
         </li>
+
         <li th:classappend="${paging.last} ? 'disabled'">
-            <a th:if="${!paging.last}"
-               th:href="@{|?page=${paging.number + 1}&searchType=${searchType}&keyword=${keyword}|}">
+            <a th:if="${paging.number <= paging.totalPages -11}"
+               th:href="@{|?page=${paging.number + 10}&searchType=${searchType}&keyword=${keyword}|}">
                 <span>다음</span>
             </a>
-            <span th:if="${paging.last}">다음</span>
+
+            <a th:if="${(paging.number > paging.totalPages -11) and
+                    ((paging.number / 10) * 10 + 10) < paging.totalPages}"
+               th:href="@{|?page=${paging.totalPages - 1}&searchType=${searchType}&keyword=${keyword}|}">
+                <span>다음</span>
+            </a>
+
+            <span th:if="${(paging.number > paging.totalPages -11) and
+                    ((paging.number / 10) * 10 + 10) > paging.totalPages}">다음</span>
         </li>
     </ul>
 </div>

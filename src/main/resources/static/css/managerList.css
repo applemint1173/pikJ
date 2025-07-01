@@ -41,14 +41,14 @@
         margin-bottom: 3%;
     }
 
-
+/*
     #nav * {
         display: flexbox;
         text-align: center;
         font-size: 1.1em;
         line-height: 1%;
     }
-
+*/
     #nav div:nth-child(1) {
         margin: 0 5% 0 1%;
         border: 1px solid #a39485;
@@ -58,6 +58,7 @@
         padding: 1%;
     }
 
+/*
     #nav input {
         width: 60%;
         margin-left: 2%;
@@ -84,7 +85,7 @@
         font-size: 1.2em;
         padding: 1% 1%;
     }
-
+*/
     .chuga {
         width: 70px;
         text-align: center;
@@ -92,6 +93,43 @@
         float: inherit;
         margin: 3% 10% 3% 83%;
     }
+
+    /*페이지*/
+   .pager {
+       width: 50%;
+       margin: auto;
+       margin-bottom: 2%;
+       text-align: center;
+   }
+
+   .pager ul {
+       width: 60%;
+       display: flex;
+       justify-content: space-around;
+       margin: auto;
+   }
+
+   .pager li {
+       display: block;
+       font-size: 1.3em;
+       color: #5c5248;
+       width: 15%;
+   }
+
+   .pagenumber {
+       color: #3c70a4;
+       padding: 0 15%;
+
+   }
+
+   .pagenumber:active {
+        font-weight: bold;
+   }
+
+   .pagenumber:hover {
+       color: #1f4d80;
+       text-decoration: underline;
+   }
 
 
     /*테이블*/
@@ -173,6 +211,5 @@
     td {
         border-bottom: 1px solid #e5e5e5;
     }
-
 
     }

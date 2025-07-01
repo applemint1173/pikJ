@@ -6,11 +6,74 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" th:href="@{/css/managerList.css}">
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            text-decoration: none;
+            list-style: none;
+            box-sizing: border-box;
+        }
+
+
+         /* 포근한 느낌의 로고 주위 여백 */
+        #logo {
+        padding: 10px;
+        max-height: 60px;
+        }
+
+
+        form {
+            width: 50%;
+            height: 70px;
+            border: 1px solid #e0dccc;
+            border-radius: 2em;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 2% auto;
+        }
+
+        form * {
+            height: 100%;
+            border: none;
+            font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+            font-size: 1.1em;
+        }
+
+        .search {
+            width: 15%;
+            text-align: center;
+            border-radius: 2em 0 0 2em;
+        }
+
+
+        form input {
+            width: 75%;
+            padding: 2%;
+        }
+
+        form button {
+            width:10%;
+            border-radius: 0 2em 2em 0;
+            background-color: white;
+            margin-left: 1px;
+
+        }
+
+        /* 미디어 대응 */
+        @media (max-width: 768px) {
+        table {
+        width: 100%;
+        }
+
+        }
+    </style>
 </head>
 <body>
 <h1>공지사항 목록</h1>
 <!--<div id="container">-->
-<div id="main">
     <form name="form" method="get" action="/manager/notice/list" style="display: inline;">
     <div id="nav">
         <div>
@@ -28,7 +91,7 @@
         <button type="submit">search</button>
     </div>
     </form>
-
+<div id="main">
     <div class="chuga"><a href="/manager/notice/chuga">추가</a></div>
 
     <table>

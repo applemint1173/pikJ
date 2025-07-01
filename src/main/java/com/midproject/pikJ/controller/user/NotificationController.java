@@ -44,6 +44,7 @@ public class NotificationController {
         model.addAttribute("paging", pageList);
         model.addAttribute("searchType", searchType);
         model.addAttribute("keyword", keyword);
+        model.addAttribute("totalCount", pageList.getTotalElements());
 
         return "user/notice/list";
     }
