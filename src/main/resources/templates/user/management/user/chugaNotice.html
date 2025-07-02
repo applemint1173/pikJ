@@ -15,8 +15,9 @@
 
         .wrap {
           max-width: 1100px;
-          margin: 0 auto;
+          margin:  auto;
           padding: 40px 20px;
+          height: 10px;
         }
 
         h1 {
@@ -48,6 +49,21 @@
           background-color: #78bdfd;
           color: white;
         }
+        .notice-content {
+          font-size: 16px;
+          line-height: 1.8;
+          color: #444;
+          text-align: center;
+          margin: 20px 0;
+        }
+        .notice-title {
+          font-size: 16px;
+          line-height: 1.8;
+          color: #444;
+          text-align: center;
+          margin: 10px;
+        }
+
 
         .notice-box {
           background-color: #f6f8fc;
@@ -136,12 +152,11 @@
 <div th:replace="header/userHeader :: main-header"></div>
 <div class="wrap">
     <h1>상담신청</h1>
-
     <div class="notice-container">
         <div class="notice-title">상담신청 안내</div>
         <div class="notice-content">
             본 상담신청은 개인 정보 및 상담 이력을 바탕으로<br>
-            원활하고 체계적인 상담 서비스를 제공하기 위해 진행됩니다.<br><br>
+            원활하고 체계적인 상담 서비스를 제공하기 위해 진행됩니다.<br>
             하단에 신청버튼을 클릭하시면 상담신청서 작성 페이지로 이동합니다.
         </div>
     </div>
