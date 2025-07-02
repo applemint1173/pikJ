@@ -11,6 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -18,10 +19,12 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -104,28 +107,11 @@ public class ProgramService {
         return pageList.map(program -> modelMapper.map(program, ProgramDTO.class));
     }
 
-    //김태준 추가
-    public List<ProgramDTO> getSelectByTypeAndStage(ProgramDTO programDTO) {
-        List<Program> entityList = repository.findByType(programDTO.getType());
-        List<ProgramDTO> dtoList = new ArrayList<>();
-
-        for (int i=0; i < entityList.size(); i++) {
-            Program program = entityList.get(i);
-            String programStage = program.getStage();
-
-            if(programDTO.getStage() == null || programDTO.getStage().equals(programStage)) {
-                dtoList.add(modelMapper.map(program, ProgramDTO.class));
-            }
-        }
-
-        return dtoList;
-    }
-
-    //김태준 추가
+    //김태준 추가, 0702 사용자 페이지 수정하기 위해 pageSize 수정
     public Page<ProgramDTO> getSelectByTypeAndStage(ProgramDTO programDTO, int page) {
         String type = programDTO.getType();
         String stage = programDTO.getStage();
-        Pageable pageable = PageRequest.of(page, 10, Sort.by(Sort.Order.desc("no")));
+        Pageable pageable = PageRequest.of(page, 9, Sort.by(Sort.Order.desc("no")));
         Page<Program> entityPage;
 
         if (stage == null || stage.isEmpty()) {
@@ -148,6 +134,39 @@ public class ProgramService {
 
         return modelMapper.map(program, ProgramDTO.class);
     }
+
+    @Scheduled(cron = "0 0 0 * * *")
+    public void updateStage() {
+        List<Program> list = repository.findAll();
+        LocalDate today = LocalDate.now();
+
+        for(Program program : list) {
+            String stage;
+
+            if(today.isBefore(program.getStartDate().toLocalDate())) {
+                stage = "진행예정";
+            }
+
+            else if(today.isAfter(program.getEndDate().toLocalDate())) {
+                stage = "종료";
+            }
+
+            else {
+                stage = "진행중";
+            }
+
+            if(!stage.equals(program.getStage())) {
+                program.setStage(stage);
+                repository.save(program);
+            }
+
+        }
+
+        System.out.println("변경 완료" + today);
+    }
+
+
+
 
     public void setInsert(ProgramDTO programDTO) throws IOException {
         MultipartFile multiPhoto = programDTO.getAttachmentFile();

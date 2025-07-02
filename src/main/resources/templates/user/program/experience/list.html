@@ -7,10 +7,11 @@
     <link rel="stylesheet" th:href="@{/css/userHome.css}">
     <style>
 
-        html {
-            height: 100%;
+        body {
+            font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+            background-color: #fffdf6;
+            color: #333;
         }
-
 
         h1 {
             width: 50%;
@@ -26,9 +27,19 @@
             margin: 20px auto;
         }
 
+        #sel_type select {
+            height: 25px;
+        }
+
+        #container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
         #program_box {
-            width: 350px;
-            height: 350px;
+            width: 400px;
+            height: 400px;
             position: relative;
             margin: 40px;
         }
@@ -48,12 +59,15 @@
         }
 
         .att {
+            width: 80%;
             position: absolute;
             top: 25px;
+            left: 35px;
         }
 
         .att img {
-            width: 350px;
+            width: 100%;
+            cursor: pointer;
         }
 
         .sub {
@@ -61,6 +75,42 @@
             bottom: -5px;
             font-size: 2em;
         }
+        /*페이지 */
+       .pager {
+               width: 50%;
+               margin: 20px auto;
+               text-align: center;
+           }
+
+       .pager ul {
+           width: 60%;
+           display: flex;
+           justify-content: space-around;
+           margin: auto;
+       }
+
+       .pager li {
+           display: block;
+           font-size: 1.3em;
+           color: #5c5248;
+           width: 15%;
+       }
+
+       .active a {
+            font-weight: bold;
+            text-decoration: underline;
+       }
+
+       .pagenumber {
+           padding: 0 15%;
+           text-decoration: none;
+
+       }
+
+       .pagenumber:hover {
+           color: #1f4d80;
+           text-decoration: underline;
+       }
 
     </style>
 </head>
@@ -79,47 +129,24 @@
         <option th:value="종료" th:selected="${stage == '종료'}">종료</option>
     </select>
 </form>
-
-<div id="program_box" th:each="programDTO : ${list}">
-    <div class="date">[[${programDTO.startDate}]] ~ [[${programDTO.endDate}]]</div>
-    <div class="stage">[[${programDTO.stage}]]</div>
-    <div class="att">
-        <img th:src="${programDTO.attachment}" alt="">
-        <img th:if="${programDTO.attachment == null or programDTO.attachment.isEmpty()}"
-             th:src="@{|/img/no_img.png|}" alt="">
-        <!--        <span th:if="${programDTO.attachment == null or programDTO.attachment.isEmpty()}">등록된 사진이 없습니다.</span>-->
+<div id="container">
+    <div id="program_box" th:each="programDTO : ${list}">
+        <div class="date">[[${programDTO.startDate}]] ~ [[${programDTO.endDate}]]</div>
+        <div class="stage">[[${programDTO.stage}]]</div>
+        <div class="att">
+            <a th:href="@{|/program/experience/view/${programDTO.no}|}"><img th:src="${programDTO.attachment}" alt=""></a>
+            <a th:href="@{|/program/experience/view/${programDTO.no}|}"><img th:if="${programDTO.attachment == null or programDTO.attachment.isEmpty()}"
+                th:src="@{|/img/no_img.png|}" alt=""></a>
+            <!--        <span th:if="${programDTO.attachment == null or programDTO.attachment.isEmpty()}">등록된 사진이 없습니다.</span>-->
+        </div>
+        <div class="sub">[[${programDTO.subject}]]</div>
     </div>
-    <div class="sub">[[${programDTO.subject}]]</div>
-</div>
-<div th:if="${list.size() == 0}">
-    <div colspan="4">체험 프로그램이 없습니다.</div>
+    <div th:if="${list.size() == 0}">
+        <div colspan="4">체험 프로그램이 없습니다.</div>
+    </div>
 </div>
 
-<div th:if="${!paging.isEmpty()}">
-    <ul>
-        <li th:classappend="${!paging.hasPrevious} ? 'disabled'">
-            <a th:if="${!paging.first}"
-               th:href="@{|?page=${paging.number - 1}&searchType=${searchType}&keyword=${keyword}|}">
-                <span>이전</span>
-            </a>
-            <span th:if="${paging.first}">이전</span>
-        </li>
-        <li th:each="page : ${#numbers.sequence(0, paging.totalPages - 1)}"
-            th:if="${page >= paging.number - 3 and page <= paging.number + 3}"
-            th:classappend="${page == paging.number} ? 'active'">
-            <a th:text="${page + 1}"
-               th:href="@{|?page=${page}&searchType=${searchType}&keyword=${keyword}|}">
-            </a>
-        </li>
-        <li th:classappend="${paging.last} ? 'disabled'">
-            <a th:if="${!paging.last}"
-               th:href="@{|?page=${paging.number + 1}&searchType=${searchType}&keyword=${keyword}|}">
-                <span>다음</span>
-            </a>
-            <span th:if="${paging.last}">다음</span>
-        </li>
-    </ul>
-</div>
+<div th:replace="header/paging :: paging"></div>
 
 </body>
 </html>

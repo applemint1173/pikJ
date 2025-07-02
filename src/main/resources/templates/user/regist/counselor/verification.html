@@ -1,11 +1,134 @@
 <!--김태준-->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/userHome.css}">
+    <style>
+        body {
+          font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+          margin: 0;
+          background-color: #f9f9f9;
+        }
+
+        #header ul {
+          list-style: none;
+          display: flex;
+          justify-content: center;
+          padding: 30px 0;
+          background-color: #f5f5f5;
+          margin: 0;
+        }
+
+        #header ul li {
+          position: relative;
+          padding: 20px 40px;
+          margin: 0 20px;
+          border-radius: 50px;
+          background-color: #e0e0e0;
+          font-weight: bold;
+          font-size: 18px;
+          color: #333;
+        }
+
+        #header ul li:nth-child(3) {
+          background-color: #78bdfd;
+          color: white;
+        }
+
+        #header ul li::after {
+          content: '→';
+          position: absolute;
+          right: -30px;
+          top: 50%;
+          transform: translateY(-50%);
+          color: #888;
+          font-size: 20px;
+        }
+
+        #header ul li:last-child::after {
+          content: '';
+        }
+
+        #container {
+          display: flex;
+          justify-content: center;
+          padding: 60px 20px;
+          gap: 30px;
+        }
+
+        .auth-box {
+          background: #fff;
+          border-radius: 20px;
+          box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+          width: 20%;
+          padding: 40px 20px;
+          text-align: center;
+        }
+
+        .auth-box h1 {
+          font-size: 20px;
+          color: #444;
+          margin-bottom: 20px;
+        }
+
+        .icon {
+          width: 80px;
+          height: 80px;
+          background-color: #d9e8ff;
+          border-radius: 50%;
+          margin: 20px auto;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 16px;
+          font-weight: bold;
+          color: #2b3a55;
+        }
+
+        .auth-box button {
+          background-color: #4a90e2;
+          color: white;
+          padding: 12px 30px;
+          border: none;
+          border-radius: 30px;
+          font-size: 16px;
+          cursor: pointer;
+          transition: background-color 0.2s;
+        }
+
+        .auth-box button:hover {
+          background-color: #357bd8;
+        }
+
+        .btn-group {
+          text-align: center;
+          margin-top: 40px;
+        }
+
+        .btn-group button {
+          margin: 0 15px;
+          padding: 12px 30px;
+          font-size: 16px;
+          border: none;
+          border-radius: 30px;
+          cursor: pointer;
+        }
+
+        .btn-next {
+          background-color: #78bdfd;
+          color: white;
+        }
+
+        .btn-cancel {
+          background-color: #ccc;
+          color: #333;
+        }
+    </style>
 </head>
 <body>
+<div th:replace="header/userHeader :: main-header"></div>
 <div id="main">
     <div id="header">
         <ul>
@@ -16,23 +139,42 @@
             <li>가입완료</li>
         </ul>
     </div>
-    <div id="verification">
-        <div class="EPKI">
-            <h1>EPKI 인증 서비스</h1>
-            <div class="EPKI icon">
-                아이콘
-            </div>
-            <div class="button">
-                인증하기
-            </div>
+    <div id="container">
+
+        <div class="auth-box">
+            <h1>EPKI 인증</h1>
+            <div class="icon">💳</div>
+            <button onclick="verifyEPKI()">인증하기</button>
         </div>
-        <!--박지영: 스크립트 함수 추가-->
-        <button onclick="location.href='/regist/counselor/chuga'">다음</button>
-        <button type="button" onclick="location.href='/'">취소</button>
+    </div>
+    <!--박지영: 스크립트 함수 추가-->
+    <div class="btn-group">
+        <button class="btn-next" onclick="goNext()">다음</button>
+        <button class="btn-cancel" onclick="location.href='/'">취소</button>
     </div>
 </div>
-<div id="footer">
 
+
+<div id="footer">
+    <script>
+        let phoneVerified = false;
+        let epkiVerified = false;
+
+
+
+        function verifyEPKI() {
+          alert("EPKI 인증이 완료되었습니다.");
+          epkiVerified = true;
+        }
+
+        function goNext() {
+          if (!phoneVerified && !epkiVerified) {
+            alert("하나 이상의 인증을 완료해야 합니다.");
+            return;
+          }
+          window.location.href = '/regist/counselor/chuga';
+        }
+    </script>
 </div>
 </body>
 </html>

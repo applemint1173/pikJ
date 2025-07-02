@@ -1,24 +1,193 @@
-<!--박지영-->
+<!--정재백-->
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko"xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>상담신청</title>
     <link rel="stylesheet" th:href="@{/css/userHome.css}">
+    <style>
+        body {
+          margin: 0;
+          font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+         background-color: #fffdf6;
+        color: #333;
+        }
+
+        .wrap {
+          max-width: 1100px;
+          margin: 0 auto;
+          padding: 40px 20px;
+        }
+
+        h1 {
+          text-align: center;
+          font-size: 32px;
+          font-weight: bold;
+          margin-bottom: 30px;
+          color: #222;
+        }
+
+        .type-buttons {
+          text-align: center;
+          margin-bottom: 40px;
+        }
+
+        .type-buttons button {
+          border: 2px solid #78bdfd;
+          background-color: white;
+          color: #78bdfd;
+          font-size: 16px;
+          padding: 10px 20px;
+          border-radius: 30px;
+          margin: 0 10px;
+          cursor: pointer;
+          transition: 0.3s;
+        }
+
+        .type-buttons button.active {
+          background-color: #78bdfd;
+          color: white;
+        }
+
+        .notice-box {
+          background-color: #f6f8fc;
+          border-radius: 20px;
+          padding: 30px;
+          margin-bottom: 40px;
+        }
+
+        .notice-box p {
+          font-size: 16px;
+          line-height: 1.8;
+          color: #333;
+        }
+
+        .notice-box strong {
+          color: #295cff;
+        }
+
+        .steps {
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-start;
+          flex-wrap: wrap;
+          text-align: center;
+          margin-bottom: 40px;
+        }
+
+        .step {
+          flex: 1;
+          min-width: 120px;
+          margin: 10px;
+        }
+
+        .step img {
+          width: 60px;
+          height: 60px;
+          margin-bottom: 10px;
+        }
+
+        .step span {
+          display: block;
+          font-size: 14px;
+          color: #444;
+        }
+
+        .info-box {
+          background-color: white;
+          padding: 25px;
+          border-radius: 16px;
+          box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+          font-size: 14px;
+          line-height: 1.7;
+          color: #444;
+          margin-bottom: 50px;
+        }
+
+        .info-box ul {
+          padding-left: 20px;
+        }
+
+        .info-box li::marker {
+          color: #78bdfd;
+        }
+
+        .bottom-btn {
+          text-align: center;
+        }
+
+        .bottom-btn button {
+          background-color: #78bdfd;
+          color: white;
+          border: none;
+          padding: 14px 40px;
+          font-size: 16px;
+          border-radius: 30px;
+          cursor: pointer;
+          transition: background-color 0.3s;
+        }
+
+        .bottom-btn button:hover {
+          background-color: #5a9de3;
+        }
+    </style>
 </head>
 <body>
-
 <div th:replace="header/userHeader :: main-header"></div>
+<div class="wrap">
+    <h1>상담신청</h1>
 
-상담신청 안내문 입니다.<br>
+    <div class="notice-container">
+        <div class="notice-title">상담신청 안내</div>
+        <div class="notice-content">
+            본 상담신청은 개인 정보 및 상담 이력을 바탕으로<br>
+            원활하고 체계적인 상담 서비스를 제공하기 위해 진행됩니다.<br><br>
+            하단에 신청버튼을 클릭하시면 상담신청서 작성 페이지로 이동합니다.
+        </div>
+    </div>
 
-<button onclick="move();">확인</button>
+    <div class="steps">
+        <div class="step">
+            <img src="https://cdn-icons-png.flaticon.com/128/709/709496.png" alt="회원가입">
+            <span>회원가입</span>
+        </div>
+        <div class="step">
+            <img src="https://cdn-icons-png.flaticon.com/128/747/747376.png" alt="신청">
+            <span>상담 신청</span>
+        </div>
+        <div class="step">
+            <img src="https://cdn-icons-png.flaticon.com/128/845/845646.png" alt="완료">
+            <span>신청 완료</span>
+        </div>
+        <div class="step">
+            <img src="https://cdn-icons-png.flaticon.com/128/6816/6816692.png" alt="배정">
+            <span>상담자 배정</span>
+        </div>
+        <div class="step">
+            <img src="https://cdn-icons-png.flaticon.com/128/3463/3463787.png" alt="진행">
+            <span>상담 진행</span>
+        </div>
+        <div class="step">
+            <img src="https://cdn-icons-png.flaticon.com/128/4436/4436481.png" alt="종결">
+            <span>상담 종결</span>
+        </div>
+    </div>
 
-<script>
-    function move() {
-        location.href = "/management/client/chuga";
-    }
-</script>
+    <div class="info-box">
+        <strong>○ 기타 사항</strong>
+        <ul>
+            <li>상담 첫회기는 pik J 회원가입 후 학생이 직접 상담을 신청합니다.</li>
+            <li>보호자(법정대리인)의 상담 동의가 확인되면 예약이 완료됩니다.</li>
+            <li>예약 신청 중이거나 상담 진행 중인 경우 중복 신청은 불가합니다.</li>
+            <li>예약 취소는 첫회기 하루 전(평일 오후 6시)까지 마이페이지에서 가능합니다.</li>
+            <li>연락 없이 예약을 지킬 수 없을 경우 상담 이용에 제한이 있을 수 있습니다.</li>
+        </ul>
+    </div>
+
+    <div class="bottom-btn">
+        <button onclick="location.href='/management/client/chuga'">대면상담 신청</button>
+    </div>
+</div>
 
 </body>
 </html>

@@ -7,8 +7,10 @@
     }
 
     body {
-      font-family: Arial, sans-serif;
-    }
+                font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+                background-color: #fffdf6;
+                color: #333;
+            }
 
     /* 헤더 */
    header {

@@ -69,12 +69,11 @@
         }
 
 /*페이지 */
-   .pager {
-           width: 50%;
-           margin: auto;
-           margin-bottom: 2%;
-           text-align: center;
-       }
+       .pager {
+               width: 50%;
+               margin: 20px auto;
+               text-align: center;
+           }
 
        .pager ul {
            width: 60%;
@@ -90,13 +89,15 @@
            width: 15%;
        }
 
-       .pagenumber {
-           padding: 0 15%;
-
+       .active a {
+            font-weight: bold;
+            text-decoration: underline;
        }
 
-       .pagenumber:active {
-            font-weight: bold;
+       .pagenumber {
+           padding: 0 15%;
+           text-decoration: none;
+
        }
 
        .pagenumber:hover {
