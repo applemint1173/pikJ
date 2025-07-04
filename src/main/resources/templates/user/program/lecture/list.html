@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>강연 프로그램 목록</title>
+    <link rel="stylesheet" th:href="@{/css/userHome.css}">
+    <style>
+        body {
+          font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+          background-color: #fffdf6;
+          color: #333;
+          margin: 0;
+        }
+
+        h1 {
+          font-size: 2.5em;
+          text-align: center;
+          margin: 40px auto 20px;
+        }
+
+        form {
+          text-align: center;
+          margin-bottom: 30px;
+        }
+
+        label {
+          font-size: 1.2em;
+          margin-right: 10px;
+        }
+
+        select {
+          font-size: 1em;
+          padding: 5px 10px;
+          border-radius: 6px;
+        }
+
+        #container {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 30px;
+          padding-bottom: 40px;
+        }
+
+        .program_box {
+          width: 320px;
+          height: 420px;
+          background: #ffffff;
+          border: 1px solid #ddd;
+          border-radius: 12px;
+          box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+          overflow: hidden;
+          position: relative;
+          transition: transform 0.2s;
+        }
+
+        .program_box:hover {
+          transform: translateY(-5px);
+        }
+
+        .program_info {
+          padding: 12px 18px 8px;
+          font-size: 0.95em;
+          color: #555;
+        }
+
+        .date {
+          float: left;
+        }
+
+        .stage {
+          float: right;
+          font-weight: bold;
+          color: #78BDFD;
+        }
+
+        .att {
+          width: 100%;
+          height: 240px;
+          margin-top: 10px;
+        }
+
+        .att img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          border-top: 1px solid #eee;
+          border-bottom: 1px solid #eee;
+          cursor: pointer;
+        }
+
+        .sub {
+          padding: 12px 18px;
+          font-size: 1.2em;
+          font-weight: bold;
+          text-align: center;
+          color: #2B3A55;
+        }
+
+        .no-data {
+          width: 100%;
+          text-align: center;
+          font-size: 1.3em;
+          padding: 40px;
+          color: #999;
+        }
+
+        .pager {
+          width: 100%;
+          text-align: center;
+          margin-top: 30px;
+        }
+
+        .pager ul {
+          display: inline-flex;
+          gap: 20px;
+          list-style: none;
+          padding: 0;
+          margin: 0;
+        }
+
+        .pager li {
+          font-size: 1.1em;
+          color: #5c5248;
+        }
+
+        .pager .active a {
+          font-weight: bold;
+          color: #1f4d80;
+          text-decoration: underline;
+        }
+
+        .pagenumber a {
+          text-decoration: none;
+          color: inherit;
+        }
+
+        .pagenumber a:hover {
+          color: #1f4d80;
+          text-decoration: underline;
+        }
+
+    </style>
+</head>
+<body>
+
+<div th:replace="header/userHeader :: main-header"></div>
+
+<h1>강연 프로그램</h1>
+
+<form th:action="@{/program/lecture/list}" method="get">
+    <label for="stage">진행 단계:</label>
+    <select name="stage" id="stage" onchange="this.form.submit()">
+        <option th:value="전체" th:selected="${stage == null || stage == ' '}">전체</option>
+        <option th:value="진행예정" th:selected="${stage == '진행예정'}">진행예정</option>
+        <option th:value="진행중" th:selected="${stage == '진행중'}">진행중</option>
+        <option th:value="종료" th:selected="${stage == '종료'}">종료</option>
+    </select>
+</form>
+
+<div id="container">
+    <div class="program_box" th:each="programDTO : ${list}">
+        <div class="program_info">
+            <span class="date">[[${programDTO.startDate}]] ~ [[${programDTO.endDate}]]</span>
+            <span class="stage">[[${programDTO.stage}]]</span>
+            <div style="clear: both;"></div>
+        </div>
+
+        <div class="att">
+            <a th:href="@{|/program/lecture/view/${programDTO.no}|}">
+                <img th:if="${programDTO.attachment != null and !programDTO.attachment.isEmpty()}"
+                     th:src="${programDTO.attachment}" alt="강연 이미지">
+                <img th:if="${programDTO.attachment == null or programDTO.attachment.isEmpty()}"
+                     th:src="@{/img/no_img.png}" alt="이미지 없음">
+            </a>
+        </div>
+
+        <div class="sub">[[${programDTO.subject}]]</div>
+    </div>
+
+    <div th:if="${list.size() == 0}" class="no-data">
+        강연 프로그램이 없습니다.
+    </div>
+</div>
+
+<div class="pager" th:replace="header/paging :: paging"></div>
+
+</body>
+</html>

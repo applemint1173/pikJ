@@ -1,0 +1,317 @@
+<!--김태준-->
+<!--정재백CSS-->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>이용약관 - Pik J 청소년 자퇴 상담</title>
+    <link rel="stylesheet" th:href="@{/css/userHome.css}">
+    <style>
+        body {
+           font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+           line-height: 1.6;
+           background-color: #f9f9f9;
+           color: #333;
+           padding: 40 100px;
+           max-width: 1100px;
+           margin: auto;
+         }
+         h1, h2 {
+           color: #2b3a55;
+         }
+         h1 {
+           font-size: 28px;
+           margin-bottom: 20px;
+         }
+         h2 {
+           font-size: 20px;
+           margin-top: 30px;
+           border-bottom: 1px solid #ccc;
+           padding-bottom: 5px;
+         }
+         p {
+           margin: 10px 0;
+         }
+         ul {
+           list-style-type: disc;
+           padding-left: 20px;
+         }
+
+
+         #header ul {
+         list-style: none;
+         display: flex;
+         justify-content: center;
+         padding: 30px 0;
+         background-color: #f5f5f5;
+         margin: 0;
+         }
+
+         #header ul li {
+         position: relative;
+         padding: 20px 40px;
+         margin: 0 20px;
+         border-radius: 50px;
+         background-color: #e0e0e0;
+         font-weight: bold;
+         font-size: 24px;
+         color: #333;
+         }
+
+         #header ul li:nth-child(2) {
+         background-color: #78bdfd9c;
+         color: white;
+         }
+
+         #header ul li::after {
+         content: '→';
+         position: absolute;
+         right: -30px;
+         top: 50%;
+         transform: translateY(-50%);
+         color: #888;
+         font-size: 24px;
+         }
+
+         #header ul li:last-child::after {
+         content: '';
+         }
+             .cancel-wrapper {
+         width: 100%;
+         text-align: center;
+         margin-top: 40px;
+         margin-bottom: 40px;
+       }
+
+       .cancel-wrapper button {
+         background-color: #aaa;
+         color: white;
+         border: none;
+         padding: 30px 60px;
+         border-radius: 20px;
+         font-size: 28px;
+         font-weight: bold;
+         cursor: pointer;
+         margin: 0 20px;
+       }
+
+       .cancel-wrapper button:hover {
+         background-color: #888;
+       }
+
+       .agree-label {
+         display: inline-flex;
+         align-items: center;
+         gap: 10px;
+         font-size: 20px;
+         margin-top: 30px;
+       }
+
+       .agree-label input[type="checkbox"] {
+         width: 30px;
+         height: 30px;
+       }
+
+    </style>
+</head>
+<body>
+<div th:replace="header/userHeader :: main-header"></div>
+
+<!--박지영 : 폼 추가-->
+<form name="form" method="get" action="/regist/counselor/verification">
+    <div id="main">
+        <div id="header">
+            <ul>
+                <li>유형선택</li>
+                <li>약관동의</li>
+                <li>본인인증</li>
+                <li>정보입력</li>
+                <li>가입완료</li>
+            </ul>
+        </div>
+        <div id="container">
+            <div class="agree1">
+                <h1>이용약관</h1>
+                <h2>제1조 (목적)</h2>
+                <p>본 약관은 Pik J(이하 "회사")가 제공하는 청소년 자퇴 상담 솔루션 서비스(이하 "서비스")의 이용과 관련하여 회사와 이용자 간의 권리·의무 및 책임사항을 규정함을 목적으로 합니다.</p>
+                <label>약관에 동의합니다.</label>
+                <input type="radio" name="agree1" value="yes">
+                <label>동의함</label>
+                <input type="radio" name="agree1" value="no">
+                <label>동의하지않음</label>
+            </div>
+            <div class="agree2">
+                <h2>제2조 (정의)</h2>
+                <ul>
+                    <li>"서비스"란 청소년 자퇴 상담, 프로그램 예약, 정보 제공 등 회사가 제공하는 온라인 기능을 의미합니다.</li>
+                    <li>"이용자"란 본 약관에 따라 회사가 제공하는 서비스를 이용하는 모든 회원 및 비회원을 말합니다.</li>
+                    <li>"회원"이란 회원가입을 통해 서비스에 등록한 자로서 지속적으로 서비스를 이용할 수 있는 자를 말합니다.</li>
+                </ul>
+                <label>약관에 동의합니다.</label>
+                <input type="radio" name="agree2" value="yes">
+                <label>동의함</label>
+                <input type="radio" name="agree2" value="no">
+                <label>동의하지않음</label>
+            </div>
+            <div class="agree3">
+                <h2>제3조 (약관의 효력 및 변경)</h2>
+                <ul>
+                    <li>이 약관은 서비스 초기화면에 게시함으로써 효력을 발생합니다.</li>
+                    <li>회사는 관련 법령을 위반하지 않는 범위 내에서 본 약관을 변경할 수 있습니다.</li>
+                    <li>변경된 약관은 공지사항 등을 통해 공지하며, 이용자가 이의를 제기하지 않는 경우 동의한 것으로 간주합니다.</li>
+                </ul>
+                <label>약관에 동의합니다.</label>
+                <input type="radio" name="agree3" value="yes">
+                <label>동의함</label>
+                <input type="radio" name="agree3" value="no">
+                <label>동의하지않음</label>
+            </div>
+
+            <div class="agree4">
+                <h2>제4조 (회원가입)</h2>
+                <ul>
+                    <li>회원가입은 이용자가 본 약관에 동의하고 가입 신청을 완료함으로써 성립됩니다.</li>
+                    <li>만 14세 미만의 이용자는 반드시 법정대리인의 동의를 받아야 합니다.</li>
+                </ul>
+                <label>약관에 동의합니다.</label>
+                <input type="radio" name="agree4" value="yes">
+                <label>동의함</label>
+                <input type="radio" name="agree4" value="no">
+                <label>동의하지않음</label>
+            </div>
+
+            <div class="agree5">
+                <h2>제5조 (서비스의 이용)</h2>
+                <p>회사는 다음 각 호의 서비스를 제공합니다.</p>
+                <ul>
+                    <li>자퇴 상담 신청 및 온라인 예약</li>
+                    <li>상담 전문가 매칭 및 연결</li>
+                    <li>청소년 대상 프로그램 안내 및 참여</li>
+                    <li>커뮤니티 운영 및 정보 제공</li>
+                </ul>
+                <label>약관에 동의합니다.</label>
+                <input type="radio" name="agree5" value="yes">
+                <label>동의함</label>
+                <input type="radio" name="agree5" value="no">
+                <label>동의하지않음</label>
+            </div>
+
+            <div class="agree6">
+                <h2>제6조 (개인정보 보호)</h2>
+                <ul>
+                    <li>회사는 「개인정보 보호법」 등 관련 법령을 준수하여 이용자의 개인정보를 보호합니다.</li>
+                    <li>수집된 개인정보는 서비스 제공 목적 외로는 사용되지 않으며, 개인정보처리방침에 따라 관리됩니다.</li>
+                </ul>
+                <label>약관에 동의합니다.</label>
+                <input type="radio" name="agree6" value="yes">
+                <label>동의함</label>
+                <input type="radio" name="agree6" value="no">
+                <label>동의하지않음</label>
+            </div>
+
+            <div class="agree7">
+                <h2>제7조 (이용자의 의무)</h2>
+                <p>이용자는 다음 행위를 하여서는 안 됩니다.</p>
+                <ul>
+                    <li>허위 정보의 제공 또는 타인의 정보 도용</li>
+                    <li>회사 또는 제3자의 권리 침해</li>
+                    <li>불법적, 유해하거나 음란한 정보의 게시</li>
+                    <li>서비스의 정상적인 운영을 방해하는 행위</li>
+                </ul>
+                <label>약관에 동의합니다.</label>
+                <input type="radio" name="agree7" value="yes">
+                <label>동의함</label>
+                <input type="radio" name="agree7" value="no">
+                <label>동의하지않음</label>
+            </div>
+
+            <div class="agree8">
+                <h2>제8조 (서비스 이용의 제한 및 중지)</h2>
+                <ul>
+                    <li>회사는 시스템 점검, 장애, 이용자의 약관 위반 등의 경우 서비스 제공을 일시 중단할 수 있습니다.</li>
+                    <li>이로 인한 손해에 대해서는 법령에 특별한 규정이 없는 한 책임을 지지 않습니다.</li>
+                </ul>
+                <label>약관에 동의합니다.</label>
+                <input type="radio" name="agree8" value="yes">
+                <label>동의함</label>
+                <input type="radio" name="agree8" value="no">
+                <label>동의하지않음</label>
+            </div>
+
+            <div class="agree9">
+                <h2>제9조 (책임의 한계)</h2>
+                <ul>
+                    <li>회사는 무료로 제공되는 서비스에 대해 책임을 지지 않습니다.</li>
+                    <li>상담 결과나 이용자가 내린 결정에 대해서는 직접적인 책임을 지지 않습니다.</li>
+                </ul>
+                <label>약관에 동의합니다.</label>
+                <input type="radio" name="agree9" value="yes">
+                <label>동의함</label>
+                <input type="radio" name="agree9" value="no">
+                <label>동의하지않음</label>
+            </div>
+
+            <div class="agree10">
+                <h2>제10조 (분쟁 해결 및 관할)</h2>
+                <ul>
+                    <li>이 약관은 대한민국 법률에 따라 해석됩니다.</li>
+                    <li>회사와 이용자 간 분쟁이 발생할 경우, 회사 소재지를 관할하는 법원을 제1심 관할 법원으로 합니다.</li>
+                </ul>
+                <label>약관에 동의합니다.</label>
+                <input type="radio" name="agree10" value="yes">
+                <label>동의함</label>
+                <input type="radio" name="agree10" value="no">
+                <label>동의하지않음</label>
+            </div>
+
+            <label for="check" class="agree-label">
+                <input type="checkbox" id="check" onclick="allAgree();">모두 동의
+            </label>
+
+            <div class="cancel-wrapper">
+                <button type="button" onclick="agree();">다음</button>
+                <button type="button" onclick="location.href='/'">취소</button>
+            </div>
+        </div>
+
+        <div id="footer">
+        </div>
+    </div>
+</form>
+
+<script>
+    function agree(){
+        let k = 0;
+
+        for (let i = 1; i < 11; i++) {
+            const checkedAgree = `input[name="agree${i}"]:checked`;
+            const selected = document.querySelector(checkedAgree);
+            if (selected && selected.value === 'yes') {
+                k++;
+            }
+        }
+
+        if (k == 10) {
+            form.submit();
+        } else {
+            alert("모든 동의는 필수입니다.");
+        }
+    }
+
+    function allAgree(){
+        const checkbox = document.getElementById("check");
+
+        for (let i = 1; i < 11; i++) {
+             const yes = document.querySelector(`input[name="agree${i}"][value="yes"]`);
+
+             if (checkbox.checked) {
+                if (yes) yes.checked = true;
+             } else {
+                yes.checked = false;
+             }
+        }
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/userHome.css}">
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+            background-color: #f9f9f9;
+        }
+
+        .login-container {
+            width: 400px;
+            margin: 5% auto;
+            background: #F5F5F5;
+            box-shadow: 0 15px 25px rgba(0, 0, 0, .2);
+            border-radius: 10px;
+            padding: 40px;
+            box-sizing: border-box;
+        }
+
+        .login-container h2 {
+            text-align: center;
+            color: #78BDFD;
+            margin-bottom: 30px;
+        }
+
+        .type-select {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+            gap: 20px;
+        }
+
+        .type-select label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            font-weight: bold;
+            color: #2B3A55;
+        }
+
+        .type-select input[type="radio"] {
+            margin-right: 8px;
+            accent-color: #78BDFD;
+            width: 18px;
+            height: 18px;
+        }
+
+        .user-box {
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .user-box input {
+            width: 100%;
+            padding: 10px 0;
+            font-size: 16px;
+            color: #2B3A55;
+            border: none;
+            border-bottom: 1px solid #2B3A55;
+            outline: none;
+            background: transparent;
+        }
+
+        .user-box label {
+            position: absolute;
+            top: 0;
+            left: 0;
+            padding: 10px 0;
+            font-size: 16px;
+            color: #2B3A55;
+            pointer-events: none;
+            transition: .5s;
+        }
+
+        .user-box input:focus ~ label,
+        .user-box input:valid ~ label {
+            top: -20px;
+            left: 0;
+            color: #2B3A55;
+            font-size: 12px;
+        }
+
+        .login-container button {
+            background-color: #78bdfd;
+            color: white;
+            border-radius: 30px;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            padding: 12px 24px;
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+
+<div th:replace="header/userHeader :: main-header"></div>
+
+<form name="form" action="/loginProc" method="post">
+    <div class="login-container">
+        <div class="type-select">
+            <label><input type="radio" name="check" value="일반" checked>일반</label>
+            <label><input type="radio" name="check" value="상담사">상담사</label>
+        </div>
+
+        <h2>Login</h2>
+
+        <div class="user-box">
+            <input type="text" name="id" required>
+            <label>ID</label>
+        </div>
+
+        <div class="user-box">
+            <input type="password" name="pwd" required>
+            <label>Password</label>
+        </div>
+
+        <button type="submit">확인</button>
+    </div>
+</form>
+
+</body>
+</html>

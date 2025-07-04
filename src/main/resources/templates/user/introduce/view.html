@@ -1,0 +1,90 @@
+<!--정재백-->
+<!DOCTYPE html>
+<html lang="ko"xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>pik J 소개</title>
+    <link rel="stylesheet" th:href="@{/css/userView.css}">
+    <style>
+
+        * {
+            margin: 0;
+            padding; 0;
+            text-decoration: none;
+            list-style: none;
+            box-sizing: border-box;
+        }
+
+        /* 소개 섹션 */
+        .intro-section {
+          background-color: #e6fbfb;
+          padding: 50px 20px;
+          border-top: 1px solid #ccecec;
+          border-bottom: 1px solid #ccecec;
+        }
+
+        .intro-section h2 {
+          font-size: 28px;
+          margin-bottom: 25px;
+          color: #256cb3;
+          font-weight: bold;
+          text-align: center;
+        }
+
+        .intro-text {
+          font-size: 16.5px;
+          line-height: 1.9;
+          color: #333;
+          max-width: 800px;
+          margin: 0 auto;
+          text-align: left;
+        }
+
+        .intro-text .highlight {
+          color: #4cc3cc;
+          font-weight: bold;
+        }
+
+        .intro-text ul {
+          list-style: none;
+          padding-left: 0;
+          margin-top: 15px;
+        }
+
+        .intro-text ul li {
+          margin-bottom: 18px;
+          line-height: 1.8;
+        }
+    </style>
+</head>
+<body>
+
+<div th:replace="header/userHeader :: main-header"></div>
+
+<!-- 소개 섹션 -->
+<div class="intro-section">
+    <h2>pik J 소개</h2>
+    <div class="intro-text">
+        <p><strong>🌱 팀 pik J</strong>는 자퇴를 고민하고 있는 청소년들이 혼자 고민하지 않도록,<br>
+            그리고 충동적인 선택으로 인해 미래를 놓치지 않도록 돕기 위해 만들어진 청소년 상담·지원 팀입니다.</p>
+
+        <p><strong>📌 사이트의 핵심 목적</strong></p>
+        <ul>
+            <li><strong>✔ 자퇴 고민 상담</strong><br>
+                청소년이 겪는 어려움을 안전하고 비판 없는 공간에서 나눌 수 있도록 상담을 제공합니다.</li>
+
+            <li><strong>✔ 무분별한 자퇴 예방</strong><br>
+                감정적인 충동이나 오해로 인한 자퇴를 방지하고, 충분한 정보와 대안을 제시합니다.</li>
+
+            <li><strong>✔ 심리적·사회적 지원</strong><br>
+                정서적 지지와 다양한 연계 자원을 통해 청소년이 건강하게 성장할 수 있도록 돕습니다.</li>
+        </ul>
+
+        <p><strong>🧭 pik J가 믿는 가치</strong><br>
+            자퇴는 끝이 아닌, <span class="highlight">또 다른 시작</span>이 될 수 있어야 합니다.<br>
+            그 시작을 <span class="highlight">혼자 아닌 함께</span> 할 수 있도록, 우리는 이 자리에 있습니다.</p>
+    </div>
+</div>
+
+</body>
+</html>

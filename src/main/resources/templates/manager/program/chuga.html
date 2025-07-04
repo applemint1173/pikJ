@@ -1,0 +1,60 @@
+<!--박지영-->
+<!--김태준 : html 수정-->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/managerView.css}">
+</head>
+<body>
+<div id="header">
+    <h1>프로그램 추가</h1>
+    <div class="home"><a href="/manager/home"><img src="https://img.icons8.com/material-outlined/24/home--v2.png"
+                                                   alt="home--v2"/></a></div>
+</div>
+<form name="form" action="/manager/program/chugaProc" method="post" enctype="multipart/form-data">
+    <table>
+        <tr>
+            <th>시작일</th>
+            <td><input type="date" name="startDate"></td>
+        </tr>
+        <tr>
+            <th>종료일</th>
+            <td><input type="date" name="endDate"></td>
+        </tr>
+        <tr>
+            <th>제목</th>
+            <td><input type="text" name="subject"></td>
+        </tr>
+        <tr>
+            <th>내용</th>
+            <td>
+                <textarea name="content" style="width: 200px; height: 100px;"></textarea>
+            </td>
+        </tr>
+        <tr>
+            <th>첨부파일</th>
+            <td><input type="file" name="attachmentFile" accept="image/*"></td>
+        </tr>
+        <tr>
+            <th>프로그램구분</th>
+            <td>
+                <input type="radio" name="type" value="체험" checked>체험
+                <input type="radio" name="type" value="강연" >강연
+            </td>
+        </tr>
+    </table>
+</form>
+<div id="nav">
+    <div onclick="chuga();" style="cursor:pointer;"><a>확인</a></div>
+    <div><a href="/manager/program/list">취소</a></div>
+</div>
+</body>
+<script>
+    function chuga() {
+        document.form.submit();
+    }
+</script>
+</body>
+</html>

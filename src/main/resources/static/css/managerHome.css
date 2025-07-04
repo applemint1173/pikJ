@@ -1,0 +1,107 @@
+ /* 정재백 CSS */
+  body {
+           margin: 0;
+           font-family: '맑은 고딕', sans-serif;
+           background-color: #fff;
+         }
+
+         header {
+          max-width: 1200px;
+   margin: 0 auto;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   padding: 20px;
+   border-bottom: 1px solid #ccc;
+
+         }
+
+         .logo img {
+          width: 100px;
+   height: auto;
+
+         }
+
+         .login {
+           font-size: 16px;
+            white-space: nowrap;
+         }
+
+         .title {
+   font-size: 28px;
+   font-weight: bold;
+   border: 2px solid black;
+   padding: 10px 30px;
+   border-radius: 50px;
+   margin: 0 auto;
+   text-align: center;
+   white-space: nowrap;   /* ✅ 줄바꿈 방지 */
+ }
+
+         .container {
+           display: flex;
+           justify-content: center;
+           align-items: center;
+           padding: 40px 0;
+         }
+
+         .sidebar {
+           width: 20px;
+           background-color: #ccc;
+           border-top-left-radius: 20px;
+           border-bottom-left-radius: 20px;
+         }
+
+         .menu-box {
+           width: 400px;
+           border: 2px solid black;
+           border-radius: 20px;
+           overflow: hidden;
+         }
+
+         .menu-item {
+           border-bottom: 1px solid #000;
+           padding: 40px;
+           text-align: center;
+           font-size: 28px;
+           background-color: white;
+         }
+
+         .menu-item1 {
+           border: 1px solid #a39485;
+           border-radius: 5px;
+           font-size: 1.2em;
+           text-align: center;
+           font-weight: bold;
+           color: #fff;
+           padding: 20px;
+           background-color: #73685d;
+         }
+
+         .menu-item:last-child {
+           border-bottom: none;
+         }
+
+         .menu-item:hover {
+           font-weight: bold;
+           background-color: #998b7e9c;
+           cursor: pointer;
+         }
+
+         .menu-item a {
+           text-decoration: none;
+           color: #000; /* 기본 색: 검정 */
+         }
+
+         .menu-item a:visited {
+           color: #000; /* 방문해도 검정 */
+         }
+
+         .menu-item:hover a {
+           color: #fff; /* hover 시 흰색 */
+         }
+
+         .sidebar.right {
+           border-top-right-radius: 20px;
+           border-bottom-right-radius: 20px;
+         }

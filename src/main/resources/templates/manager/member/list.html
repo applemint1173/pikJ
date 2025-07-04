@@ -1,0 +1,73 @@
+<!--김태준: CSS-->
+<!--김태준 : html 수정-->
+<!--관리자 내담자 목록 html-->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>PikJ 관리자 사이트</title>
+    <link rel="stylesheet" th:href="@{/css/managerList.css}">
+</head>
+
+<body>
+<!--    <div id="container">-->
+        <h1>내담자 관리</h1>
+
+        <div id="main">
+            <form name="form" method="get" action="/manager/member/list" style="display: inline;">
+                <div id="nav">
+                    <div>
+                        <a href="/manager/home">
+                            <img src="https://img.icons8.com/material-outlined/24/home--v2.png" alt="home--v2"/>
+                        </a>
+                    </div>
+                    <select class="search" name="searchType">
+                        <option value="" th:selected="${searchType == null}">===선택===</option>
+                        <option value="name" th:selected="${searchType == 'name'}">이름</option>
+                        <option value="phone" th:selected="${searchType == 'phone'}">전화번호</option>
+                        <option value="type" th:selected="${searchType == 'type'}">구분</option>
+                    </select>
+                    <input type="text" name="keyword" id="search" th:value="${keyword}" placeholder="검색어 입력">
+                    <button type="submit">search</button>
+                </div>
+            </form>
+
+            <div class="chuga"><a href="/manager/member/chuga">추가</a></div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>내담자번호</th>
+                        <th>아이디</th>
+                        <th>이름</th>
+                        <th>전화번호</th>
+                        <th>구분</th>
+                        <th>가입일</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <div th:if="${list.size() == 0}">
+                        <td colspan="6">등록된 회원이 없습니다.</td>
+                    </div>
+                    <div th:unless="${list.size() == 0}">
+                        <div th:each="memberDTO : ${list}">
+                            <tr>
+                                <td>[[${memberDTO.no}]]</td>
+                                <td><a th:href="@{|/manager/member/view/${memberDTO.no}|}" th:text="${memberDTO.id}"></a></td>
+                                <td>[[${memberDTO.name}]]</td>
+                                <td>[[${memberDTO.phone}]]</td>
+                                <td>[[${memberDTO.type}]]</td>
+                                <td th:text="${#temporals.format(memberDTO.regiDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                            </tr>
+                        </div>
+                    </div>
+                </tbody>
+            </table>
+
+            <div th:replace="header/paging :: paging"></div>
+        </div>
+<!--    </div>-->
+</body>
+
+</html>

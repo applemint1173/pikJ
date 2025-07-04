@@ -1,0 +1,215 @@
+    /*김태준: CSS*/
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    }
+
+    body {
+    padding:1.5em;
+    background: #f5f5f5
+    }
+
+    .container {
+        width: 80%;
+        height: 100%;
+    }
+
+    /*상단 css*/
+    h1 {
+        text-align: center;
+        font-size: 2.5em;
+        margin: 4%;
+    }
+
+    .log {
+        display: inline-block;
+        position: absolute;
+        right: 12%;
+        top: 5%;
+        font-size: 1.3em;
+    }
+
+    /*검색창 & 메뉴바*/
+
+    #nav {
+        width: 70%;
+        display: flex;
+        justify-content: flex-start;
+        margin: auto;
+        margin-bottom: 3%;
+    }
+
+
+    #nav * {
+        display: flexbox;
+        text-align: center;
+        font-size: 1.1em;
+        line-height: 1%;
+    }
+
+    #nav div:nth-child(1) {
+        margin: 0 5% 0 1%;
+        border: 1px solid #a39485;
+        border-radius: 5px;
+        background-color: #f5f5f5;
+        font-size: 1.2em;
+        padding: 1%;
+    }
+
+
+    #nav input {
+        width: 60%;
+        margin-left: 2%;
+        margin-right: 5%;
+    }
+
+    #nav button {
+        padding: 0.5% 1%;
+    }
+
+
+    #nav div:nth-last-child(2) {
+        margin-left: auto;
+        border: 1px solid #a39485;
+        border-radius: 5px;
+        font-size: 1.2em;
+        padding: 1% 1%;
+    }
+
+    #nav div:nth-last-child(1) {
+        margin-left: 5%;
+        border: 1px solid #a39485;
+        border-radius: 5px;
+        font-size: 1.2em;
+        padding: 1% 1%;
+    }
+
+    .chuga {
+        width: 70px;
+        text-align: center;
+        font-size: 1.5em;
+        float: inherit;
+        margin: 3% 10% 3% 83%;
+    }
+
+
+    /*테이블*/
+    table {
+    border: 1px #a39485 solid;
+    font-size: .9em;
+    box-shadow: 0 2px 5px rgba(0,0,0,.25);
+    width: 75%;
+    border-collapse: collapse;
+    border-radius: 5px;
+    overflow: hidden;
+    margin: auto;
+    margin-bottom: 3%;
+    }
+
+    th {
+    text-align: center;
+    }
+
+    thead {
+    font-weight: bold;
+    color: #fff;
+    background: #73685d;
+    }
+
+    td, th {
+    padding: 1em .5em;
+    vertical-align: middle;
+    }
+
+    td {
+    border-bottom: 1px solid rgba(0,0,0,.1);
+    background: #fff;
+    text-align: center;
+    }
+
+    a {
+    color: #73685d;
+    }
+
+/*페이지 */
+       .pager {
+               width: 50%;
+               margin: 20px auto;
+               text-align: center;
+           }
+
+       .pager ul {
+           width: 60%;
+           display: flex;
+           justify-content: space-around;
+           margin: auto;
+       }
+
+       .pager li {
+           display: block;
+           font-size: 1.3em;
+           color: #5c5248;
+           width: 15%;
+       }
+
+       .active a {
+            font-weight: bold;
+            text-decoration: underline;
+       }
+
+       .pagenumber {
+           padding: 0 15%;
+           text-decoration: none;
+
+       }
+
+       .pagenumber:hover {
+           color: #1f4d80;
+           text-decoration: underline;
+       }
+
+    @media all and (max-width: 768px) {
+
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
+
+    th {
+        text-align: right;
+    }
+
+    table {
+        position: relative;
+        padding-bottom: 0;
+        border: none;
+        box-shadow: 0 0 10px rgba(0,0,0,.2);
+    }
+
+    thead {
+        float: left;
+        white-space: nowrap;
+    }
+
+    tbody {
+        overflow-x: auto;
+        overflow-y: hidden;
+        position: relative;
+        white-space: nowrap;
+    }
+
+    tr {
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    th {
+        border-bottom: 1px solid #a39485;
+    }
+
+    td {
+        border-bottom: 1px solid #e5e5e5;
+    }
+
+}

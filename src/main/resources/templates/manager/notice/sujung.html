@@ -1,0 +1,56 @@
+<!--정재백-->
+<!--김태준 : html 수정-->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/managerView.css}">
+</head>
+<body>
+<div id="header">
+    <h1>공지사항 수정</h1>
+    <div class="home">
+        <a href="/manager/home">
+            <img src="https://img.icons8.com/material-outlined/24/home--v2.png" alt="home--v2" />
+        </a>
+    </div>
+</div>
+<form name="form" action="/manager/notice/sujungProc" method="post">
+    <input type="hidden" name="no" th:value="${returnDTO.no}">
+    <table>
+        <tr>
+            <th>공지사항번호</th>
+            <td>[[${returnDTO.no}]]</td>
+        </tr>
+        <tr>
+            <th>작성자</th>
+            <td><input type="text" name="writer" th:value="${returnDTO.writer}"></td>
+        </tr>
+        <tr>
+            <th>제목</th>
+            <td><input type="text" name="subject" th:value="${returnDTO.subject}"></td>
+        </tr>
+        <tr>
+            <th>내용</th>
+            <td><textarea name="content" style="width: 200px; height: 100px;">[[${returnDTO.content}]]</textarea></td>
+        </tr>
+        <tr>
+            <th>작성일</th>
+            <td th:text="${#temporals.format(returnDTO.regiDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+        </tr>
+    </table>
+</form>
+<div id="nav">
+    <div onclick="sujung();" style="cursor:pointer;"><a>확인</a></div>
+    <div><a th:href="@{|/manager/notice/view/${returnDTO.no}|}">취소</a></div>
+</div>
+
+<script>
+    function sujung() {
+        document.form.submit();
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,376 @@
+/* 정재백 CSS */
+ * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+      background-color: #fffdf6;
+      color: #333;
+    }
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 30px;
+      background-color: #faf19d50;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .logo img {
+         width: 100px;
+         height: auto;
+         cursor: pointer;
+       }
+
+   .menu-bar {
+     display: flex;
+     gap: 30px;
+     align-items: center;
+     flex: 1; /* 남는 공간을 차지하여 로고와 auth 사이에 위치 */
+     justify-content: center;
+   }
+
+   .chatbot {
+         position: fixed;
+         bottom: 20px;
+         right: 20px;
+         width: 300px;
+         background-color: white;
+         border: 1px solid #ccc;
+         border-radius: 10px;
+         display: none;
+         flex-direction: column;
+         box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+         z-index: 1000;
+       }
+       .chat-header {
+         background-color: #256cb3;
+         color: white;
+         padding: 10px;
+         font-weight: bold;
+         display: flex;
+         justify-content: space-between;
+       }
+       .chat-content {
+         padding: 10px;
+         height: 200px;
+         overflow-y: auto;
+       }
+       .chat-input {
+         border-top: 1px solid #ccc;
+         padding: 10px;
+       }
+       .chat-input input {
+         width: 100%;
+         padding: 8px;
+       }
+       #chatbot-btn {
+         position: fixed;
+         bottom: 20px;
+         right: 20px;
+         padding: 10px 20px;
+         background-color: #4cc3cc;
+         color: white;
+         border: none;
+         border-radius: 20px;
+         cursor: pointer;
+       }
+
+        .nav-bar {
+                   display: flex;
+                   gap: 25px;
+                   background: #fcf8e8;
+                   padding: 10px 20px;
+                   border-radius: 15px;
+                   box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+                 }
+                 .nav-link {
+                   font-weight: bold;
+                   color: #333;
+                   text-decoration: none;
+                   padding: 8px 16px;
+                   border-radius: 10px;
+                   transition: background-color 0.3s ease;
+                 }
+                 .nav-link:hover {
+                   background-color: #f5e690;
+                   color: #000;
+                 }
+
+                 .menu {
+                   position: relative;
+                 }
+                 .dropdown {
+                   position: absolute;
+                   top: 100%;
+                   left: 0;
+                   background-color: white;
+                   border: 1px solid #ccc;
+                   border-radius: 12px;
+                   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+                   display: none;
+                   min-width: 150px;
+                   z-index: 1000;
+                 }
+                 .menu:hover .dropdown {
+                   display: block;
+                 }
+                 .dropdown a {
+                   display: block;
+                   padding: 8px 12px;
+                   text-decoration: none;
+                   color: #5c5248;
+                   font-weight: bold;
+                   white-space: nowrap;
+                 }
+                 .dropdown a:hover {
+                   background-color: #eee;
+                 }
+
+              .menu:hover .dropdown {
+                display: block;
+              }
+
+              .auth {
+                    font-size: 14px;
+                  }
+                  .btn-auth {
+                    padding: 6px 14px;
+                    background-color: #4cc3cc;
+                    color: white;
+                    border-radius: 20px;
+                    margin-left: 8px;
+                    text-decoration: none;
+                    transition: background-color 0.3s ease;
+                  }
+                  .btn-auth:hover {
+                    background-color: #359ba0;
+                  }
+
+    /* 슬라이더 */
+  .banner-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 400px; /* 여유 공간 포함 */
+  background-color: #9ffdfd50;
+}
+
+.slider {
+  width: 100%;
+  max-width: 1200px;
+  height: 300px;
+  position: relative;
+  overflow: hidden;
+  margin: 0 auto;
+}
+.slide-gallery {
+  background-color: #fcfcf8;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.slide-gallery h2 {
+  font-size: 26px;
+  margin-bottom: 20px;
+  color: #444;
+}
+
+.slider-container {
+  overflow: hidden;
+  width: 80%;
+  max-width: 800px;
+  margin: 0 auto 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  background-color: #fff;
+}
+
+.slider-track {
+  display: flex;
+  transition: transform 0.6s ease-in-out;
+}
+
+.slider-track img {
+  width: 100%;
+  flex: 0 0 100%;
+  height: 300px;
+  object-fit: cover;
+}
+.slide-wrapper {
+  overflow: hidden;
+  width: 80%;
+  max-width: 800px;
+  height: 300px;
+  margin: 0 auto 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  background-color: #fff;
+}
+
+.slide-track {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.slide-track img {
+  flex: 0 0 100%;
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+
+.slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.slide.active {
+  opacity: 1;
+  z-index: 1;
+}
+
+.photo-gallery {
+  background-color: #fcfcf8;
+  padding: 60px 20px;
+}
+
+.photo-gallery h2 {
+  text-align: center;
+  font-size: 28px;
+  color: #444;
+  margin-bottom: 40px;
+}
+
+.photo-grid {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.photo-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  overflow: hidden;
+  width: 280px;
+  transition: transform 0.3s;
+}
+
+.photo-card:hover {
+  transform: translateY(-5px);
+}
+
+.photo-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.photo-card p {
+  padding: 15px;
+  text-align: center;
+  font-weight: bold;
+  color: #555;
+}
+.photo-gallery-slider {
+  background-color: #fcfcf8;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.photo-gallery-slider h2 {
+  font-size: 26px;
+  margin-bottom: 20px;
+  color: #444;
+}
+.photo-slider {
+  position: relative;
+  width: 80%;
+  max-width: 800px;
+  height: auto; /* 자동 높이 조정 */
+  margin: 0 auto 40px auto;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  background-color: #fff;
+}
+
+.photo-slider img {
+  width: 100%;
+  height: auto; /* 비율 유지 */
+  display: none;
+  object-fit: cover;
+}
+
+.photo-slider img.active {
+  display: block;
+}
+
+
+    /* 섹션 */
+    .section {
+      padding: 2%;
+      border-bottom: 1px solid #ccc;
+      text-align: center;
+    }
+
+    .section h2 {
+      margin-bottom: 20px;
+
+    }
+
+    .section img {
+      max-width: 80%;
+      height: auto;
+    }
+
+    .footer {
+  background-color: white;
+  text-align: center;
+  padding: 40px 20px;
+  border-top: 1px solid #ccc;
+}
+
+.footer h2 {
+  margin-bottom: 20px;
+}
+
+.footer img {
+  max-width: 80%;
+  height: auto;
+}
+
+    .partner-slider {
+  overflow: hidden;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.partner-track {
+  display: flex;
+  width: fit-content;
+  transition: transform 0.5s ease-in-out;
+}
+
+.partner-track a {
+  flex: 0 0 20%; /* 한 번에 5개 = 100% / 5 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+.partner-track img {
+  max-width: 80%;
+  height: auto;
+}

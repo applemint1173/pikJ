@@ -1,0 +1,74 @@
+<!--박지영-->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/managerList.css}">
+</head>
+<body>
+
+<!--<div id="container">-->
+
+    <h1>상담 리스트 관리</h1>
+    <div id="main">
+        <form name="form" method="get" action="/manager/management/list" style="display: inline;">
+            <div id="nav">
+                <div>
+                    <a href="/manager/home">
+                        <img src="https://img.icons8.com/material-outlined/24/home--v2.png" alt="home--v2"/>
+                    </a>
+                </div>
+                <select class="search" name="searchType">
+                    <option value="" th:selected="${searchType == null}">===선택===</option>
+                    <option value="member.name" th:selected="${searchType == 'member.name'}">내담자이름</option>
+                    <option value="counselor.name" th:selected="${searchType == 'counselor.name'}">상담사이름</option>
+                    <option value="school.name" th:selected="${searchType == 'school.name'}">학교명</option>
+                    <option value="checks" th:selected="${searchType == 'checks'}">구분</option>
+                </select>
+                <input type="text" name="keyword" id="search" th:value="${keyword}" placeholder="검색어 입력">
+                <button type="submit">search</button>
+            </div>
+        </form>
+
+        <div class="chuga"><a href="/manager/management/chuga">추가</a></div>
+
+        <table>
+            <thead>
+            <tr>
+                <th>내담자이름</th>
+                <th>내담자전화번호</th>
+                <th>내담자구분</th>
+                <th>상담사이름</th>
+                <th>상담일</th>
+                <th>상담구분</th>
+                <th>작성일</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <div th:if="${list.size() == 0}">
+                <td colspan="7">등록된 상담 리스트가 없습니다.</td>
+            </div>
+
+            <div th:unless="${list.size() == 0}">
+                <tr th:each="managementDTO, loop:${list}">
+                    <td><a th:href="@{|/manager/management/view/${managementDTO.no}|}" th:text="${managementDTO.member.name}"></a></td>
+                    <td>[[${managementDTO.member.phone}]]</td>
+                    <td>[[${managementDTO.member.type}]]</td>
+                    <td>[[${managementDTO.counselor.name}]]</td>
+                    <td>[[${managementDTO.meetingDate}]]</td>
+                    <td>[[${managementDTO.checks}]]</td>
+                    <td th:text="${#temporals.format(managementDTO.regiDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                </tr>
+            </div>
+            </tbody>
+        </table>
+
+        <div th:replace="header/paging :: paging"></div>
+
+    </div>
+<!--</div>-->
+
+</body>
+</html>

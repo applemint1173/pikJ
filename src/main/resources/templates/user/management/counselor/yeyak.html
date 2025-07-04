@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <link rel="stylesheet" th:href="@{/css/userHome.css}">
+  <style>
+    * {
+        margin: 0;
+        padding: 0;
+        text-decoration: none;
+        list-style: none;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+        background-color: #fffdf6;
+        color: #333;
+      }
+
+      h1 {
+        margin-top: 30px;
+        text-align: center;
+        font-size: 28px;
+        color: #222;
+      }
+
+      table {
+        width: 65%;
+        margin: 40px auto;
+        border-collapse: separate;
+        border-spacing: 0 12px;
+      }
+
+      th {
+        background-color: #f4f1e8;
+        color: #5c5248;
+        font-weight: bold;
+        padding: 12px 20px;
+        text-align: center;
+        border-bottom: 2px solid #e0dccc;
+        font-size: 18px;
+        width: 30%;
+      }
+
+      td {
+        background-color: #fdfcf9;
+        padding: 14px 20px;
+        border-top: 1px solid #f0ede6;
+        box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.04);
+        font-size: 15px;
+        width: 70%;
+      }
+
+      td input[type="text"],
+      td input[type="number"],
+      td select,
+      td textarea {
+        width: 100%;
+        padding: 10px 12px;
+        font-size: 15px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        background-color: #fff;
+        transition: border-color 0.3s;
+      }
+
+      td input:focus,
+      td select:focus,
+      td textarea:focus {
+        outline: none;
+        border-color: #78bdfd;
+        box-shadow: 0 0 3px rgba(120, 189, 253, 0.5);
+      }
+
+      textarea {
+        resize: vertical;
+        min-height: 100px;
+      }
+
+      button {
+        background-color: #78bdfd;
+        color: white;
+        border: none;
+        padding: 12px 30px;
+        font-size: 16px;
+        border-radius: 30px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      button:hover {
+        background-color: #5a9de3;
+      }
+
+      tr:hover td {
+        background-color: #f0f4ff;
+      }
+
+      /* 반응형 */
+      @media (max-width: 768px) {
+        table {
+          width: 95%;
+        }
+
+        td, th {
+          font-size: 14px;
+          padding: 10px;
+        }
+
+        td input, td select, td textarea {
+          font-size: 14px;
+        }
+      }
+  </style>
+</head>
+<body>
+
+<div th:replace="header/userHeader :: main-header"></div>
+
+<form name="form" action="/management/counselor/yeyakProc" method="post" enctype="multipart/form-data">
+  <input type="hidden" name="no" th:value="${returnDTO.no}">
+  <input type="hidden" name="member_no" th:value="${returnDTO.member.no}">
+  <input type="hidden" name="counselor_no" th:value="${returnDTO.counselor.no}">
+  <input type="hidden" name="school_no" th:value="${returnDTO.school.no}">
+  <input type="hidden" name="grade" th:value="${returnDTO.grade}">
+  <input type="hidden" name="studentName" th:value="${returnDTO.studentName}">
+  <input type="hidden" name="concern" th:value="${returnDTO.concern}">
+  <input type="hidden" name="checks" value="진행중">
+  <table>
+    <tr>
+      <th>상담번호</th>
+      <td>[[${returnDTO.no}]]</td>
+    </tr>
+    <tr>
+      <th>내담자</th>
+      <td>[[${returnDTO.member.name}]]</td>
+    </tr>
+    <tr>
+      <th>학교</th>
+      <td>[[${returnDTO.school.name}]]</td>
+    </tr>
+    <tr>
+      <th>학년</th>
+      <td>[[${returnDTO.grade}]]</td>
+    </tr>
+    <tr>
+      <th>학생 이름</th>
+      <td>[[${returnDTO.studentName}]]</td>
+    </tr>
+    <tr>
+      <th>고민 내용</th>
+      <td>[[${returnDTO.concern}]]</td>
+    </tr>
+    <tr>
+      <th>상담일</th>
+      <td><input type="date" name="meetingDate"></td>
+    </tr>
+    <tr>
+      <th>상담 지역</th>
+      <td>
+        <input type="button" onclick="execDaumPostcode()" value="우편번호 찾기"><br>
+        <input type="text" id="location_address" name="address" placeholder="주소"><br>
+        <input type="text" id="location_detailAddress" name="addressDetail" placeholder="상세주소">
+      </td>
+    </tr>
+    <tr>
+      <th>상담 기록</th>
+      <td>
+        <textarea name="comments" style="width: 200px; height: 100px;"></textarea>
+      </td>
+    </tr>
+    <tr>
+      <th>상담 첨부파일</th>
+      <td>
+        <input type="file" name="attachmentFile" accept="">
+<!--        <input type="text" name="attachment">-->
+      </td>
+    </tr>
+    <tr>
+      <th>작성일</th>
+      <td th:text="${#temporals.format(returnDTO.regiDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+    </tr>
+    <tr>
+      <th colspan="2">
+        <a onclick="yeyak();" style="cursor:pointer;">진행하기</a>
+        <a href="/management/counselor/allList">취소</a>
+      </th>
+    </tr>
+  </table>
+</form>
+
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+  function yeyak() {
+      document.form.submit();
+  }
+
+  function execDaumPostcode() {
+      new daum.Postcode({
+          oncomplete: function(data) {
+              var fullAddr = '';
+              var addr = '';
+              var extraAddr = '';
+
+              if (data.userSelectedType === 'R') {
+                  addr = data.roadAddress;
+              } else {
+                  addr = data.jibunAddress;
+              }
+
+              if(data.userSelectedType === 'R'){
+                  if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                      extraAddr += data.bname;
+                  }
+
+                  if(data.buildingName !== '' && data.apartment === 'Y'){
+                      extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                  }
+
+                  if(extraAddr !== ''){
+                      extraAddr = ' (' + extraAddr + ')';
+                  }
+              }
+
+              fullAddr = addr + ' (' +data.zonecode + ')' + extraAddr;
+              document.getElementById("location_address").value = fullAddr;
+              document.getElementById("location_detailAddress").focus();
+          }
+      }).open();
+  }
+</script>
+
+</body>
+</html>

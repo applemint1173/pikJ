@@ -1,0 +1,152 @@
+<!--박지영-->
+<!--김태준 : 회원, 상담사, 학교 번호 대신 이름으로 나타나게 수정-->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/managerView.css}">
+</head>
+<body>
+
+<div id="header">
+    <h1>상담 수정</h1>
+    <div class="home">
+        <a href="/manager/home">
+            <img src="https://img.icons8.com/material-outlined/24/home--v2.png" alt="home--v2" />
+        </a>
+    </div>
+</div>
+
+<form name="form" action="/manager/management/sujungProc" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="no" th:value="${returnDTO.no}">
+    <input th:if="${returnDTO.attachment != null}" type="hidden" name="attachment" th:value="${returnDTO.attachment}">
+    <table>
+        <tr>
+            <th>상담번호</th>
+            <td>[[${returnDTO.no}]]</td>
+        </tr>
+        <tr>
+            <th>내담자번호</th>
+            <td>
+                <input type="number" name="member_no" th:value="${returnDTO.member.no}">
+                <button type="button" onclick="window.open('/manager/member/list');">내담자검색</button>
+            </td>
+        </tr>
+        <tr>
+            <th>상담사번호</th>
+            <td>
+                <input type="number" name="counselor_no" th:value="${returnDTO.counselor.no}">
+                <button type="button" onclick="window.open('/manager/counselor/list');">상담사검색</button>
+            </td>
+        </tr>
+        <tr>
+            <th>학교번호</th>
+            <td>
+                <input type="number" name="school_no" th:value="${returnDTO.school.no}">
+                <button type="button" onclick="window.open('/manager/school/list');">학교검색</button>
+            </td>
+        </tr>
+        <tr>
+            <th>학년</th>
+            <td><input type="number" name="grade" th:value="${returnDTO.grade}"></td>
+        </tr>
+        <tr>
+            <th>학생 이름</th>
+            <td><input type="text" name="studentName" th:value="${returnDTO.studentName}"></td>
+        </tr>
+        <tr>
+            <th>고민 내용</th>
+            <td>
+                <textarea name="concern" style="width: 200px; height: 100px;">[[${returnDTO.concern}]]</textarea>
+            </td>
+        </tr>
+        <tr>
+            <th>상담일</th>
+            <td><input type="date" name="meetingDate" th:value="${returnDTO.meetingDate}"></td>
+        </tr>
+        <tr>
+            <th>상담 지역</th>
+            <td>
+                <input type="button" onclick="execDaumPostcode()" value="우편번호 찾기"><br>
+                <input type="text" id="location_address" name="address" placeholder="주소" th:value="${returnDTO.address}"><br>
+                <input type="text" id="location_detailAddress" name="addressDetail" placeholder="상세주소" th:value="${returnDTO.addressDetail}">
+            </td>
+        </tr>
+        <tr>
+            <th>상담 기록</th>
+            <td>
+                <textarea name="comments" style="width: 200px; height: 100px;">[[${returnDTO.comments}]]</textarea>
+            </td>
+        </tr>
+        <tr>
+            <th>상담 첨부파일</th>
+            <td>
+                <input type="file" name="attachmentFile" accept="image/*">
+<!--                <input type="text" name="attachment" th:value="${returnDTO.attachment}">-->
+            </td>
+        </tr>
+        <tr>
+            <th>구분</th>
+            <td>
+                <input type="radio" name="checks" value="진행중" th:checked="${returnDTO.checks == '진행중'}">진행중
+                <input type="radio" name="checks" value="진행완료" th:checked="${returnDTO.checks == '진행완료'}">진행완료
+            </td>
+        </tr>
+        <tr>
+            <th>작성일</th>
+            <td th:text="${#temporals.format(managementDTO.regiDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+        </tr>
+    </table>
+</form>
+
+<div id="nav">
+    <div onclick="sujung();" style="cursor:pointer;"><a>확인</a></div>
+    <div><a th:href="@{|/manager/management/view/${returnDTO.no}|}">취소</a></div>
+</div>
+
+<script>
+    function sujung() {
+        document.form.submit();
+    }
+</script>
+
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+    function execDaumPostcode() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+                var fullAddr = '';
+                var addr = '';
+                var extraAddr = '';
+
+                if (data.userSelectedType === 'R') {
+                    addr = data.roadAddress;
+                } else {
+                    addr = data.jibunAddress;
+                }
+
+                if(data.userSelectedType === 'R'){
+                    if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                        extraAddr += data.bname;
+                    }
+
+                    if(data.buildingName !== '' && data.apartment === 'Y'){
+                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                    }
+
+                    if(extraAddr !== ''){
+                        extraAddr = ' (' + extraAddr + ')';
+                    }
+                }
+
+                fullAddr = addr + ' (' +data.zonecode + ')' + extraAddr;
+                document.getElementById("location_address").value = fullAddr;
+                document.getElementById("location_detailAddress").focus();
+            }
+        }).open();
+    }
+</script>
+
+</body>
+</html>

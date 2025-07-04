@@ -1,0 +1,37 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<header th:fragment="main-header">
+    <div class="logo">
+        <a href="/"><img src="/img/logo.webp" alt="로고"></a>
+    </div>
+    <nav class="nav-bar">
+        <a class="nav-link" href="/management/client/chugaNotice">상담신청</a>
+        <div class="menu">
+            <a class="nav-link" href="#">상담관리 ▼</a>
+            <div class="dropdown">
+                <a href="/management/client/list">내담자</a>
+                <a href="/management/counselor/list">상담사</a>
+            </div>
+        </div>
+        <div class="menu">
+            <a class="nav-link" href="#">프로그램 ▼</a>
+            <div class="dropdown">
+                <a href="/program/experience/list">체험</a>
+                <a href="/program/lecture/list">강연</a>
+            </div>
+        </div>
+        <div class="menu">
+            <a class="nav-link" href="#">안내사항 ▼</a>
+            <div class="dropdown">
+                <a href="/introduce/view">소개</a>
+                <a href="/notice/list">공지사항</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="auth">
+        <a th:if="${session.member != null and session.member.type == '관리자'}" href="/manager/home" class="btn-auth">관리자페이지</a>
+        <a th:if="${session.member == null and session.counselor == null}" href="/regist" class="btn-auth">회원가입</a>
+        <a th:if="${session.member == null and session.counselor == null}" href="/login" class="btn-auth">로그인</a>
+        <a th:if="${session.member != null or session.counselor != null}" href="/logout" class="btn-auth">로그아웃</a>
+    </div>
+</header>

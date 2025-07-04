@@ -1,0 +1,218 @@
+<!--박지영-->
+<!--김태준 : html, CSS 수정-->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/userHome.css}">
+    <style>
+
+        * {
+           margin: 0;
+           padding: 0;
+           text-decoration: none;
+           list-style: none;
+           box-sizing: border-box;
+       }
+
+
+       body {
+       font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+       background-color: #fffdf6; /* 따뜻한 아이보리 배경 */
+       color: #333;
+       }
+
+
+        /* 포근한 느낌의 로고 주위 여백 */
+       #logo {
+       padding: 10px;
+       max-height: 60px;
+       }
+
+
+       form {
+           width: 50%;
+           height: 70px;
+           border: 1px solid #e0dccc;
+           border-radius: 2em;
+           display: flex;
+           justify-content: center;
+           align-items: center;
+           margin: 2% auto;
+       }
+
+       form * {
+           height: 100%;
+           border: none;
+           font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+           font-size: 1.1em;
+       }
+
+       .search {
+           width: 15%;
+           text-align: center;
+           border-radius: 2em 0 0 2em;
+       }
+
+
+       form input {
+           width: 75%;
+           padding: 2%;
+       }
+
+       form button {
+           width:10%;
+           border-radius: 0 2em 2em 0;
+           background-color: white;
+           margin-left: 1px;
+
+       }
+
+
+       table {
+       width: 65%;
+       margin: 40px auto;
+       border-collapse: separate;
+       border-spacing: 0 12px; /* 행 간격 */
+       }
+
+       th {
+       background-color: #f4f1e8;
+       color: #5c5248;
+       font-weight: bold;
+       padding: 12px 20px;
+       text-align: center;
+       border-bottom: 2px solid #e0dccc;
+       font-size: 20px;
+       }
+
+      tr td:nth-child(2) a {
+       color: #3c70a4;
+       font-weight: 600;
+       transition: color 0.3s;
+       padding: 0 6%;
+       }
+
+       tr td:nth-child(2) a:hover {
+       color: #1f4d80;
+       text-decoration: underline;
+       }
+
+       tr td {
+       transition: background-color 0.3s ease;
+       }
+
+       tr:hover td {
+       background-color: #f0f4ff;
+       }
+
+       td {
+       background-color: #fdfcf9;
+       padding: 14px 20px;
+       border-top: 1px solid #f0ede6;
+       box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.04);
+       font-size: 15px;
+       }
+
+       td:nth-child(1) {
+           width: 100px;
+           text-align: center;
+       }
+
+
+       td:nth-child(3) {
+           width:150px;
+           text-align: center;
+       }
+
+       td:nth-child(4) {
+           width:200px;
+           text-align: center;
+       }
+
+       .pager {
+           width: 50%;
+           margin: auto;
+           margin-bottom: 2%;
+           text-align: center;
+       }
+
+       .pager ul {
+           width: 60%;
+           display: flex;
+           justify-content: space-around;
+           margin: auto;
+       }
+
+       .pager li {
+           display: block;
+           font-size: 1.3em;
+           color: #5c5248;
+           width: 15%;
+       }
+
+       .pagenumber {
+           color: #3c70a4;
+           padding: 0 15%;
+
+       }
+
+       .pagenumber:active {
+            font-weight: bold;
+       }
+
+       .pagenumber:hover {
+           color: #1f4d80;
+           text-decoration: underline;
+       }
+
+
+       /* 미디어 대응 */
+       @media (max-width: 768px) {
+       table {
+       width: 100%;
+       }
+
+       td, th {
+       padding: 10px;
+       font-size: 14px;
+       }
+       }
+    </style>
+</head>
+<body>
+
+<div th:replace="header/userHeader :: main-header"></div>
+
+<form name="form" method="get" action="/notice/list">
+
+    <select class="search" name="searchType">
+        <option value="" th:selected="${searchType == null}">== 선택 ==</option>
+        <option value="subject" th:selected="${searchType == 'subject'}">제목</option>
+        <option value="writer" th:selected="${searchType == 'writer'}">작성자</option>
+        <option value="content" th:selected="${searchType == 'content'}">내용</option>
+    </select>
+    <input type="text" name="keyword" id="search" th:value="${keyword}" placeholder="검색어 입력">
+    <button type="submit">search</button>
+
+</form>
+<table>
+    <tr>
+        <th>번호</th>
+        <th>제목</th>
+        <th>작성자</th>
+        <th>작성일</th>
+    </tr>
+    <tr th:each="noticeDTO, loop:${list}" th:onclick="|location.href='/notice/view/${noticeDTO.no}'|" style="cursor: pointer;">
+        <td th:text="${totalCount - (paging.number * paging.size) - loop.index}"></td>
+        <td><a th:href="@{|/notice/view/${noticeDTO.no}|}" th:text="${noticeDTO.subject}"></a></td>
+        <td>[[${noticeDTO.writer}]]</td>
+        <td th:text="${#temporals.format(noticeDTO.regiDate, 'yyyy-MM-dd')}"></td>
+    </tr>
+</table>
+
+<div th:replace="header/paging :: paging"></div>
+
+</body>
+</html>

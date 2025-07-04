@@ -1,0 +1,147 @@
+<!--김태준-->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/userHome.css}">
+    <style>
+        * {
+           margin: 0;
+           padding: 0;
+           text-decoration: none;
+           list-style: none;
+           box-sizing: border-box;
+       }
+
+       body {
+       font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+       background-color: #fffdf6; /* 따뜻한 아이보리 배경 */
+       color: #333;
+       }
+
+        /* 포근한 느낌의 로고 주위 여백 */
+       #logo {
+       padding: 10px;
+       max-height: 60px;
+       }
+
+       table {
+       width: 65%;
+       margin: 40px auto;
+       border-collapse: separate;
+       border-spacing: 0 12px; /* 행 간격 */
+       }
+
+       th {
+       background-color: #f4f1e8;
+       color: #5c5248;
+       font-weight: bold;
+       padding: 12px 20px;
+       text-align: center;
+       border-bottom: 2px solid #e0dccc;
+       font-size: 20px;
+       }
+
+      tr td:nth-child(2) a {
+       color: #3c70a4;
+       font-weight: 600;
+       transition: color 0.3s;
+       padding: 0 6%;
+       }
+
+       tr td:nth-child(2) a:hover {
+       color: #1f4d80;
+       text-decoration: underline;
+       }
+
+       tr td {
+       transition: background-color 0.3s ease;
+       }
+
+       tr:hover td {
+       background-color: #f0f4ff;
+       }
+
+       td {
+       background-color: #fdfcf9;
+       padding: 14px 20px;
+       border-top: 1px solid #f0ede6;
+       box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.04);
+       font-size: 15px;
+       }
+
+       td:nth-child(1) {
+           width: 100px;
+           text-align: center;
+       }
+
+
+       td:nth-child(3) {
+           width:150px;
+           text-align: center;
+       }
+
+       td:nth-child(4) {
+           width:200px;
+           text-align: center;
+       }
+
+        h1 {
+           margin-top: 30px;
+           text-align: center;
+        }
+
+       /* 미디어 대응 */
+       @media (max-width: 768px) {
+       table {
+       width: 100%;
+       }
+
+       td, th {
+       padding: 10px;
+       font-size: 14px;
+       }
+       }
+    </style>
+</head>
+<body>
+
+<div th:replace="header/userHeader :: main-header"></div>
+
+<a href="/management/counselor/list">나의 상담내역 보기</a>
+<a href="/management/counselor/allList">미배정 상담 신청서 보기</a>
+
+<h1>나의 상담내역 보기</h1>
+
+<table>
+    <tr>
+        <th>순번</th>
+        <th>내담자</th>
+        <th>상담일</th>
+        <th>처리 상태</th>
+        <th>상담 내역 보기</th>
+    </tr>
+
+    <div th:if="${list.size() == 0}">
+        <td colspan="5">신청된 상담 내역이 없습니다.</td>
+    </div>
+    <div th:unless="${list.size() == 0}">
+        <tr th:each="managementDTO, loop : ${list}">
+            <td>[[${loop.count}]]</td>
+            <td><a th:href="@{|/management/counselor/getUserInfo/${managementDTO.no}|}">[[${managementDTO.member.name}]]</a></td>
+            <td>[[${managementDTO.meetingDate}]]</td>
+            <td>[[${managementDTO.checks}]]</td>
+            <td><div><a th:href="@{|/management/counselor/view/${managementDTO.no}|}">상세</a></div></td>
+        </tr>
+    </div>
+</table>
+
+<script>
+    function move() {
+        document.form.submit();
+    }
+</script>
+
+</body>
+</html>

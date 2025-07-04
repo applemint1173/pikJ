@@ -1,0 +1,212 @@
+<!--박지영, 정재백 CSS-->
+<!--김태준 : action 주소 변경-->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>상담 사이트</title>
+    <link rel="stylesheet" th:href="@{/css/userHome.css}">
+</head>
+<body>
+
+<div th:replace="header/userHeader :: main-header"></div>
+
+<!-- 슬라이더 배너 -->
+<div class="banner-wrapper">
+    <div class="slider">
+        <img class="slide active" src="/img/1750899073792.jpg" alt="1번">
+        <img class="slide" src="/img/1750899030812.jpg" alt="2번">
+        <img class="slide" src="/img/1750899035097.jpg" alt="3번">
+        <img class="slide" src="/img/1750899044634.jpg" alt="4번">
+        <img class="slide" src="/img/1750899115367.jpg" alt="5번">
+    </div>
+</div>
+
+<script>
+    const slides = document.querySelectorAll('.slide');
+    let current = 0;
+
+    setInterval(() => {
+      slides[current].classList.remove('active');
+      current = (current + 1) % slides.length;
+      slides[current].classList.add('active');
+    }, 5000); // 5초 간격
+
+</script>
+
+<section class="section slide-gallery">
+    <h2>체험 활동 사진</h2>
+    <div class="slider-container">
+        <div class="slider-track" id="exp-track">
+            <img src="/img/763AAAA.jpg" alt="미술 체험">
+            <img src="/img/logo.webp" alt="심리 체험">
+            <img src="/img/763AAAA.jpg" alt="놀이 체험">
+        </div>
+    </div>
+
+    <h2 style="margin-top: 60px;">강연 활동 사진</h2>
+    <div class="slider-container">
+        <div class="slider-track" id="lec-track">
+            <img src="/img/763AAAA.jpg" alt="요가 강연">
+            <img src="/img/logo.webp" alt="멘토링 강연">
+            <img src="/img/763AAAA.jpg" alt="자기계발 강연">
+        </div>
+    </div>
+</section>
+
+<script>
+    function setupSlider(trackId) {
+      const track = document.getElementById(trackId);
+      const slides = track.children;
+      const total = slides.length;
+      let index = 0;
+
+      // 복제 첫 이미지 → 무한 슬라이드를 위해
+      const clone = slides[0].cloneNode(true);
+      track.appendChild(clone);
+
+      setInterval(() => {
+        index++;
+        track.style.transition = "transform 0.6s ease-in-out";
+        track.style.transform = `translateX(-${index * 100}%)`;
+
+        if (index === total) {
+          setTimeout(() => {
+            track.style.transition = "none";
+            track.style.transform = "translateX(0)";
+            index = 0;
+          }, 700); // transition보다 살짝 여유
+        }
+      }, 3000);
+    }
+
+    setupSlider("exp-track");
+    setupSlider("lec-track");
+</script>
+
+
+
+<!-- 협력업체 섹션 -->
+<footer class="footer">
+    <div class="partner-slider">
+        <div class="partner-track" id="partner-track">
+            <!-- 총 7개 원본 -->
+            <a href="https://www.nct.go.kr/" target="_blank">
+                <img src="https://weepl.sen.go.kr/UPFILES/WEEPL/relatedInstitution/20231219/31da36e492e443048486f7ecd2df4fbb.png" alt="국가트라우마센터">
+            </a>
+            <a href="https://www.iapc.or.kr/" target="_blank">
+                <img src="https://weepl.sen.go.kr/UPFILES/WEEPL/relatedInstitution/20231219/05d96a22c605407eacb2167b790be2b4.png" alt="스마트쉼센터">
+            </a>
+            <a href="https://www.1388.go.kr" target="_blank">
+                <img src="https://weepl.sen.go.kr/UPFILES/WEEPL/relatedInstitution/20240620/ba92c147507c4bc984bb69fbb52695a8.png" alt="청소년 1388">
+            </a>
+            <a href="https://www.lanweeclass.co.kr/" target="_blank">
+                <img src="https://weepl.sen.go.kr/UPFILES/WEEPL/relatedInstitution/20231219/433210aba09b412c8daab559bd2cf796.png" alt="랜선 위클래스">
+            </a>
+            <a href="https://www.kdream.or.kr:446/user/index.asp" target="_blank">
+                <img src="https://weepl.sen.go.kr/UPFILES/WEEPL/relatedInstitution/20231219/d5faddc8d431493298251a24acdd3b2e.png" alt="꿈드림">
+            </a>
+            <a href="https://www.lifeline.or.kr/index.php" target="_blank">
+                <img src="https://weepl.sen.go.kr/UPFILES/WEEPL/relatedInstitution/20231219/4b84f01ac9b04a3285826a91feac66b5.png" alt="한국생명의전화">
+            </a>
+            <a href="https://app.allhearyou.or.kr/" target="_blank">
+                <img src="https://weepl.sen.go.kr/UPFILES/WEEPL/relatedInstitution/20231219/af6a556dc35b4a309fbc7f0e258fa7fc.png" alt="다들어줄개">
+            </a>
+
+            <!-- 클론 5개 (무한 슬라이드용: 처음 5개 복제) -->
+            <a href="https://www.nct.go.kr/" target="_blank">
+                <img src="https://weepl.sen.go.kr/UPFILES/WEEPL/relatedInstitution/20231219/31da36e492e443048486f7ecd2df4fbb.png" alt="국가트라우마센터">
+            </a>
+            <a href="https://www.iapc.or.kr/" target="_blank">
+                <img src="https://weepl.sen.go.kr/UPFILES/WEEPL/relatedInstitution/20231219/05d96a22c605407eacb2167b790be2b4.png" alt="스마트쉼센터">
+            </a>
+            <a href="https://www.1388.go.kr" target="_blank">
+                <img src="https://weepl.sen.go.kr/UPFILES/WEEPL/relatedInstitution/20240620/ba92c147507c4bc984bb69fbb52695a8.png" alt="청소년 1388">
+            </a>
+            <a href="https://www.lanweeclass.co.kr/" target="_blank">
+                <img src="https://weepl.sen.go.kr/UPFILES/WEEPL/relatedInstitution/20231219/433210aba09b412c8daab559bd2cf796.png" alt="랜선 위클래스">
+            </a>
+            <a href="https://www.kdream.or.kr:446/user/index.asp" target="_blank">
+                <img src="https://weepl.sen.go.kr/UPFILES/WEEPL/relatedInstitution/20231219/d5faddc8d431493298251a24acdd3b2e.png" alt="꿈드림">
+            </a>
+        </div>
+    </div>
+
+</footer>
+
+<script>
+    const track = document.getElementById('partner-track');
+    const items = track.children.length;
+    const visibleCount = 5;
+    let index = 0;
+
+    function slide() {
+      index++;
+      track.style.transition = 'transform 0.5s ease-in-out';
+      track.style.transform = `translateX(-${index * 20}%)`;
+
+      // 마지막 슬라이드 도달 → 처음으로 재설정
+      if (index === items - visibleCount) {
+        setTimeout(() => {
+          track.style.transition = 'none';
+          index = 0;
+          track.style.transform = 'translateX(0)';
+        }, 600);
+      }
+    }
+
+    setInterval(slide, 3000);
+</script>
+
+
+<button id="chatbot-btn" onclick="toggleChatbot()">챗봇 열기</button>
+
+<!-- 챗봇 박스 -->
+<div class="chatbot" id="chatbot">
+    <div class="chat-header">
+        챗봇
+        <span style="cursor:pointer;" onclick="toggleChatbot()">✕</span>
+    </div>
+    <div class="chat-content" id="chat-log">
+        <p>안녕하세요! 무엇을 도와드릴까요?</p>
+    </div>
+    <div class="chat-input">
+        <input type="text" id="chat-input" placeholder="메시지를 입력하세요" onkeypress="if(event.keyCode==13) sendMessage()">
+    </div>
+</div>
+
+<footer>
+    ⓒ 2025 pik J. All rights reserved.
+</footer>
+
+<script>
+    function toggleChatbot() {
+      const chatbot = document.getElementById('chatbot');
+      chatbot.style.display = (chatbot.style.display === 'flex') ? 'none' : 'flex';
+    }
+
+    function sendMessage() {
+      const input = document.getElementById('chat-input');
+      const msg = input.value.trim();
+      if (msg === '') return;
+      const log = document.getElementById('chat-log');
+      const p = document.createElement('p');
+      p.textContent = "사용자: " + msg;
+      log.appendChild(p);
+      input.value = '';
+      setTimeout(() => {
+        const res = document.createElement('p');
+        res.textContent = "챗봇: 질문에 대한 답변입니다.";
+        log.appendChild(res);
+        log.scrollTop = log.scrollHeight;
+      }, 500);
+    }
+
+</script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!--박지영-->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form id="deleteForm" method="post" action="/manager/management/sakjeProc">
+    <input type="hidden" name="no" th:value="${returnDTO.no}">
+    <input th:if="${returnDTO.attachment != null}" type="hidden" name="attachment" th:value="${returnDTO.attachment}">
+</form>
+
+<form id="backForm" method="get" th:action="@{|/manager/management/view/${returnDTO.no}|}">
+</form>
+
+<script>
+    function deleteManager() {
+      if (confirm("삭제하시겠습니까?")) {
+        alert("삭제되었습니다.");
+        document.getElementById("deleteForm").submit();
+      } else {
+        document.getElementById("backForm").submit();
+      }
+    }
+    deleteManager();
+</script>
+
+</body>
+</html>
