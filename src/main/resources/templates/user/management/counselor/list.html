@@ -33,6 +33,58 @@
        border-spacing: 0 12px; /* 행 간격 */
        }
 
+       .top-btn-wrapper {
+    width: 65%;
+    margin: 30px auto 10px auto;
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+.top-btn {
+    background-color: #3c70a4;
+    color: white;
+    padding: 8px 18px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.top-btn:hover {
+    background-color: #2a5683;
+}
+
+/* 반응형 */
+@media (max-width: 768px) {
+    .top-btn-wrapper {
+        width: 90%;
+        flex-direction: column;
+        align-items: flex-end;
+    }
+
+    .top-btn {
+        width: fit-content;
+    }
+}
+
+       .detail-btn {
+    display: inline-block;
+    background-color: #3c70a4;
+    color: white;
+    padding: 6px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.detail-btn:hover {
+    background-color: #2a5683;
+    text-decoration: none;
+}
+
        th {
        background-color: #f4f1e8;
        color: #5c5248;
@@ -87,6 +139,11 @@
            text-align: center;
        }
 
+       td:nth-child(5){
+           width:200px;
+           text-align: center;
+       }
+
         h1 {
            margin-top: 30px;
            text-align: center;
@@ -109,8 +166,13 @@
 
 <div th:replace="header/userHeader :: main-header"></div>
 
-<a href="/management/counselor/list">나의 상담내역 보기</a>
-<a href="/management/counselor/allList">미배정 상담 신청서 보기</a>
+<!-- 버튼 배치 -->
+<div class="top-btn-wrapper">
+    <a href="/management/counselor/list" class="top-btn">나의 상담내역 보기</a>
+    <a href="/management/counselor/allList" class="top-btn">미배정 상담 신청서 보기</a>
+</div>
+
+
 
 <h1>나의 상담내역 보기</h1>
 
@@ -132,7 +194,11 @@
             <td><a th:href="@{|/management/counselor/getUserInfo/${managementDTO.no}|}">[[${managementDTO.member.name}]]</a></td>
             <td>[[${managementDTO.meetingDate}]]</td>
             <td>[[${managementDTO.checks}]]</td>
-            <td><div><a th:href="@{|/management/counselor/view/${managementDTO.no}|}">상세</a></div></td>
+            <td>
+                <div>
+                    <a class="detail-btn" th:href="@{|/management/counselor/view/${managementDTO.no}|}">상세</a>
+                </div>
+            </td>
         </tr>
     </div>
 </table>

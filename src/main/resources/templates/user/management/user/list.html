@@ -87,6 +87,12 @@
            text-align: center;
        }
 
+       td:nth-child(5){
+           width:200px;
+           text-align: center;
+       }
+
+
        h1 {
            margin-top: 30px;
            text-align: center;
@@ -103,6 +109,23 @@
        font-size: 14px;
        }
        }
+
+
+    .detail-btn {
+    display: inline-block;
+    background-color: #3c70a4;
+    color: white;
+    padding: 6px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.detail-btn:hover {
+    background-color: #2a5683;
+    text-decoration: none;
+}
     </style>
 </head>
 <body>
@@ -130,7 +153,11 @@
             </td>
             <td>[[${managementDTO.meetingDate}]]</td>
             <td>[[${managementDTO.checks}]]</td>
-            <td><div><a th:href="@{|/management/client/view/${managementDTO.no}|}">수정</a></div></td>
+            <td>
+                <div>
+                    <a class="detail-btn" th:href="@{|/management/client/view/${managementDTO.no}|}">상세</a>
+                </div>
+            </td>
         </tr>
     </div>
 
