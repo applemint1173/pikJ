@@ -160,13 +160,18 @@
     </select>
 </form>
 <div id="container">
-    <div id="program_box" th:each="programDTO : ${list}">
-        <div class="date">[[${programDTO.startDate}]] ~ [[${programDTO.endDate}]]</div>
-        <div class="stage">[[${programDTO.stage}]]</div>
+    <div class="program_box" th:each="programDTO : ${list}">
+        <div class="program_info">
+            <div class="date">[[${programDTO.startDate}]] ~ [[${programDTO.endDate}]]</div>
+            <div class="stage">[[${programDTO.stage}]]</div>
+            <div style="clear: both;"></div>
+        </div>
         <div class="att">
-            <a th:href="@{|/program/experience/view/${programDTO.no}|}"><img th:src="${programDTO.attachment}" alt=""></a>
-            <a th:href="@{|/program/experience/view/${programDTO.no}|}"><img th:if="${programDTO.attachment == null or programDTO.attachment.isEmpty()}"
-                                                                             th:src="@{|/img/no_img.png|}" alt=""></a>
+            <a th:href="@{|/program/experience/view/${programDTO.no}|}">
+                <img th:if="${programDTO.attachment != null and !programDTO.attachment.isEmpty()}"
+                     th:src="${programDTO.attachment}" alt="">
+                <img th:if="${programDTO.attachment == null or programDTO.attachment.isEmpty()}"
+                     th:src="@{|/img/no_img.png|}" alt=""></a>
             <!--        <span th:if="${programDTO.attachment == null or programDTO.attachment.isEmpty()}">등록된 사진이 없습니다.</span>-->
         </div>
         <div class="sub">[[${programDTO.subject}]]</div>
