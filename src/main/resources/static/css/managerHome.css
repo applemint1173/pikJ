@@ -18,7 +18,9 @@
 
          .logo img {
           width: 100px;
-   height: auto;
+        height: auto;
+        position: absolute;
+        top: 0;
 
          }
 
